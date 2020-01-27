@@ -60,6 +60,7 @@ const max = 100;
 // console.log(moveToggle);
 // console.log(left);
 // console.log(toggle.pageX);
+console.log(toggle.mousemove.pageX);
 toggle.trigger('mousemove', toggle.pageX = 100);
 // console.log(toggle.trigger('mousemove'));
 // console.log(toggle.pageX);
@@ -69,11 +70,11 @@ describe('Toggle', function() {
 		spyOnEvent(toggle, 'mousedown');
 		toggle.addEventListener('mousedown', (evt) => {
 			evt.preventDefault;
-			console.log('!!!');
+			// console.log('!!!');
 			// console.log(evt.clientX);
-			for (let key in evt) {
-				console.log(key);
-			}
+			// for (let key in evt) {
+			// 	console.log(key);
+			// }
 			let startCoordX = evt.clientX;
 			console.log(startCoordX);
 			let toggleLeft;

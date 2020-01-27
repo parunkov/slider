@@ -5,9 +5,9 @@ export let left
 export function moveToggle(toggle, min, max) {
 	const onMouseDown = (evt) => {
 		// console.log(evt);
-		for (let key in evt) {
-			console.log(key);
-		}
+		// for (let key in evt) {
+		// 	console.log(key);
+		// }
 		evt.preventDefault();
 		let startCoordX: number = evt.clientX;
 		let toggleLeft: number;
