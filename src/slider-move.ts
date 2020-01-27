@@ -1,37 +1,44 @@
-export let left
+export class Toggle {
 
-// left = 0;
+	toggle: HTMLElement;
+	min: number;
+	max: number;
+	value: number;
 
-export function moveToggle(toggle, min, max) {
-	const onMouseDown = (evt) => {
-		// console.log(evt);
-		// for (let key in evt) {
-		// 	console.log(key);
-		// }
-		evt.preventDefault();
-		let startCoordX: number = evt.clientX;
-		let toggleLeft: number;
-
-		const onMouseMove = (moveEvt) => {
-			moveEvt.preventDefault();
-			let shift: number = startCoordX - moveEvt.clientX;
-			startCoordX = moveEvt.clientX;
-			toggleLeft = toggle.offsetLeft - shift;
-			if (toggleLeft < min) {
-				toggleLeft = min;
-			} else if (toggleLeft > max) {
-				toggleLeft = max;
-			} 
-			toggle.style.left = `${toggleLeft}px`;
-			left = toggleLeft;
-		}
-		const onMouseUp = (upEvt) => {
-			upEvt.preventDefault();
-			document.removeEventListener('mouseup', onMouseUp);
-			document.removeEventListener('mousemove', onMouseMove);
-		}
-		document.addEventListener('mousemove', onMouseMove);
-		document.addEventListener('mouseup', onMouseUp);
+	constructor(toggle: HTMLElement, min: number, max: number, value: number) {
+		this.toggle = toggle;
+		this.min = min;
+		this.max = max;
+		this.value = value;
 	}
-	toggle.addEventListener('mousedown', onMouseDown);
+	moveToggle() {
+		const onMouseDown = (evt) => {
+			evt.preventDefault();
+			let startCoordX: number = evt.clientX;
+			let toggleLeft: number;
+
+			const onMouseMove = (moveEvt) => {
+				moveEvt.preventDefault();
+				let shift: number = startCoordX - moveEvt.clientX;
+				startCoordX = moveEvt.clientX;
+				toggleLeft = this.toggle.offsetLeft - shift;
+				if (toggleLeft < this.min) {
+					toggleLeft = this.min;
+				} else if (toggleLeft > this.max) {
+					toggleLeft = this.max;
+				} 
+				this.toggle.style.left = `${toggleLeft}px`;
+				this.value = toggleLeft;
+			}
+			const onMouseUp = (upEvt) => {
+				upEvt.preventDefault();
+				document.removeEventListener('mouseup', onMouseUp);
+				document.removeEventListener('mousemove', onMouseMove);
+			}
+			document.addEventListener('mousemove', onMouseMove);
+			document.addEventListener('mouseup', onMouseUp);
+		}
+		this.toggle.addEventListener('mousedown', onMouseDown);
+	}
 }
+

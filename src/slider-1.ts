@@ -1,4 +1,4 @@
-import {moveToggle, left} from './slider-move.ts';
+import {Toggle} from './slider-move.ts';
 
 export function slider1() {
 	window.addEventListener('load', (windowLoadEvt) => {
@@ -9,9 +9,10 @@ export function slider1() {
 		const container: HTMLElement = document.querySelector('.ts-slider__container');
 		const barWidth: number = bar.offsetWidth;
 
-		moveToggle(toggle, 0, barWidth);
+		let toggleMax = new Toggle(toggle, 0, barWidth, toggle.offsetLeft);
+		toggleMax.moveToggle();
 		document.addEventListener('mousemove', () => {
-			range.style.width = `${left}px`;
+			range.style.width = `${toggleMax.value}px`;
 		});
 
 	});
