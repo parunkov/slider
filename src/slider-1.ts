@@ -1,16 +1,16 @@
 import {Toggle} from './slider-move.ts';
 
-export function slider1() {
+export function slider1(slider, vertical) {
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
-		const toggle: HTMLElement = document.querySelector('.ts-slider__toggle--max');
+		const toggle: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
 		// console.log(toggle);
-		const range: HTMLElement = document.querySelector('.ts-slider__range');
-		const bar: HTMLElement = document.querySelector('.ts-slider__bar');
-		const container: HTMLElement = document.querySelector('.ts-slider__container');
+		const range: HTMLElement = slider.querySelector('.ts-slider__range');
+		const bar: HTMLElement = slider.querySelector('.ts-slider__bar');
+		// const container: HTMLElement = document.querySelector('.ts-slider__container');
 		const barWidth: number = bar.offsetWidth;
 		const barHeight: number = bar.offsetHeight;
-		const vertical: boolean = false;
+		// const vertical: boolean = false;
 		let barMax;
 		let toggleOffset;
 
