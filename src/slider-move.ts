@@ -64,6 +64,7 @@ export class Toggle {
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();
+				console.log(this.toggle.classList + ' up');
 				this.isFixed = false;
 				document.removeEventListener('mouseup', onMouseUp);
 				document.removeEventListener('mousemove', onMouseMove);
