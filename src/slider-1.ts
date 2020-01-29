@@ -3,16 +3,33 @@ import {Toggle} from './slider-move.ts';
 export function slider1() {
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
-		const toggle: HTMLElement = document.querySelector('.ts-slider__toggle');
+		const toggle: HTMLElement = document.querySelector('.ts-slider__toggle--max');
+		// console.log(toggle);
 		const range: HTMLElement = document.querySelector('.ts-slider__range');
 		const bar: HTMLElement = document.querySelector('.ts-slider__bar');
 		const container: HTMLElement = document.querySelector('.ts-slider__container');
 		const barWidth: number = bar.offsetWidth;
+		const barHeight: number = bar.offsetHeight;
+		const vertical: boolean = false;
+		let barMax;
+		let toggleOffset;
 
-		let toggleMax = new Toggle(toggle, 0, barWidth, toggle.offsetLeft);
+		if (vertical) {
+			barMax = barHeight;
+			toggleOffset = toggle.offsetTop;
+		} else {
+			barMax =barWidth;
+			toggleOffset = toggle.offsetLeft;
+		}
+
+		let toggleMax = new Toggle(toggle, 0, barMax, toggleOffset, vertical);
 		toggleMax.moveToggle();
 		document.addEventListener('mousemove', () => {
-			range.style.width = `${toggleMax.value}px`;
+			if (vertical) {
+				range.style.height = `${toggleMax.value}px`;
+			} else {
+				range.style.width = `${toggleMax.value}px`;
+			}
 		});
 
 	});

@@ -4,6 +4,10 @@
 	height: 100px;
 	margin: 0 auto;
 }
+.ts-slider__container--vertical {
+	width: 100px;
+	height: 300px;
+}
 .ts-slider__bar {
 	position: absolute;
 	top: 20px;
@@ -12,6 +16,12 @@
 	height: 10px;
 	border: 1px solid grey;
 	border-radius: 6px;
+}
+.ts-slider__bar--vertical {
+	top: 0;
+	left: 20px;
+	width: 10px;
+	height: 100%;
 }
 .ts-slider__toggle {
 	position: absolute;
@@ -24,6 +34,11 @@
 	transform: translate(-10px, 0);
 	cursor: pointer;
 }
+.ts-slider__toggle--vertical {
+	top: 50%;
+	left: -5px;
+	transform: translate(0, -10px);
+}
 .ts-slider__range {
 	position: absolute;
 	top: 0;
@@ -32,4 +47,8 @@
 	height: 10px;
 	background: #6fcf97;
 	border-radius: 5px;
+}
+.ts-slider__range--vertical {
+	width: 10px;
+	height: 50%;
 }
