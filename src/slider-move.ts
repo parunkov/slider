@@ -23,7 +23,7 @@ export class Toggle {
 			// this.toggle.hidden = true;
 			// console.log(document.elementFromPoint(evt.pageX, evt.pageY));
 			// this.toggle.hidden = false;
-			// console.log(evt.target);
+			console.log(evt.target);
 
 			const onMouseMove = (moveEvt) => {
 				if (this.vertical) {
