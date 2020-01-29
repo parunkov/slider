@@ -27,7 +27,7 @@
 }
 .ts-slider__toggle {
 	position: absolute;
-	top: -5.5px;
+	top: -6px;
 	left: 50%;
 	width: 20px;
 	height: 20px;
@@ -38,7 +38,7 @@
 }
 .ts-slider__toggle--vertical {
 	top: 50%;
-	left: -5.5px;
+	left: -6px;
 	transform: translate(0, -10px);
 }
 .ts-slider__range {
