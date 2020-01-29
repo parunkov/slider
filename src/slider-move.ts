@@ -5,6 +5,7 @@ export class Toggle {
 	max: number;
 	value: number;
 	vertical: boolean;
+	isFixed: boolean;
 
 	constructor(toggle, min, max, value, vertical) {
 		this.toggle = toggle;
@@ -12,6 +13,7 @@ export class Toggle {
 		this.max = max;
 		this.value = value;
 		this.vertical = vertical;
+		this.isFixed = false;
 	}
 	moveToggle() {
 		const onMouseDown = (evt) => {
@@ -23,13 +25,17 @@ export class Toggle {
 			// this.toggle.hidden = true;
 			// console.log(document.elementFromPoint(evt.pageX, evt.pageY));
 			// this.toggle.hidden = false;
-			console.log(evt.target);
+			// console.log(evt.target);
 
 			const onMouseMove = (moveEvt) => {
+				// console.log(this.isFixed);
 				if (this.vertical) {
 					moveEvt.preventDefault();
 					let shift: number = startCoordY - moveEvt.clientY;
 					startCoordY = moveEvt.clientY;
+					if (this.isFixed) {
+						shift = 0;
+					}
 					toggleTop = this.toggle.offsetTop - shift;
 					if (toggleTop < this.min) {
 						toggleTop = this.min;
@@ -42,6 +48,9 @@ export class Toggle {
 					moveEvt.preventDefault();
 					let shift: number = startCoordX - moveEvt.clientX;
 					startCoordX = moveEvt.clientX;
+					if (this.isFixed) {
+						shift = 0;
+					}
 					toggleLeft = this.toggle.offsetLeft - shift;
 					if (toggleLeft < this.min) {
 						toggleLeft = this.min;
@@ -54,6 +63,7 @@ export class Toggle {
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();
+				this.isFixed = false;
 				document.removeEventListener('mouseup', onMouseUp);
 				document.removeEventListener('mousemove', onMouseMove);
 			}

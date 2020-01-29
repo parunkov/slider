@@ -34,17 +34,68 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, toggleMinOffset, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
-		document.addEventListener('mousemove', () => {
-			toggleMax.min = toggleMin.value;
-			toggleMin.max = toggleMax.value;
-			if (isVertical) {
-				range.style.top = `${toggleMin.value}px`;
-				range.style.height = `${(toggleMax.value - toggleMin.value)}px`;
-			} else {
-				range.style.left = `${toggleMin.value}px`;
-				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
+
+		let coincidenceToggle: boolean;
+		let startValue: number;
+		// let oneDown: boolean;
+		let oneMax: number;
+		// let oneMin: number;
+		// maxToggle.addEventListener('mousedown', (evt) => {
+		const onMouseDown = (evt) => {
+			// evt.preventDefault();
+			// maxToggle.hidden = true;
+			// coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
+			// // console.log(coincidenceToggle);
+			// maxToggle.hidden = false;
+			// oneMin = toggleMin.value;
+			// oneMax = toggleMax.value;
+			// oneDown = true;
+			// toggleMin.isFixed = false;
+			// toggleMax.isFixed = false;
+
+			const onMouseMove = (moveEvt) => {
+				moveEvt.preventDefault();
+				toggleMax.min = toggleMin.value;
+				toggleMin.max = toggleMax.value;
+
+				if (coincidenceToggle) {
+					if (toggleMax.value > oneMax) {
+						// let forward = () => {
+						// 	toggleMin.isFixed = false;
+						// 	toggleMax.isFixed = false;
+						// 	console.log('forward');
+						// }
+						// setTimeout(forward, 300);
+					} else {
+						// let back = () => {
+						// 	toggleMin.isFixed = false;
+						// 	toggleMax.isFixed = false;
+						// 	console.log('back');
+						// }
+						// setTimeout(back, 300);
+					}
+				} else {
+
+				}
+
+				if (isVertical) {
+					range.style.top = `${toggleMin.value}px`;
+					range.style.height = `${(toggleMax.value - toggleMin.value)}px`;
+				} else {
+					range.style.left = `${toggleMin.value}px`;
+					range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
+				}
 			}
-		});
+			const onMouseUp = (upEvt) => {
+				upEvt.preventDefault();
+				document.removeEventListener('mouseup', onMouseUp);
+				document.removeEventListener('mousemove', onMouseMove);
+			}
+			document.addEventListener('mousemove', onMouseMove);
+			document.addEventListener('mouseup', onMouseUp);
+		}
+
+		maxToggle.addEventListener('mousedown', onMouseDown);
 
 	});
 }
