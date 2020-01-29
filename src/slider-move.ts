@@ -18,6 +18,7 @@ export class Toggle {
 	moveToggle() {
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
+			console.log(this.toggle.classList + ' down');
 			let startCoordX: number = evt.clientX;
 			let startCoordY: number = evt.clientY;
 			let toggleLeft: number;
