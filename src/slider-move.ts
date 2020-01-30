@@ -3,15 +3,17 @@ export class Toggle {
 	toggle: HTMLElement;
 	min: number;
 	max: number;
+	mouseValue: number;
 	value: number;
 	vertical: boolean;
 	isFixed: boolean;
 
-	constructor(toggle, min, max, value, vertical) {
+	constructor(toggle, min, max, mouseValue, vertical) {
 		this.toggle = toggle;
 		this.min = min;
 		this.max = max;
-		this.value = value;
+		this.mouseValue = mouseValue;
+		this.value = mouseValue;
 		this.vertical = vertical;
 		this.isFixed = false;
 	}
