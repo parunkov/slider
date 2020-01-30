@@ -53,16 +53,16 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 					if (toggleMax.value > startValue) {
 						// console.log('forward');
 					} else {
-						toggleMin.min = 0;
-						minToggle.style.zIndex = '150';
-						// console.log('back');
-						let mousedown = new MouseEvent('mousedown');
-						let mousemove = new MouseEvent('mousemove');
-						let mouseup = new MouseEvent('mouseup');
-						maxToggle.dispatchEvent(mouseup);
-						minToggle.dispatchEvent(mousedown);
 						// toggleMin.min = 0;
-						minToggle.dispatchEvent(mousemove);
+						// minToggle.style.zIndex = '150';
+						// // console.log('back');
+						// let mousedown = new MouseEvent('mousedown');
+						// let mousemove = new MouseEvent('mousemove');
+						// let mouseup = new MouseEvent('mouseup');
+						// maxToggle.dispatchEvent(mouseup);
+						// minToggle.dispatchEvent(mousedown);
+						// // toggleMin.min = 0;
+						// minToggle.dispatchEvent(mousemove);
 					}
 				} else {
 

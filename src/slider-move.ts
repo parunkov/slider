@@ -20,49 +20,49 @@ export class Toggle {
 	moveToggle() {
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
-			console.log(this.toggle.classList + ' down');
-			let startCoordX: number = evt.clientX;
-			let startCoordY: number = evt.clientY;
-			let toggleLeft: number;
-			let toggleTop: number;
-			// this.toggle.hidden = true;
-			// console.log(document.elementFromPoint(evt.pageX, evt.pageY));
-			// this.toggle.hidden = false;
-			// console.log(evt.target);
+			// console.log(this.toggle.classList + ' down');
+			// let startCoordX: number = evt.clientX;
+			// let startCoordY: number = evt.clientY;
+			// let toggleLeft: number;
+			// let toggleTop: number;
+			let shiftX = evt.clientX - this.toggle.offsetLeft;
+			let shiftY = evt.clientY - this.toggle.offsetTop;
+			const moveAt = (pageX, pageY) => {
+				if (this.vertical) {
+					this.toggle.style.top = `${pageY- shiftY}px`;
+				} else {
+					this.toggle.style.left = `${pageX - shiftX}px`;
+				}
+				// this.toggle.style.left = `${pageX - shiftX}px`;
+				// this.toggle.style.top = `${pageY- shiftY}px`;
+			}
+			moveAt(evt.pageX, evt.pageY);
 
 			const onMouseMove = (moveEvt) => {
-				// console.log(this.isFixed);
-				if (this.vertical) {
-					moveEvt.preventDefault();
-					let shift: number = startCoordY - moveEvt.clientY;
-					startCoordY = moveEvt.clientY;
-					if (this.isFixed) {
-						shift = 0;
-					}
-					toggleTop = this.toggle.offsetTop - shift;
-					if (toggleTop < this.min) {
-						toggleTop = this.min;
-					} else if (toggleTop > this.max) {
-						toggleTop = this.max;
-					} 
-					this.toggle.style.top = `${toggleTop}px`;
-					this.value = toggleTop;
-				} else {
-					moveEvt.preventDefault();
-					let shift: number = startCoordX - moveEvt.clientX;
-					startCoordX = moveEvt.clientX;
-					if (this.isFixed) {
-						shift = 0;
-					}
-					toggleLeft = this.toggle.offsetLeft - shift;
-					if (toggleLeft < this.min) {
-						toggleLeft = this.min;
-					} else if (toggleLeft > this.max) {
-						toggleLeft = this.max;
-					} 
-					this.toggle.style.left = `${toggleLeft}px`;
-					this.value = toggleLeft;
-				}
+				moveAt(moveEvt.pageX, moveEvt. pageY);
+				// if (this.vertical) {
+				// 	moveEvt.preventDefault();
+				// 	let shift: number = startCoordY - moveEvt.clientY;
+				// 	startCoordY = moveEvt.clientY;
+				// 	this.mouseValue = this.toggle.offsetTop - shift;
+				// } else {
+				// 	moveEvt.preventDefault();
+				// 	let shift: number = startCoordX - moveEvt.clientX;
+				// 	startCoordX = moveEvt.clientX;
+				// 	this.mouseValue = this.toggle.offsetLeft - shift;
+				// }
+				// console.log(this.mouseValue);
+				// this.value = this.mouseValue;
+				// if (this.value < this.min) {
+				// 	this.value = this.min;
+				// } else if (this.value > this.max) {
+				// 	this.value = this.max;
+				// }
+				// if (this.vertical) {
+				// 	this.toggle.style.top = `${this.value}px`;
+				// } else {
+				// 	this.toggle.style.left = `${this.value}px`;
+				// }
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();
