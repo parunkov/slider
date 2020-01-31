@@ -5,13 +5,10 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 		windowLoadEvt.preventDefault();
 		const minToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
 		const maxToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
-		// console.log(maxToggle);
 		const range: HTMLElement = slider.querySelector('.ts-slider__range');
 		const bar: HTMLElement = slider.querySelector('.ts-slider__bar');
-		// const container: HTMLElement = document.querySelector('.ts-slider__container');
 		const barWidth: number = bar.offsetWidth;
 		const barHeight: number = bar.offsetHeight;
-		// const isVertical: boolean = false;
 		let barMax;
 		let toggleMaxOffset;
 		let toggleMinOffset;
@@ -25,62 +22,17 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 			toggleMaxOffset = maxToggle.offsetTop;
 			toggleMinOffset = minToggle.offsetTop;
 		} else {
-			barMax =barWidth;
+			barMax = barWidth;
 			toggleMaxOffset = maxToggle.offsetLeft;
 			toggleMinOffset = minToggle.offsetLeft;
 		}
 
-		let toggleMax = new Toggle(maxToggle, toggleMinOffset, barMax, toggleMaxOffset, isVertical);
-		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, toggleMinOffset, isVertical);
+		let toggleMax = new Toggle(maxToggle, toggleMinOffset, barMax, 200/*toggleMaxOffset*/, isVertical);
+		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, 100/*toggleMinOffset*/, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
 
-		let coincidenceToggle: boolean;
-		let startValue: number;
-
-		const onMouseDown = (evt) => {
-			evt.preventDefault();
-			maxToggle.hidden = true;
-			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
-			console.log(coincidenceToggle);
-			maxToggle.hidden = false;
-			startValue = toggleMin.value;
-
-			const onMouseMove = (moveEvt) => {
-				moveEvt.preventDefault();
-
-				if (coincidenceToggle) {
-					if (toggleMax.value > startValue) {
-						// console.log('forward');
-					} else {
-						// toggleMin.min = 0;
-						// minToggle.style.zIndex = '150';
-						// // console.log('back');
-						// let mousedown = new MouseEvent('mousedown');
-						// let mousemove = new MouseEvent('mousemove');
-						// let mouseup = new MouseEvent('mouseup');
-						// maxToggle.dispatchEvent(mouseup);
-						// minToggle.dispatchEvent(mousedown);
-						// // toggleMin.min = 0;
-						// minToggle.dispatchEvent(mousemove);
-					}
-				} else {
-
-				}
-			}
-			const onMouseUp = (upEvt) => {
-				upEvt.preventDefault();
-				document.removeEventListener('mouseup', onMouseUp);
-				document.removeEventListener('mousemove', onMouseMove);
-			}
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
-		}
-
-		maxToggle.addEventListener('mousedown', onMouseDown);
-
-
-		document.addEventListener('mousemove', () => {
+		const setRanre = () => {
 			toggleMax.min = toggleMin.value;
 			toggleMin.max = toggleMax.value;
 			if (isVertical) {
@@ -90,9 +42,63 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 				range.style.left = `${toggleMin.value}px`;
 				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
 			}
+		}
+		setRanre();
+
+		const onMouseDown = (evt) => {
+			evt.preventDefault();
+			let coincidenceToggle: boolean = false;
+			maxToggle.hidden = true;
+			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
+			maxToggle.hidden = false;
+			let startValue: number;
+			startValue = toggleMax.value;
+
+			const onMouseMove = (moveEvt) => {
+				moveEvt.preventDefault();
+				if (coincidenceToggle) {
+					toggleMin.mouseValue = toggleMax.mouseValue;
+					toggleMax.isFixed = true;
+					toggleMin.isFixed = true;
+					if (toggleMax.mouseValue > startValue) {
+						toggleMax.isFixed = false;
+						toggleMin.isFixed = true;
+					} else {
+						toggleMax.isFixed = true;
+						toggleMin.isFixed = false;
+						toggleMin.mouseValue = toggleMax.mouseValue;
+						toggleMin.value = toggleMax.mouseValue;
+						if (toggleMin.value < 0) {
+							toggleMin.value = 0;
+						}
+						toggleMin.setStyle();
+					}
+				} else {
+					toggleMax.isFixed = false;
+					toggleMin.isFixed = false;
+				}
+			}
+			const onMouseUp = (upEvt) => {
+				upEvt.preventDefault();
+				toggleMin.mouseValue = toggleMin.value;
+				toggleMax.isFixed = false;
+				toggleMin.isFixed = false;
+				document.removeEventListener('mouseup', onMouseUp);
+				document.removeEventListener('mousemove', onMouseMove);
+			}
+			document.addEventListener('mousemove', onMouseMove);
+			document.addEventListener('mouseup', onMouseUp);
+		}
+
+		maxToggle.addEventListener('mousedown', onMouseDown);
+		document.addEventListener('mousedown', () => {
+		});
+
+
+		document.addEventListener('mousemove', () => {
+			setRanre();
 		});
 
 	});
 }
-
 
