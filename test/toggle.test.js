@@ -1,5 +1,5 @@
 import {$} from '../node_modules/jquery/dist/jquery.js';
-import {Toggle} from '../src/slider-move.ts';
+import {Toggle} from '../src/toggle.ts';
 
 let toggleDiv = setFixtures()[0];
 

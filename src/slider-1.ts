@@ -1,4 +1,4 @@
-import {Toggle} from './slider-move.ts';
+import {Toggle} from './toggle.ts';
 
 export function slider1(slider, isVertical: boolean, isRange: boolean) {
 	window.addEventListener('load', (windowLoadEvt) => {
