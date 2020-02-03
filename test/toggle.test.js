@@ -5,7 +5,7 @@ let toggleDiv = setFixtures()[0];
 
 let toggle = new Toggle(toggleDiv, 0, 300, 200, false);
 
-describe('setStyle', function() {
+describe('toggle setStyle', function() {
 	it('horizontal', function() {
 		toggleDiv.style.left = '';
 		toggleDiv.style.top = '';
