@@ -27,8 +27,8 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 			toggleMinOffset = minToggle.offsetLeft;
 		}
 
-		let toggleMax = new Toggle(maxToggle, toggleMinOffset, barMax, 200/*toggleMaxOffset*/, isVertical);
-		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, 100/*toggleMinOffset*/, isVertical);
+		let toggleMax = new Toggle(maxToggle, toggleMinOffset, barMax, toggleMaxOffset, isVertical);
+		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, toggleMinOffset, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
 
