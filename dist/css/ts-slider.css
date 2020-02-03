@@ -76,6 +76,18 @@
 	border-right: 5px solid transparent;
 	border-top: 5px solid #6fcf97;
 }
+.ts-slider__toggle-value--vertical {
+	top: -1px;
+	left: 27px;
+	transform: none;
+}
+.ts-slider__toggle-value--vertical:after {
+	top: 6.5px;
+	left: -5px;
+	border-top: 5px solid transparent;
+	border-right: 5px solid #6fcf97;
+	border-bottom: 5px solid transparent;
+}
 .ts-slider__range {
 	box-sizing: border-box;
 	position: absolute;
