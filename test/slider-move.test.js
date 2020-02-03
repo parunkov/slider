@@ -1,43 +1,45 @@
 import {$} from '../node_modules/jquery/dist/jquery.js';
 import {Toggle} from '../src/slider-move.ts';
 
-let toggleDiv = setFixtures();
-toggleDiv[0].pageX = 100;
-toggleDiv[0].pageY = 100;
-const addMethodAddEventListener = (obj) => {
-	obj.addEventListener = (evt, arg) => {
-		if (evt === 'mousedown') {
-			return obj.mousedown(arg);
-		} else if (evt === 'mousemove') {
-			return obj.mousemove(arg);
-		} else if (evt === 'mouseup') {
-			return obj.mouseup(arg);
-		}
-	}
-}
-addMethodAddEventListener(toggleDiv);
+let toggleDiv = setFixtures()[0];
+// console.log(toggleDiv);
+toggleDiv.pageX = 100;
+toggleDiv.pageY = 100;
+// const addMethodAddEventListener = (obj) => {
+// 	obj.addEventListener = (evt, arg) => {
+// 		if (evt === 'mousedown') {
+// 			return obj.mousedown(arg);
+// 		} else if (evt === 'mousemove') {
+// 			return obj.mousemove(arg);
+// 		} else if (evt === 'mouseup') {
+// 			return obj.mouseup(arg);
+// 		}
+// 	}
+// }
+// addMethodAddEventListener(toggleDiv);
 
-let toggle = new Toggle(toggleDiv[0], 0, 300, 200, false);
+let toggle = new Toggle(toggleDiv, 0, 300, 200, false);
+console.log(toggle);
 
 describe('setStyle', function() {
 	it('horizontal', function() {
-		toggleDiv[0].style.left = '';
-		toggleDiv[0].style.top = '';
+		toggleDiv.style.left = '';
+		toggleDiv.style.top = '';
 		toggle.setStyle();
-		expect(toggleDiv[0].style.left).toBe('200px');
-		expect(toggleDiv[0].style.top).toBe('');
+		expect(toggleDiv.style.left).toBe('200px');
+		expect(toggleDiv.style.top).toBe('');
 	});
 	it('vertical', function() {
-		toggleDiv[0].style.left = '';
-		toggleDiv[0].style.top = '';
+		toggleDiv.style.left = '';
+		toggleDiv.style.top = '';
 		toggle.vertical = true;
 		toggle.setStyle();
-		expect(toggleDiv[0].style.left).toBe('');
-		expect(toggleDiv[0].style.top).toBe('200px');
+		expect(toggleDiv.style.left).toBe('');
+		expect(toggleDiv.style.top).toBe('200px');
 	});
 });
 
-// // toggleDiv.trigger('mousemove', toggleDiv[0].pageX = 200,  toggleDiv[0].pageY = 200);
+toggleDiv.trigger('mousemove', toggleDiv.pageX = 200,  toggleDiv.pageY = 200);
 
 // // import {moveToggle, left} from '../src/slider-move.ts';
 
