@@ -25,7 +25,7 @@ describe('setStyle', function() {
 });
 
 
-// console.log(toggleDiv);
+console.log(toggleDiv);
 // toggleDiv.pageX = 100;
 // toggleDiv.pageY = 100;
 // const addMethodAddEventListener = (obj) => {
