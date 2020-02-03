@@ -1,10 +1,13 @@
 import {Toggle} from './toggle.ts';
+import {valueTab} from './value-tab.ts';
 
-export function slider1(slider, isVertical: boolean, isRange: boolean) {
+export function slider1(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
 		const minToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
 		const maxToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
+		const minTab: HTMLElement = slider.querySelector('.ts-slider__toggle-value--min');
+		const maxTab: HTMLElement = slider.querySelector('.ts-slider__toggle-value--max');
 		const range: HTMLElement = slider.querySelector('.ts-slider__range');
 		const bar: HTMLElement = slider.querySelector('.ts-slider__bar');
 		const barWidth: number = bar.offsetWidth;
@@ -12,6 +15,11 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 		let barMax;
 		let toggleMaxOffset;
 		let toggleMinOffset;
+
+		if (!isTab) {
+			minTab.hidden = true;
+			maxTab.hidden = true;
+		}
 
 		if (!isRange) {
 			minToggle.hidden = true;
@@ -31,6 +39,12 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, toggleMinOffset, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
+		let minValueTab = new valueTab(minTab, toggleMin.value);
+		let maxValueTab = new valueTab(maxTab, toggleMax.value);
+
+		if (!isRange) {
+			toggleMin.value = 0;
+		}
 
 		const setRanre = () => {
 			toggleMax.min = toggleMin.value;
@@ -42,6 +56,10 @@ export function slider1(slider, isVertical: boolean, isRange: boolean) {
 				range.style.left = `${toggleMin.value}px`;
 				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
 			}
+			minValueTab.value = toggleMin.value;
+			maxValueTab.value = toggleMax.value;
+			minValueTab.setValue();
+			maxValueTab.setValue();
 		}
 		setRanre();
 
