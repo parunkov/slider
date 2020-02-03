@@ -2,29 +2,14 @@ import {$} from '../node_modules/jquery/dist/jquery.js';
 import {Toggle} from '../src/slider-move.ts';
 
 let toggleDiv = setFixtures()[0];
-// console.log(toggleDiv);
-toggleDiv.pageX = 100;
-toggleDiv.pageY = 100;
-// const addMethodAddEventListener = (obj) => {
-// 	obj.addEventListener = (evt, arg) => {
-// 		if (evt === 'mousedown') {
-// 			return obj.mousedown(arg);
-// 		} else if (evt === 'mousemove') {
-// 			return obj.mousemove(arg);
-// 		} else if (evt === 'mouseup') {
-// 			return obj.mouseup(arg);
-// 		}
-// 	}
-// }
-// addMethodAddEventListener(toggleDiv);
 
 let toggle = new Toggle(toggleDiv, 0, 300, 200, false);
-console.log(toggle);
 
 describe('setStyle', function() {
 	it('horizontal', function() {
 		toggleDiv.style.left = '';
 		toggleDiv.style.top = '';
+		toggle.vertical = false;
 		toggle.setStyle();
 		expect(toggleDiv.style.left).toBe('200px');
 		expect(toggleDiv.style.top).toBe('');
@@ -39,7 +24,25 @@ describe('setStyle', function() {
 	});
 });
 
-toggleDiv.trigger('mousemove', toggleDiv.pageX = 200,  toggleDiv.pageY = 200);
+
+// console.log(toggleDiv);
+// toggleDiv.pageX = 100;
+// toggleDiv.pageY = 100;
+// const addMethodAddEventListener = (obj) => {
+// 	obj.addEventListener = (evt, arg) => {
+// 		if (evt === 'mousedown') {
+// 			return obj.mousedown(arg);
+// 		} else if (evt === 'mousemove') {
+// 			return obj.mousemove(arg);
+// 		} else if (evt === 'mouseup') {
+// 			return obj.mouseup(arg);
+// 		}
+// 	}
+// }
+// addMethodAddEventListener(toggleDiv);
+
+
+// toggleDiv.trigger('mousemove', toggleDiv.pageX = 200,  toggleDiv.pageY = 200);
 
 // // import {moveToggle, left} from '../src/slider-move.ts';
 
