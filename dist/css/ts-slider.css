@@ -84,7 +84,7 @@
 }
 .ts-slider__toggle-value--vertical:after {
 	top: 6.5px;
-	left: -5px;
+	left: -4.9px;
 	border-top: 5px solid transparent;
 	border-right: 5px solid #6fcf97;
 	border-bottom: 5px solid transparent;
@@ -102,4 +102,12 @@
 .ts-slider__range--vertical {
 	width: 10px;
 	height: 50%;
+}
+.ts-slider__scale-item {
+	position: absolute;
+	top: 15px;
+	font-family: 'Arial';
+	font-weight: bold;
+	color: grey;
+	transform: translate(-50%, 0);
 }
