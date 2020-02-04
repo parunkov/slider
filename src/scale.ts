@@ -7,6 +7,9 @@ export class Scale {
 	constructor(slider, quantity, isVertical) {
 		this.slider = slider;
 		this.quantity = quantity;
+		if (this.quantity < 2) {
+			this.quantity = 2;
+		}
 		this.isVertical = isVertical;
 		this.createItem();
 	}

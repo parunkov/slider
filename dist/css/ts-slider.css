@@ -109,5 +109,6 @@
 	font-family: 'Arial';
 	font-weight: bold;
 	color: grey;
+	text-align: center;
 	transform: translate(-50%, 0);
 }
