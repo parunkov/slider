@@ -16,9 +16,7 @@ export class Scale {
 
 	createItem() {
 		const bar: HTMLElement = this.slider.querySelector('.ts-slider__bar');
-		// console.log(bar.offsetWidth);
 		for (let i = 0; i < this.quantity; i++) {
-			// console.log(bar.offsetWidth / (i + 1));
 			const scaleItem = document.createElement('div');
 			scaleItem.classList.add('ts-slider__scale-item');
 			if (this.isVertical) {
