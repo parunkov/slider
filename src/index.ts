@@ -4,7 +4,7 @@ import {Scale} from './scale.ts';
 import {View} from './view.ts';
 
 import {sliderData1, sliderData2} from './data.ts';
-console.log(sliderData1);
+// console.log(sliderData1);
 
 // initControl('#ts-slider__wrap-1',false);
 // initControl('#ts-slider__wrap-2',true);

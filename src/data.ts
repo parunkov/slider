@@ -1,4 +1,17 @@
-export const sliderData1: object = {
+interface SliderData {
+	wrapId: string;
+	minValue: number;
+	maxValue: number;
+	minToggleValue: number;
+	maxToggleValue: number;
+	isRange: boolean;
+	isVertical: boolean;
+	isTab: boolean;
+	isScale: boolean;
+	scaleQuantity: number;
+}
+
+const sliderData1: SliderData = {
 	wrapId: '#ts-slider__wrap-1',
 	minValue: 0,
 	maxValue: 300,
@@ -10,7 +23,7 @@ export const sliderData1: object = {
 	isScale: true,
 	scaleQuantity: 4
 }
-export const sliderData2: object = {
+const sliderData2: SliderData = {
 	wrapId: '#ts-slider__wrap-2',
 	minValue: 0,
 	maxValue: 300,
@@ -22,3 +35,5 @@ export const sliderData2: object = {
 	isScale: true,
 	scaleQuantity: 4
 }
+
+export {SliderData, sliderData1, sliderData2};

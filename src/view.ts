@@ -1,34 +1,47 @@
-// import {sliderData} from './data.ts';
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
-// import {View} from './view.ts';
-import {addControlListener} from './add-control-listener.ts';
+import {setControlPrecent} from './set-control-precent.ts';
+import {valueTab} from './value-tab.ts';
+import {SliderData} from './data.ts';
 
 export class View {
 
-	sliderData: any;
+	data: SliderData;
 	sliderContainer: HTMLElement;
+	minTab: HTMLElement;
+	maxTab: HTMLElement;
 
 	constructor(data) {
-		this.sliderData = data;
+		this.data = data;
 		this.initView();
 		this.addListener();
 		this.addScale();
 	}
 
 	initView() {
-		initControl(this.sliderData.wrapId, this.sliderData.isVertical);
-		this.sliderContainer = document.querySelector(this.sliderData.wrapId).querySelector('.ts-slider__container');
+		initControl(this.data.wrapId, this.data.isVertical);
+		this.sliderContainer = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
+		this.minTab = this.sliderContainer.querySelector('.ts-slider__toggle-value--min');
+		this.maxTab = this.sliderContainer.querySelector('.ts-slider__toggle-value--max');
 	}
 	addListener() {
-		addControlListener(this.sliderContainer, this.sliderData.isVertical, this.sliderData.isRange, this.sliderData.isTab);
+		let precent = setControlPrecent(this.sliderContainer, this.data.isVertical, this.data.isRange, this.data.isTab);
+		// let minValueTab = new valueTab(this.minTab, this.data.minToggleValue);
+		// let maxValueTab = new valueTab(this.maxTab, this.data.maxToggleValue);
+		document.addEventListener('mousemove', () => {
+			// minValueTab.value = precent.minToggle;
+			// maxValueTab.value = precent.maxToggle;
+			// minValueTab.setValue();
+			// maxValueTab.setValue();
+			// console.log(precent);
+		}) ;
 	}
 	addScale() {
-		if (this.sliderData.isScale) {
-			const scale = new Scale(this.sliderContainer, this.sliderData.scaleQuantity, this.sliderData.isVertical);
+		if (this.data.isScale) {
+			const scale = new Scale(this.sliderContainer, this.data.minValue, this.data.maxValue, this.data.scaleQuantity, this.data.isVertical);
 		}
 	}
-	data() {
-		console.log(this.sliderData);
-	}
+	// data() {
+	// 	console.log(this.data);
+	// }
 }

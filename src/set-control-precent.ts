@@ -1,7 +1,15 @@
 import {Toggle} from './toggle.ts';
 import {valueTab} from './value-tab.ts';
 
-export function addControlListener(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
+export function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
+	// interface Precent {
+	// 	minToggle: number;
+	// 	maxToggle: number;
+	// }
+	// let precent: Precent = {
+	// 	minToggle: 0,
+	// 	maxToggle: 0
+	// };
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
 		const minToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
@@ -15,7 +23,12 @@ export function addControlListener(slider, isVertical: boolean, isRange: boolean
 		let barMax;
 		let toggleMaxOffset;
 		let toggleMinOffset;
-		const precent = (value) => value / barMax * 100;
+		const setPrecent = (value) => value / barMax * 100;
+		// interface Precent {
+		// 	minToggle: number;
+		// 	maxToggle: number;
+		// }
+		// let precent: Precent;
 
 		if (!isTab) {
 			minTab.hidden = true;
@@ -116,8 +129,13 @@ export function addControlListener(slider, isVertical: boolean, isRange: boolean
 
 		document.addEventListener('mousemove', () => {
 			setRanre();
+			// precent.minToggle = setPrecent(toggleMin.value);
+			// precent.maxToggle = setPrecent(toggleMax.value);
+			// console.log(precent);
 		});
 
 	});
+// console.log(precent);
+// return precent;
 }
 
