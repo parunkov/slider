@@ -10,5 +10,6 @@ const sliders = document.querySelectorAll('.ts-slider__container');
 slider1(sliders[0], false, true, true);
 slider1(sliders[1], true, true, true);
 // slider1(sliders[2], false, true, true);
-const scale = new Scale(sliders[0], 4, false);
+const scale1 = new Scale(sliders[0], 4, false);
+const scale2 = new Scale(sliders[1], 5, true);
 

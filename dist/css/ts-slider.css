@@ -112,3 +112,7 @@
 	text-align: center;
 	transform: translate(-50%, 0);
 }
+.ts-slider__scale-item--vertical{
+	left: -10px;
+	transform: translate(-100%, -50%);
+}
