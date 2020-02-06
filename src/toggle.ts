@@ -1,4 +1,12 @@
-export class Toggle {
+const setToggleStyle = (toggle: HTMLElement, value: number, vertical: boolean) => {
+		if (vertical) {
+			toggle.style.top = `${value}px`;
+		} else {
+			toggle.style.left = `${value}px`;
+	}
+}
+
+class Toggle {
 
 	toggle: HTMLElement;
 	min: number;
@@ -19,11 +27,7 @@ export class Toggle {
 		this.setStyle();
 	}
 	setStyle() {
-		if (this.vertical) {
-			this.toggle.style.top = `${this.value}px`;
-		} else {
-			this.toggle.style.left = `${this.value}px`;
-		}
+		setToggleStyle(this.toggle, this.value, this.vertical);
 	}
 	moveToggle() {
 		const onMouseDown = (evt) => {
@@ -66,3 +70,4 @@ export class Toggle {
 	}
 }
 
+export {setToggleStyle, Toggle};
