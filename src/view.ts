@@ -37,8 +37,9 @@ class View {
 		}
 		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
 		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
-		setToggleStyle(this.minToggleElem, this.data.minToggleValue * this.size / 100, this.data.isVertical);
-		setToggleStyle(this.maxToggleElem, this.data.maxToggleValue * this.size / 100, this.data.isVertical);
+		const setStyleValue = (value) => (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.size;
+		setToggleStyle(this.minToggleElem, setStyleValue(this.data.minToggleValue), this.data.isVertical);
+		setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
 		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
 		this.minTabElem.textContent = `${this.data.minToggleValue}`;
@@ -51,8 +52,10 @@ class View {
 			evt.preventDefault();
 			
 			const onMouseMove = (moveEvt) => {
-				this.minTabElem.textContent = `${Math.round(this.viewData.min)}`;
-				this.maxTabElem.textContent = `${Math.round(this.viewData.max)}`;
+				const setTabValue = (value) => this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100;
+				this.minTabElem.textContent = `${Math.round(setTabValue(this.viewData.min))}`;
+				this.maxTabElem.textContent = `${Math.round(setTabValue(this.viewData.max))}`;
+				// console.log(this.viewData);
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();

@@ -10,20 +10,35 @@ class Presenter {
 
 	constructor(data) {
 		this.data = data;
-		this.setPresenterData();
+		// this.setPresenterData();
 		this.init();
+		// this.setPresenterData();
 	}
 
 	init() {
+		this.presenterData = this.data;
+		// this.setPresenterData();
+		// console.log(this.view.size);
 		this.view = new View(this.presenterData);
-		console.log(this.view.viewData);
+
+		this.setPresenterData();
+
+		this.view.data = this.presenterData;
+		// console.log(this.view.viewData);
+		// console.log(this.view.size);
 	}
 
 	setPresenterData() {
-		// console.log(this.data);
-		this.presenterData = this.data;
-		// console.log(this.presenterData);
 		// this.presenterData.maxToggleValue = 60;
+
+		// const setTogglePosition = (value) => {
+		// 	let position = (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.view.size;
+		// 	return position;
+		// }
+		// this.presenterData.minToggleValue = setTogglePosition(this.data.minToggleValue);
+		// this.presenterData.maxToggleValue = setTogglePosition(this.data.maxToggleValue);
+		// console.log(this.presenterData.minToggleValue);
+		// console.log(this.presenterData.maxToggleValue);
 		
 	}
 }
