@@ -1,11 +1,9 @@
 import {Toggle} from './toggle.ts';
+import {ViewData} from './view.ts';
 
 function setViewData(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
-	interface Precent {
-		min: number;
-		max: number;
-	}
-	let precent: Precent = {
+
+	let precent: ViewData = {
 		min: 0,
 		max: 0
 	};

@@ -10,7 +10,7 @@ interface ViewData {
 	max: number;
 }
 
-export class View {
+class View {
 
 	data: SliderData;
 	viewData: ViewData;
@@ -73,3 +73,5 @@ export class View {
 		}
 	}
 }
+
+export {View, ViewData};
