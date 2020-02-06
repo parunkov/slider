@@ -10,15 +10,13 @@ interface ViewData {
 	max: number;
 }
 
-// let viewData: ViewData = precent;
-
 export class View {
 
 	data: SliderData;
 	viewData: ViewData;
 	container: HTMLElement;
-	minTab: HTMLElement;
-	maxTab: HTMLElement;
+	minTabElem: HTMLElement;
+	maxTabElem: HTMLElement;
 
 	constructor(data) {
 		this.data = data;
@@ -30,8 +28,8 @@ export class View {
 	initView() {
 		initControl(this.data.wrapId, this.data.isVertical);
 		this.container = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
-		this.minTab = this.container.querySelector('.ts-slider__toggle-value--min');
-		this.maxTab = this.container.querySelector('.ts-slider__toggle-value--max');
+		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
+		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
 	}
 	addListener() {
 		setControlPrecent(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
@@ -40,7 +38,7 @@ export class View {
 			
 			const onMouseMove = (moveEvt) => {
 				this.viewData = precent;
-				// console.log(this.viewData);
+				console.log(this.viewData);
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();

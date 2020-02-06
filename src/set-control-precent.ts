@@ -115,7 +115,6 @@ function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab:
 				setRanre();
 				precent.min = setPrecent(toggleMin.value);
 				precent.max = setPrecent(toggleMax.value);
-				// console.log(precent);
 			}
 			const onMouseUp = (upEvt) => {
 				upEvt.preventDefault();

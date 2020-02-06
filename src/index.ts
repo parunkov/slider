@@ -1,4 +1,4 @@
-import {slider1} from './slider-1.ts';
+// import {slider1} from './slider-1.ts';
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
 import {View} from './view.ts';
