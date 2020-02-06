@@ -2,59 +2,59 @@ import {Toggle} from './toggle.ts';
 import {valueTab} from './value-tab.ts';
 
 export function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
-	// interface Precent {
-	// 	minToggle: number;
-	// 	maxToggle: number;
-	// }
-	// let precent: Precent = {
-	// 	minToggle: 0,
-	// 	maxToggle: 0
-	// };
+	interface Precent {
+		min: number;
+		max: number;
+	}
+	let precent: Precent = {
+		min: 0,
+		max: 0
+	};
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
-		const minToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
-		const maxToggle: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
-		const minTab: HTMLElement = slider.querySelector('.ts-slider__toggle-value--min');
-		const maxTab: HTMLElement = slider.querySelector('.ts-slider__toggle-value--max');
+		const minToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
+		const maxToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
+		// const minTabElem: HTMLElement = slider.querySelector('.ts-slider__toggle-value--min');
+		// const maxTabElem: HTMLElement = slider.querySelector('.ts-slider__toggle-value--max');
 		const range: HTMLElement = slider.querySelector('.ts-slider__range');
-		const bar: HTMLElement = slider.querySelector('.ts-slider__bar');
-		const barWidth: number = bar.offsetWidth;
-		const barHeight: number = bar.offsetHeight;
+		const barElem: HTMLElement = slider.querySelector('.ts-slider__bar');
+		const barWidth: number = barElem.offsetWidth;
+		const barHeight: number = barElem.offsetHeight;
 		let barMax;
 		let toggleMaxOffset;
 		let toggleMinOffset;
 		const setPrecent = (value) => value / barMax * 100;
 		// interface Precent {
-		// 	minToggle: number;
-		// 	maxToggle: number;
+		// 	minToggleElem: number;
+		// 	maxToggleElem: number;
 		// }
 		// let precent: Precent;
 
-		if (!isTab) {
-			minTab.hidden = true;
-			maxTab.hidden = true;
-		}
+		// if (!isTab) {
+		// 	minTabElem.hidden = true;
+		// 	maxTabElem.hidden = true;
+		// }
 
 		if (!isRange) {
-			minToggle.hidden = true;
+			minToggleElem.hidden = true;
 		}
 
 		if (isVertical) {
 			barMax = barHeight;
-			toggleMaxOffset = maxToggle.offsetTop;
-			toggleMinOffset = minToggle.offsetTop;
+			toggleMaxOffset = maxToggleElem.offsetTop;
+			toggleMinOffset = minToggleElem.offsetTop;
 		} else {
 			barMax = barWidth;
-			toggleMaxOffset = maxToggle.offsetLeft;
-			toggleMinOffset = minToggle.offsetLeft;
+			toggleMaxOffset = maxToggleElem.offsetLeft;
+			toggleMinOffset = minToggleElem.offsetLeft;
 		}
 
-		let toggleMax = new Toggle(maxToggle, toggleMinOffset, barMax, toggleMaxOffset, isVertical);
-		let toggleMin = new Toggle(minToggle, 0, toggleMaxOffset, toggleMinOffset, isVertical);
+		let toggleMax = new Toggle(maxToggleElem, toggleMinOffset, barMax, toggleMaxOffset, isVertical);
+		let toggleMin = new Toggle(minToggleElem, 0, toggleMaxOffset, toggleMinOffset, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
-		let minValueTab = new valueTab(minTab, toggleMin.value);
-		let maxValueTab = new valueTab(maxTab, toggleMax.value);
+		// let minValueTab = new valueTab(minTabElem, toggleMin.value);
+		// let maxValueTab = new valueTab(maxTabElem, toggleMax.value);
 
 		if (!isRange) {
 			toggleMin.value = 0;
@@ -70,19 +70,19 @@ export function setControlPrecent(slider, isVertical: boolean, isRange: boolean,
 				range.style.left = `${toggleMin.value}px`;
 				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
 			}
-			minValueTab.value = toggleMin.value;
-			maxValueTab.value = toggleMax.value;
-			minValueTab.setValue();
-			maxValueTab.setValue();
+			// minValueTab.value = toggleMin.value;
+			// maxValueTab.value = toggleMax.value;
+			// minValueTab.setValue();
+			// maxValueTab.setValue();
 		}
 		setRanre();
 
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
 			let coincidenceToggle: boolean = false;
-			maxToggle.hidden = true;
+			maxToggleElem.hidden = true;
 			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
-			maxToggle.hidden = false;
+			maxToggleElem.hidden = false;
 			let startValue: number;
 			startValue = toggleMax.value;
 
@@ -122,16 +122,17 @@ export function setControlPrecent(slider, isVertical: boolean, isRange: boolean,
 			document.addEventListener('mouseup', onMouseUp);
 		}
 
-		maxToggle.addEventListener('mousedown', onMouseDown);
+		maxToggleElem.addEventListener('mousedown', onMouseDown);
+		// minToggleElem.addEventListener('mousedown', onMouseDown);
 		// document.addEventListener('mousedown', () => {
 		// });
 
 
 		document.addEventListener('mousemove', () => {
 			setRanre();
-			// precent.minToggle = setPrecent(toggleMin.value);
-			// precent.maxToggle = setPrecent(toggleMax.value);
-			// console.log(precent);
+			precent.min = setPrecent(toggleMin.value);
+			precent.max = setPrecent(toggleMax.value);
+			console.log(precent);
 		});
 
 	});
