@@ -19,3 +19,4 @@ import {sliderData1, sliderData2} from './data.ts';
 const view1 = new View(sliderData1);
 const view2 = new View(sliderData2);
 // view.data();
+// console.log(view1.size);

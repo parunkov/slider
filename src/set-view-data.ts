@@ -1,6 +1,6 @@
 import {Toggle} from './toggle.ts';
 
-function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
+function setViewData(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
 	interface Precent {
 		min: number;
 		max: number;
@@ -133,4 +133,4 @@ function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab:
 return precent;
 }
 
-export {setControlPrecent};
+export {setViewData};

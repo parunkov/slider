@@ -1,6 +1,6 @@
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
-import {setControlPrecent} from './set-control-precent.ts';
+import {setViewData} from './set-view-data.ts';
 import {valueTab} from './value-tab.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
@@ -47,7 +47,7 @@ export class View {
 	}
 
 	addListener() {
-		this.viewData = setControlPrecent(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
+		this.viewData = setViewData(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
 			
