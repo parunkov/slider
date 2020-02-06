@@ -2,6 +2,8 @@
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
 import {View} from './view.ts';
+import {Presenter} from './presenter.ts';
+import {TsSlider} from './ts-slider.ts';
 
 import {sliderData1, sliderData2} from './data.ts';
 // console.log(sliderData1);
@@ -15,8 +17,11 @@ import {sliderData1, sliderData2} from './data.ts';
 // const scale1 = new Scale(sliders[0], 4, false);
 // const scale2 = new Scale(sliders[1], 5, true);
 
+const presenter1 = new Presenter(sliderData1);
+const presenter2 = new Presenter(sliderData2);
 
-const view1 = new View(sliderData1);
-const view2 = new View(sliderData2);
-// view.data();
-// console.log(view1.size);
+// const view1 = new View(presenter1.presenterData);
+// const view2 = new View(presenter2.presenterData);
+
+// const slider1 = new TsSlider(sliderData1);
+// const slider2 = new TsSlider(sliderData2);

@@ -1,7 +1,6 @@
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
 import {setViewData} from './set-view-data.ts';
-import {valueTab} from './value-tab.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
 
