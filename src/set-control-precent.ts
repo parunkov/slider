@@ -1,15 +1,15 @@
 import {Toggle} from './toggle.ts';
 
-interface Precent {
-	min: number;
-	max: number;
-}
-let precent: Precent = {
-	min: 0,
-	max: 0
-};
-
 function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
+	interface Precent {
+		min: number;
+		max: number;
+	}
+	let precent: Precent = {
+		min: 0,
+		max: 0
+	};
+
 	window.addEventListener('load', (windowLoadEvt) => {
 		windowLoadEvt.preventDefault();
 		const minToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
@@ -41,6 +41,8 @@ function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab:
 		let toggleMin = new Toggle(minToggleElem, 0, toggleMaxOffset, toggleMinOffset, isVertical);
 		toggleMax.moveToggle();
 		toggleMin.moveToggle();
+		precent.min = setPrecent(toggleMin.value);
+		precent.max = setPrecent(toggleMax.value);
 
 		if (!isRange) {
 			toggleMin.value = 0;
@@ -128,6 +130,7 @@ function setControlPrecent(slider, isVertical: boolean, isRange: boolean, isTab:
 		maxToggleElem.addEventListener('mousedown', onMouseDownPrecent);
 		minToggleElem.addEventListener('mousedown', onMouseDownPrecent);
 	});
+return precent;
 }
 
-export {precent, setControlPrecent};
+export {setControlPrecent};

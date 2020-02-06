@@ -1,6 +1,6 @@
 import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
-import {precent, setControlPrecent} from './set-control-precent.ts';
+import {setControlPrecent} from './set-control-precent.ts';
 import {valueTab} from './value-tab.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
@@ -24,7 +24,6 @@ export class View {
 	constructor(data) {
 		this.data = data;
 		this.initView();
-		// this.setTabValue();
 		this.addListener();
 		this.addScale();
 	}
@@ -47,19 +46,12 @@ export class View {
 		this.maxTabElem.textContent = `${this.data.maxToggleValue}`;
 	}
 
-	// setTabValue() {
-	// 	this.minTabElem.textContent = `${this.data.minToggleValue}`;
-	// 	this.maxTabElem.textContent = `${this.data.maxToggleValue}`;
-	// }
-
 	addListener() {
-		setControlPrecent(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
+		this.viewData = setControlPrecent(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
 			
 			const onMouseMove = (moveEvt) => {
-				this.viewData = precent;
-				// console.log(this.viewData);
 				this.minTabElem.textContent = `${Math.round(this.viewData.min)}`;
 				this.maxTabElem.textContent = `${Math.round(this.viewData.max)}`;
 			}
