@@ -36,7 +36,7 @@ const sliderData2: SliderData = {
 	isVertical: true,
 	isTab: true,
 	isScale: true,
-	scaleQuantity: 4
+	scaleQuantity: 5
 }
 
 export {SliderData, sliderData1, sliderData2};

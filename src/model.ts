@@ -11,7 +11,7 @@ class Model {
 
 	constructor(data) {
 		this.data = data;
-		this.observer = document.createElement('div');
+		this.observer = document.createElement('Event');
 		this.addListener();
 	}
 
@@ -20,7 +20,7 @@ class Model {
 		// 	console.log(this.modelData);
 		// }
 		// setMouseHandler(document, onMouseMove);
-		// console.log(this.observer);
+		console.log(this.observer);
 		this.observer.addEventListener('changeValue', (evt) => {
 			console.log(this.modelData);
 		});
