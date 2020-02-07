@@ -52,9 +52,9 @@ class View {
 	addListener() {
 		this.viewData = setViewData(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
 		const onMouseMove = (moveEvt) => {
-			// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			this.minTabElem.textContent = `${round(this.viewData.min, this.data.step)}`;
-			this.maxTabElem.textContent = `${round(this.viewData.max, this.data.step)}`;
+			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+			this.minTabElem.textContent = `${round(setTabValue(this.viewData.min), this.data.step)}`;
+			this.maxTabElem.textContent = `${round(setTabValue(this.viewData.max), this.data.step)}`;
 			// console.log(this.viewData);
 		}
 		setMouseHandler(document, onMouseMove);

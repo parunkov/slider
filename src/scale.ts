@@ -27,7 +27,8 @@ export class Scale {
 		for (let i = 0; i < this.quantity; i++) {
 			const scaleItem = document.createElement('div');
 			scaleItem.classList.add('ts-slider__scale-item');
-			scaleItem.textContent = `${round((this.min + (this.max - this.min) / (this.quantity - 1) * i), this.step)}`;
+			let text = Math.round((this.min + (this.max - this.min) / (this.quantity - 1) * i) / this.step) * this.step;
+			scaleItem.textContent = `${round(text, this.step)}`;
 			if (this.isVertical) {
 				scaleItem.classList.add('ts-slider__scale-item--vertical');
 				scaleItem.style.top = `${bar.offsetHeight / (this.quantity - 1) * i}px`;

@@ -14,7 +14,7 @@ interface SliderData {
 
 const sliderData1: SliderData = {
 	wrapId: '#ts-slider__wrap-1',
-	step: 1,
+	step: 0.01,
 	minValue: 6,
 	maxValue: 92,
 	minToggleValue: 53,
