@@ -60,47 +60,6 @@ function setViewData(slider, isVertical: boolean, isRange: boolean, isTab: boole
 		}
 		setRanre();
 
-		// let coincidenceToggle: boolean;
-		// let startValue: number;
-
-		// const onMouseDownCoincidence = (evt) => {
-		// 	coincidenceToggle = false;
-		// 	maxToggleElem.hidden = true;
-		// 	coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
-		// 	maxToggleElem.hidden = false;
-		// 	startValue = toggleMax.value;
-		// }
-
-		// const onMouseMoveCoincidence = (moveEvt) => {
-		// 	if (coincidenceToggle) {
-		// 		toggleMin.mouseValue = toggleMax.mouseValue;
-		// 		toggleMax.isFixed = true;
-		// 		toggleMin.isFixed = true;
-		// 		if (toggleMax.mouseValue > startValue) {
-		// 			toggleMax.isFixed = false;
-		// 			toggleMin.isFixed = true;
-		// 		} else {
-		// 			toggleMax.isFixed = true;
-		// 			toggleMin.isFixed = false;
-		// 			toggleMin.mouseValue = toggleMax.mouseValue;
-		// 			toggleMin.value = toggleMax.mouseValue;
-		// 			if (toggleMin.value < 0) {
-		// 				toggleMin.value = 0;
-		// 			}
-		// 			toggleMin.setStyle();
-		// 		}
-		// 	} else {
-		// 		toggleMax.isFixed = false;
-		// 		toggleMin.isFixed = false;
-		// 	}
-		// }
-		// const onMouseUpCoincidence = (upEvt) => {
-		// 	toggleMin.mouseValue = toggleMin.value;
-		// 	toggleMax.isFixed = false;
-		// 	toggleMin.isFixed = false;
-		// }
-		// setMouseHandler(maxToggleElem, onMouseMoveCoincidence);
-
 		const onMouseDownCoincidence = (evt) => {
 			evt.preventDefault();
 			let coincidenceToggle: boolean = false;
