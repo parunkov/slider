@@ -26,6 +26,10 @@ const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 
 }
 
+const round = (value: number, step: number) => {
+	const precision = x => +( (x.toString().includes('.')) ? (x.toString().split('.').pop().length) : (0) );
+	let rounded: string = (Math.round(value / step) * step).toFixed(precision(step));
+	return rounded;
+}
 
-
-export {setMouseHandler};
+export {setMouseHandler, round};

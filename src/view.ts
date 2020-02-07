@@ -3,7 +3,7 @@ import {Scale} from './scale.ts';
 import {setViewData} from './set-view-data.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
-import {setMouseHandler} from './functions.ts';
+import {setMouseHandler, round} from './functions.ts';
 
 interface ViewData {
 	min: number;
@@ -43,17 +43,18 @@ class View {
 		setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
 		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-		const setToggleValue = (value) => Math.round(value / this.data.step) * this.data.step;
-		this.minTabElem.textContent = `${setToggleValue(this.data.minToggleValue)}`;
-		this.maxTabElem.textContent = `${setToggleValue(this.data.maxToggleValue)}`;
+		// round(10.01, this.data.step);
+		// const setToggleValue = (value) => Math.round(value / this.data.step) * this.data.step;
+		this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
+		this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
 	}
 
 	addListener() {
 		this.viewData = setViewData(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
 		const onMouseMove = (moveEvt) => {
-			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			this.minTabElem.textContent = `${setTabValue(this.viewData.min)}`;
-			this.maxTabElem.textContent = `${setTabValue(this.viewData.max)}`;
+			// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+			this.minTabElem.textContent = `${round(this.viewData.min, this.data.step)}`;
+			this.maxTabElem.textContent = `${round(this.viewData.max, this.data.step)}`;
 			// console.log(this.viewData);
 		}
 		setMouseHandler(document, onMouseMove);
