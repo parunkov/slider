@@ -1,5 +1,6 @@
 import {View, ViewData} from './view.ts';
 import {SliderData} from './data.ts';
+import {round} from './functions.ts';
 
 class Presenter {
 
@@ -7,25 +8,30 @@ class Presenter {
 	view: any;
 	presenterData: SliderData;
 	viewData: ViewData;
+	modelData: ViewData;
 
 	constructor(data) {
 		this.data = data;
 		// this.setPresenterData();
 		this.init();
 		// this.setPresenterData();
+		this.modelData = new Object;
 	}
 
 	init() {
 		this.presenterData = this.data;
-		// this.setPresenterData();
-		// console.log(this.view.size);
 		this.view = new View(this.presenterData);
-
 		this.setPresenterData();
-
 		this.view.data = this.presenterData;
-		// console.log(this.view.viewData);
-		// console.log(this.view.size);
+		let viewData: ViewData = this.view.viewData;
+		// let modelData: ViewData = new Object;
+		const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+		this.view.container.addEventListener('changeValue', (evt) => {
+			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+			this.modelData.min = +round(setTabValue(viewData.min), this.data.step);
+			this.modelData.max = +round(setTabValue(viewData.max), this.data.step);
+			console.log(this.modelData);
+		});
 	}
 
 	setPresenterData() {

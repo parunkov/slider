@@ -1,4 +1,4 @@
-export function initControl(wrap: string, vertical: boolean) {
+export function initViewMarkup(wrap: string, vertical: boolean) {
 	const contolMarkup: string = `<div class="ts-slider__container">
           <div class="ts-slider__bar">
             <div class="ts-slider__toggle ts-slider__toggle--min">

@@ -32,10 +32,8 @@ export class Scale {
 			if (this.isVertical) {
 				scaleItem.classList.add('ts-slider__scale-item--vertical');
 				scaleItem.style.top = `${bar.offsetHeight / (this.quantity - 1) * i}px`;
-				// scaleItem.textContent = `${bar.offsetHeight / (this.quantity - 1) * i}`;
 			} else {
 				scaleItem.style.left = `${bar.offsetWidth / (this.quantity - 1) * i}px`;
-				// scaleItem.textContent = `${bar.offsetWidth / (this.quantity - 1) * i}`;
 			}			
 			bar.append(scaleItem);
 		}

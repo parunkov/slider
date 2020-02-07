@@ -28,8 +28,8 @@ const sliderData1: SliderData = {
 const sliderData2: SliderData = {
 	wrapId: '#ts-slider__wrap-2',
 	step: 10,
-	minValue: 100,
-	maxValue: 300,
+	minValue: 102,
+	maxValue: 308,
 	minToggleValue: 200,
 	maxToggleValue: 250,
 	isRange: true,

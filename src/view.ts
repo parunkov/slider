@@ -1,4 +1,4 @@
-import {initControl} from './init-control.ts';
+import {initViewMarkup} from './init-view-markup.ts';
 import {Scale} from './scale.ts';
 import {setViewData} from './set-view-data.ts';
 import {SliderData} from './data.ts';
@@ -24,18 +24,22 @@ class View {
 	constructor(data) {
 		this.data = data;
 		this.initView();
+		this.setToggle();
 		this.addListener();
 		this.addScale();
 	}
 
 	initView() {
-		initControl(this.data.wrapId, this.data.isVertical);
+		initViewMarkup(this.data.wrapId, this.data.isVertical);
 		this.container = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
 		if (this.data.isVertical) {
 			this.size = this.container.offsetHeight;
 		} else {
 			this.size = this.container.offsetWidth;
 		}
+	}
+
+	setToggle() {
 		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
 		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
 		const setStyleValue = (value) => (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.size;
@@ -43,21 +47,23 @@ class View {
 		setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
 		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-		// round(10.01, this.data.step);
-		// const setToggleValue = (value) => Math.round(value / this.data.step) * this.data.step;
 		this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
 		this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
 	}
 
 	addListener() {
-		this.viewData = setViewData(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
+		this.viewData = setViewData(this.container, this.data);
 		const onMouseMove = (moveEvt) => {
 			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
 			this.minTabElem.textContent = `${round(setTabValue(this.viewData.min), this.data.step)}`;
 			this.maxTabElem.textContent = `${round(setTabValue(this.viewData.max), this.data.step)}`;
 			// console.log(this.viewData);
+			this.container.dispatchEvent(new CustomEvent('changeValue'));
 		}
 		setMouseHandler(document, onMouseMove);
+		// this.container.addEventListener('changeValue', (evt) => {
+		// 	// console.log(this.viewData);
+		// });
 	}
 
 	addScale() {
