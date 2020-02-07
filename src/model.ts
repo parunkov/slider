@@ -7,17 +7,23 @@ class Model {
 
 	data: SliderData;
 	modelData: ViewData;
+	observer: HTMLElement;
 
 	constructor(data) {
 		this.data = data;
+		this.observer = document.createElement('div');
 		this.addListener();
 	}
 
 	addListener() {
-		const onMouseMove = (evt) => {
+		// const onMouseMove = (evt) => {
+		// 	console.log(this.modelData);
+		// }
+		// setMouseHandler(document, onMouseMove);
+		// console.log(this.observer);
+		this.observer.addEventListener('changeValue', (evt) => {
 			console.log(this.modelData);
-		}
-		setMouseHandler(document, onMouseMove);
+		});
 	}
 }
 

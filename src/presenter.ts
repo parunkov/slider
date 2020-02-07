@@ -37,6 +37,7 @@ class Presenter {
 			// console.log(modelData);
 			this.model.modelData = modelData;
 			// console.log(this.model.data);
+			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
 		});
 	}
 
