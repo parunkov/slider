@@ -1,5 +1,6 @@
 import {Toggle} from './toggle.ts';
 import {ViewData} from './view.ts';
+import {setMouseHandler} from './functions.ts';
 
 function setViewData(slider, isVertical: boolean, isRange: boolean, isTab: boolean) {
 
@@ -59,74 +60,54 @@ function setViewData(slider, isVertical: boolean, isRange: boolean, isTab: boole
 		}
 		setRanre();
 
+		let coincidenceToggle: boolean;
+		let startValue: number;
+
 		const onMouseDownCoincidence = (evt) => {
-			evt.preventDefault();
-			let coincidenceToggle: boolean = false;
+			coincidenceToggle = false;
 			maxToggleElem.hidden = true;
 			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
 			maxToggleElem.hidden = false;
-			let startValue: number;
 			startValue = toggleMax.value;
+		}
 
-			const onMouseMove = (moveEvt) => {
-				moveEvt.preventDefault();
-				if (coincidenceToggle) {
-					toggleMin.mouseValue = toggleMax.mouseValue;
-					toggleMax.isFixed = true;
-					toggleMin.isFixed = true;
-					if (toggleMax.mouseValue > startValue) {
-						toggleMax.isFixed = false;
-						toggleMin.isFixed = true;
-					} else {
-						toggleMax.isFixed = true;
-						toggleMin.isFixed = false;
-						toggleMin.mouseValue = toggleMax.mouseValue;
-						toggleMin.value = toggleMax.mouseValue;
-						if (toggleMin.value < 0) {
-							toggleMin.value = 0;
-						}
-						toggleMin.setStyle();
-					}
-				} else {
+		const onMouseMoveCoincidence = (moveEvt) => {
+			if (coincidenceToggle) {
+				toggleMin.mouseValue = toggleMax.mouseValue;
+				toggleMax.isFixed = true;
+				toggleMin.isFixed = true;
+				if (toggleMax.mouseValue > startValue) {
 					toggleMax.isFixed = false;
+					toggleMin.isFixed = true;
+				} else {
+					toggleMax.isFixed = true;
 					toggleMin.isFixed = false;
+					toggleMin.mouseValue = toggleMax.mouseValue;
+					toggleMin.value = toggleMax.mouseValue;
+					if (toggleMin.value < 0) {
+						toggleMin.value = 0;
+					}
+					toggleMin.setStyle();
 				}
-			}
-			const onMouseUp = (upEvt) => {
-				upEvt.preventDefault();
-				toggleMin.mouseValue = toggleMin.value;
+			} else {
 				toggleMax.isFixed = false;
 				toggleMin.isFixed = false;
-				document.removeEventListener('mouseup', onMouseUp);
-				document.removeEventListener('mousemove', onMouseMove);
 			}
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
 		}
-
-		maxToggleElem.addEventListener('mousedown', onMouseDownCoincidence);
-
-
-		const onMouseDownPrecent = (evt) => {
-			evt.preventDefault();
-			
-			const onMouseMove = (moveEvt) => {
-				moveEvt.preventDefault();
-				setRanre();
-				precent.min = setPrecent(toggleMin.value);
-				precent.max = setPrecent(toggleMax.value);
-			}
-			const onMouseUp = (upEvt) => {
-				upEvt.preventDefault();
-				document.removeEventListener('mouseup', onMouseUp);
-				document.removeEventListener('mousemove', onMouseMove);
-			}
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
+		const onMouseUpCoincidence = (upEvt) => {
+			toggleMin.mouseValue = toggleMin.value;
+			toggleMax.isFixed = false;
+			toggleMin.isFixed = false;
 		}
+		setMouseHandler(maxToggleElem, onMouseMoveCoincidence, onMouseDownCoincidence, onMouseUpCoincidence);
 
-		maxToggleElem.addEventListener('mousedown', onMouseDownPrecent);
-		minToggleElem.addEventListener('mousedown', onMouseDownPrecent);
+		const onMouseMovePrecent = (moveEvt) => {
+			setRanre();
+			precent.min = setPrecent(toggleMin.value);
+			precent.max = setPrecent(toggleMax.value);
+		}
+		setMouseHandler(maxToggleElem, onMouseMovePrecent);
+		setMouseHandler(minToggleElem, onMouseMovePrecent);
 	});
 return precent;
 }

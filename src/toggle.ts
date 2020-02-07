@@ -1,3 +1,4 @@
+
 const setToggleStyle = (toggle: HTMLElement, value: number, vertical: boolean) => {
 		if (vertical) {
 			toggle.style.top = `${value}px`;
@@ -32,9 +33,9 @@ class Toggle {
 	moveToggle() {
 		const onMouseDown = (evt) => {
 			evt.preventDefault();
-			let shiftX = evt.clientX - this.toggle.offsetLeft;
-			let shiftY = evt.clientY - this.toggle.offsetTop;
-			let startValue = this.mouseValue;
+			let shiftX: number = evt.clientX - this.toggle.offsetLeft;
+			let shiftY: number = evt.clientY - this.toggle.offsetTop;
+			let startValue: number = this.mouseValue;
 			const moveAt = (pageX, pageY) => {
 				if (this.vertical) {
 					this.mouseValue = pageY - shiftY;

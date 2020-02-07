@@ -3,6 +3,7 @@ import {Scale} from './scale.ts';
 import {setViewData} from './set-view-data.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
+import {setMouseHandler} from './functions.ts';
 
 interface ViewData {
 	min: number;
@@ -48,25 +49,13 @@ class View {
 
 	addListener() {
 		this.viewData = setViewData(this.container, this.data.isVertical, this.data.isRange, this.data.isTab);
-		const onMouseDown = (evt) => {
-			evt.preventDefault();
-			
-			const onMouseMove = (moveEvt) => {
-				const setTabValue = (value) => this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100;
-				this.minTabElem.textContent = `${Math.round(setTabValue(this.viewData.min))}`;
-				this.maxTabElem.textContent = `${Math.round(setTabValue(this.viewData.max))}`;
-				// console.log(this.viewData);
-			}
-			const onMouseUp = (upEvt) => {
-				upEvt.preventDefault();
-				document.removeEventListener('mouseup', onMouseUp);
-				document.removeEventListener('mousemove', onMouseMove);
-			}
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
+		const onMouseMove = (moveEvt) => {
+			const setTabValue = (value) => this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100;
+			this.minTabElem.textContent = `${Math.round(setTabValue(this.viewData.min))}`;
+			this.maxTabElem.textContent = `${Math.round(setTabValue(this.viewData.max))}`;
+			// console.log(this.viewData);
 		}
-
-		document.addEventListener('mousedown', onMouseDown);
+		setMouseHandler(document, onMouseMove);
 	}
 
 	addScale() {
