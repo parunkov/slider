@@ -1,20 +1,22 @@
 export class Scale {
 
 	slider: HTMLElement;
+	step: number;
 	quantity: number;
 	isVertical: boolean;
 	min: number;
 	max: number;
 
-	constructor(slider, min, max, quantity, isVertical) {
+	constructor(slider, data) {
 		this.slider = slider;
-		this.min = min;
-		this.max = max;
-		this.quantity = quantity;
+		this.step = data.step;
+		this.min = data.minValue;
+		this.max = data.maxValue;
+		this.quantity = data.scaleQuantity;
 		if (this.quantity < 2) {
 			this.quantity = 2;
 		}
-		this.isVertical = isVertical;
+		this.isVertical = data.isVertical;
 		this.createItem();
 	}
 
@@ -23,7 +25,7 @@ export class Scale {
 		for (let i = 0; i < this.quantity; i++) {
 			const scaleItem = document.createElement('div');
 			scaleItem.classList.add('ts-slider__scale-item');
-			scaleItem.textContent = `${Math.round(this.min + (this.max - this.min) / (this.quantity - 1) * i)}`;
+			scaleItem.textContent = `${Math.round((this.min + (this.max - this.min) / (this.quantity - 1) * i) / this.step) * this.step}`;
 			if (this.isVertical) {
 				scaleItem.classList.add('ts-slider__scale-item--vertical');
 				scaleItem.style.top = `${bar.offsetHeight / (this.quantity - 1) * i}px`;

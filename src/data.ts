@@ -1,5 +1,6 @@
 interface SliderData {
 	wrapId: string;
+	step: number;
 	minValue: number;
 	maxValue: number;
 	minToggleValue: number;
@@ -13,8 +14,9 @@ interface SliderData {
 
 const sliderData1: SliderData = {
 	wrapId: '#ts-slider__wrap-1',
-	minValue: 30,
-	maxValue: 100,
+	step: 1,
+	minValue: 6,
+	maxValue: 92,
 	minToggleValue: 53,
 	maxToggleValue: 77,
 	isRange: true,
@@ -25,6 +27,7 @@ const sliderData1: SliderData = {
 }
 const sliderData2: SliderData = {
 	wrapId: '#ts-slider__wrap-2',
+	step: 10,
 	minValue: 100,
 	maxValue: 300,
 	minToggleValue: 200,
