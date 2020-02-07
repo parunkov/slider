@@ -1,4 +1,3 @@
-import {initControl} from './init-control.ts';
 import {Scale} from './scale.ts';
 import {View} from './view.ts';
 import {Presenter} from './presenter.ts';
