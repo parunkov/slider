@@ -1,19 +1,24 @@
 import {initViewMarkup} from './init-view-markup.ts';
 import {Scale} from './scale.ts';
-import {setViewData} from './set-view-data.ts';
+import {setViewValue} from './set-view-value.ts';
 import {SliderData} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
 import {setMouseHandler, round} from './functions.ts';
 
-interface ViewData {
+interface ViewValue {
 	min: number;
 	max: number;
+}
+interface ViewTabText {
+	min: string;
+	max: string;
 }
 
 class View {
 
 	data: SliderData;
-	viewData: ViewData;
+	viewValue: ViewValue;
+	viewTabText: ViewTabText;
 	container: HTMLElement;
 	minToggleElem: HTMLElement;
 	maxToggleElem: HTMLElement;
@@ -23,8 +28,13 @@ class View {
 
 	constructor(data) {
 		this.data = data;
+		this.viewTabText = {
+			min: '',
+			max: ''
+		}
 		this.initView();
 		this.setToggle();
+		// this.setTabText();
 		this.addListener();
 		this.addScale();
 	}
@@ -39,6 +49,13 @@ class View {
 		}
 	}
 
+	// setTabText() {
+	// 	this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
+	// 	this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
+	// 	this.minTabElem.textContent = this.viewTabText.min;
+	// 	this.maxTabElem.textContent = this.viewTabText.max;
+	// }
+
 	setToggle() {
 		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
 		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
@@ -49,21 +66,30 @@ class View {
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
 		this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
 		this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
+		// this.viewTabText.min = round(this.data.minToggleValue, this.data.step);
+		// this.viewTabText.max = round(this.data.maxToggleValue, this.data.step);
+		// this.setTabText();
 	}
 
+	// setTabText() {
+	// 	this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
+	// 	this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
+	// 	this.minTabElem.textContent = this.viewTabText.min;
+	// 	this.maxTabElem.textContent = this.viewTabText.max;
+	// }
+
 	addListener() {
-		this.viewData = setViewData(this.container, this.data);
+		this.viewValue = setViewValue(this.container, this.data);
 		const onMouseMove = (moveEvt) => {
 			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			this.minTabElem.textContent = `${round(setTabValue(this.viewData.min), this.data.step)}`;
-			this.maxTabElem.textContent = `${round(setTabValue(this.viewData.max), this.data.step)}`;
-			// console.log(this.viewData);
+			this.minTabElem.textContent = `${round(setTabValue(this.viewValue.min), this.data.step)}`;
+			this.maxTabElem.textContent = `${round(setTabValue(this.viewValue.max), this.data.step)}`;
+			// console.log(this.viewValue);
+			// this.setTabText();
+			
 			this.container.dispatchEvent(new CustomEvent('changeValue'));
 		}
 		setMouseHandler(document, onMouseMove);
-		// this.container.addEventListener('changeValue', (evt) => {
-		// 	// console.log(this.viewData);
-		// });
 	}
 
 	addScale() {
@@ -73,4 +99,4 @@ class View {
 	}
 }
 
-export {View, ViewData};
+export {View, ViewValue, ViewTabText};

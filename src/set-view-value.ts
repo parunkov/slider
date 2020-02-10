@@ -1,15 +1,15 @@
 import {Toggle} from './toggle.ts';
-import {ViewData} from './view.ts';
+import {ViewValue} from './view.ts';
 import {setMouseHandler} from './functions.ts';
 import {SliderData} from './data.ts';
 
-function setViewData(slider: HTMLElement, data: SliderData) {
+function setViewValue(slider: HTMLElement, data: SliderData) {
 
 	let isVertical = data.isVertical;
 	let isRange = data.isRange;
 	let isTab = data.isTab;
 
-	let precent: ViewData = {
+	let precent: ViewValue = {
 		min: 0,
 		max: 0
 	};
@@ -124,4 +124,4 @@ function setViewData(slider: HTMLElement, data: SliderData) {
 return precent;
 }
 
-export {setViewData};
+export {setViewValue};

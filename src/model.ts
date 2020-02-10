@@ -1,12 +1,12 @@
 import {SliderData} from './data.ts';
-import {ViewData} from './view.ts';
+import {ViewValue} from './view.ts';
 import {setMouseHandler} from './functions.ts';
 
 
 class Model {
 
 	data: SliderData;
-	modelData: ViewData;
+	modelValue: ViewValue;
 	observer: HTMLElement;
 
 	constructor(data) {
@@ -17,12 +17,12 @@ class Model {
 
 	addListener() {
 		// const onMouseMove = (evt) => {
-		// 	console.log(this.modelData);
+		// 	console.log(this.modelValue);
 		// }
 		// setMouseHandler(document, onMouseMove);
-		console.log(this.observer);
+		// console.log(this.observer);
 		this.observer.addEventListener('changeValue', (evt) => {
-			console.log(this.modelData);
+			// console.log(this.modelValue);
 		});
 	}
 }
