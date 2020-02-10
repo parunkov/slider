@@ -34,7 +34,6 @@ class View {
 		}
 		this.initView();
 		this.setToggle();
-		// this.setTabText();
 		this.addListener();
 		this.addScale();
 	}
@@ -49,43 +48,24 @@ class View {
 		}
 	}
 
-	// setTabText() {
-	// 	this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
-	// 	this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-	// 	this.minTabElem.textContent = this.viewTabText.min;
-	// 	this.maxTabElem.textContent = this.viewTabText.max;
-	// }
-
 	setToggle() {
 		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
 		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
-		const setStyleValue = (value) => (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.size;
-		setToggleStyle(this.minToggleElem, setStyleValue(this.data.minToggleValue), this.data.isVertical);
-		setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
+		// const setStyleValue = (value) => (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.size;
+		// setToggleStyle(this.minToggleElem, setStyleValue(this.data.minToggleValue), this.data.isVertical);
+		// setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
 		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-		this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
-		this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
-		// this.viewTabText.min = round(this.data.minToggleValue, this.data.step);
-		// this.viewTabText.max = round(this.data.maxToggleValue, this.data.step);
-		// this.setTabText();
+		// this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
+		// this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
 	}
-
-	// setTabText() {
-	// 	this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
-	// 	this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-	// 	this.minTabElem.textContent = this.viewTabText.min;
-	// 	this.maxTabElem.textContent = this.viewTabText.max;
-	// }
 
 	addListener() {
 		this.viewValue = setViewValue(this.container, this.data);
 		const onMouseMove = (moveEvt) => {
-			const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			this.minTabElem.textContent = `${round(setTabValue(this.viewValue.min), this.data.step)}`;
-			this.maxTabElem.textContent = `${round(setTabValue(this.viewValue.max), this.data.step)}`;
-			// console.log(this.viewValue);
-			// this.setTabText();
+			// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+			// this.minTabElem.textContent = `${round(setTabValue(this.viewValue.min), this.data.step)}`;
+			// this.maxTabElem.textContent = `${round(setTabValue(this.viewValue.max), this.data.step)}`;
 			
 			this.container.dispatchEvent(new CustomEvent('changeValue'));
 		}
