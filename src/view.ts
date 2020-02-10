@@ -48,16 +48,12 @@ class View {
 		}
 	}
 
+
 	setToggle() {
 		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
 		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
-		// const setStyleValue = (value) => (value - this.data.minValue) / (this.data.maxValue - this.data.minValue) * this.size;
-		// setToggleStyle(this.minToggleElem, setStyleValue(this.data.minToggleValue), this.data.isVertical);
-		// setToggleStyle(this.maxToggleElem, setStyleValue(this.data.maxToggleValue), this.data.isVertical);
 		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
-		// this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
-		// this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
 
 		this.container.addEventListener('initValue', () => {
 			console.log(this.viewValue.min + ' ' + this.viewValue.max);
