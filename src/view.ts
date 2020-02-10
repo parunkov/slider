@@ -58,6 +58,14 @@ class View {
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
 		// this.minTabElem.textContent = `${round(this.data.minToggleValue, this.data.step)}`;
 		// this.maxTabElem.textContent = `${round(this.data.maxToggleValue, this.data.step)}`;
+
+		this.container.addEventListener('initValue', () => {
+			console.log(this.viewValue.min + ' ' + this.viewValue.max);
+			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);
+			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
+			this.minTabElem.textContent = this.viewTabText.min;
+			this.maxTabElem.textContent = this.viewTabText.max;
+		});
 	}
 
 	addListener() {
