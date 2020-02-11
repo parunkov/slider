@@ -5,6 +5,7 @@ import {Model} from './model.ts';
 import {setMouseHandler, round} from './functions.ts';
 
 const toView = (value, min, max) => (value - min) / (max - min);
+const toModel = (value, min, max) => (min + (max - min) * value);
 
 class Presenter {
 
@@ -27,7 +28,13 @@ class Presenter {
 		}
 		// console.log(this.value);
 		this.init();
-		this.addListener();
+		this.onMoveToggle();
+		this.onChangeTabText();
+	}
+
+	setTabText() {
+		this.view.viewTabText.min = this.model.tabText.min;
+		this.view.viewTabText.max = this.model.tabText.max;
 	}
 
 	init() {
@@ -44,13 +51,11 @@ class Presenter {
 		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
 		// console.log(this.view.viewValue.min);
-		this.view.viewTabText.min = this.model.tabText.min;
-		this.view.viewTabText.max = this.model.tabText.max;
+		// this.view.viewTabText.min = this.model.tabText.min;
+		// this.view.viewTabText.max = this.model.tabText.max;
+		this.setTabText();
 
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
-
-
-
 
 		this.view.container.addEventListener('changeValue', (evt) => {
 			// this.modelValue.min = +round(setTabValue(this.viewValue.min), this.data.step);
@@ -59,14 +64,35 @@ class Presenter {
 		});
 	}
 
-	addListener() {
-		const onMouseMove = (moveEvt) => {
-			// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			// this.view.viewTabText.min = round(setTabValue(this.view.viewValue.min), this.view.data.step);
-			// this.view.viewTabText.max = round(setTabValue(this.view.viewValue.max), this.view.data.step);
-			// console.log(this.viewValue);
+	onMoveToggle() {
+		// const onMouseMove = (moveEvt) => {
+		// 	// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
+		// 	// this.view.viewTabText.min = round(setTabValue(this.view.viewValue.min), this.view.data.step);
+		// 	// this.view.viewTabText.max = round(setTabValue(this.view.viewValue.max), this.view.data.step);
+		// 	// console.log(this.viewValue);
+		// }
+		// setMouseHandler(document, onMouseMove);
+		const onChangeView = (evt) => {
+			evt.preventDefault();
+			// console.log(this.view.viewValue);
+			// console.log(this.data.maxValue);
+			// console.log(this.data.maxValue);
+			this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
+			this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
+			// console.log(this.value.min + ' ' + this.value.max);
+			this.model.observer.dispatchEvent(new CustomEvent('changeValue'))
+
 		}
-		setMouseHandler(document, onMouseMove);
+		this.view.container.addEventListener('moveToggle', onChangeView);
+	}
+
+	onChangeTabText() {
+		this.model.observer.addEventListener('changeTabText', (evt) => {
+			evt.preventDefault();
+			this.setTabText();
+			// console.log(this.view.viewTabText.min);
+			this.view.container.dispatchEvent(new CustomEvent('changeTab'));
+		});
 	}
 
 	setPresenterData() {

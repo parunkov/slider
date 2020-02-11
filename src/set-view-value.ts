@@ -25,7 +25,7 @@ function setViewValue(slider: HTMLElement, data: SliderData) {
 		let barMax;
 		let toggleMaxOffset;
 		let toggleMinOffset;
-		const setPrecent = (value) => value / barMax * 100;
+		const setPrecent = (value) => value / barMax;
 
 		if (!isRange) {
 			minToggleElem.hidden = true;

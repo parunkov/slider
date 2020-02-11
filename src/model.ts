@@ -6,7 +6,7 @@ import {setMouseHandler, round} from './functions.ts';
 class Model {
 
 	data: SliderData;
-	modelValue: ViewValue;
+	value: ViewValue;
 	tabText: ViewTabText;
 	observer: HTMLElement;
 	min: number;
@@ -18,7 +18,7 @@ class Model {
 			min: '',
 			max: ''
 		}
-		this.modelValue = {
+		this.value = {
 			min: 0,
 			max: 0
 		}
@@ -32,17 +32,21 @@ class Model {
 		// this.max = +round(this.data.maxValue, this.data.step);
 		this.tabText.min = round(this.data.minToggleValue, this.data.step);
 		this.tabText.max = round(this.data.maxToggleValue, this.data.step);
-		// console.log(this.modelValue.max);
+		// console.log(this.value.max);
 	}
 
 	addListener() {
 		// const onMouseMove = (evt) => {
-		// 	console.log(this.modelValue);
+		// 	console.log(this.value);
 		// }
 		// setMouseHandler(document, onMouseMove);
 		// console.log(this.observer);
 		this.observer.addEventListener('changeValue', (evt) => {
-			// console.log(this.modelValue);
+			// console.log(this.value);
+			this.tabText.min = round(this.value.min, this.data.step);
+			this.tabText.max = round(this.value.max, this.data.step);
+			// console.log(this.tabText);
+			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
 }
