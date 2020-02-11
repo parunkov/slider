@@ -5,8 +5,8 @@ let toggleDiv = setFixtures()[0];
 
 let toggle = new Toggle(toggleDiv, 0, 300, 200, false);
 
-describe('toggle setStyle', function() {
-	it('horizontal', function() {
+describe('Модуль Toggle', function() {
+	it('setStyle horizontal - устанавливает style.left', function() {
 		toggleDiv.style.left = '';
 		toggleDiv.style.top = '';
 		toggle.vertical = false;
@@ -14,7 +14,7 @@ describe('toggle setStyle', function() {
 		expect(toggleDiv.style.left).toBe('200px');
 		expect(toggleDiv.style.top).toBe('');
 	});
-	it('vertical', function() {
+	it('setStyle vertical - устанавливает style.top', function() {
 		toggleDiv.style.left = '';
 		toggleDiv.style.top = '';
 		toggle.vertical = true;
@@ -40,9 +40,13 @@ describe('toggle setStyle', function() {
 // 	}
 // }
 // addMethodAddEventListener(toggleDiv);
+// // console.log(toggleDiv.trigger);
+// for (let key in toggleDiv) {
+// 	if (key === 'addEventListener') console.log(key);
+// }
 
-
-// toggleDiv.trigger('mousemove', toggleDiv.pageX = 200,  toggleDiv.pageY = 200);
+// toggleDiv.dispatchEvent(new MouseEvent('mousemove', toggleDiv.pageX = 200,  toggleDiv.pageY = 200));
+// toggleDiv.addEventListener('mousemove', () => {console.log(1111)});
 
 // // import {moveToggle, left} from '../src/slider-move.ts';
 
@@ -100,14 +104,14 @@ describe('toggle setStyle', function() {
 // 		spyOnEvent(toggleDiv, 'mousedown');
 // 		toggleDiv.addEventListener('mousedown', (evt) => {
 // 			evt.preventDefault;
-// 			// console.log('!!!');
+// 			console.log('!!!');
 // 			// console.log(evt.clientX);
 // 			// for (let key in evt) {
 // 			// 	console.log(key);
 // 			// }
-// 			let startCoordX = evt.clientX;
-// 			// console.log(startCoordX);
-// 			let toggleLeft;
+// 			// let startCoordX = evt.clientX;
+// 			// // console.log(startCoordX);
+// 			// let toggleLeft;
 // 		});
 // 		toggleDiv.trigger('mousedown');
 // 		expect('mousedown').toHaveBeenTriggeredOn(toggleDiv);
@@ -117,17 +121,17 @@ describe('toggle setStyle', function() {
 // 		toggleDiv.trigger('mousemove');
 // 		expect('mousemove').toHaveBeenTriggeredOn(toggleDiv);
 // 	});
-// 	// it('mousemove', function() {
-// 	// 	spyOnEvent(toggle, 'mousedown');
-// 	// 	spyOnEvent(toggle, 'mousemove');
-// 	// 	moveToggle(toggle, 0, 100);
-// 	// 	toggle.trigger('mousedown');
-// 	// 	toggle.trigger('mousemove', toggle.pageX = 50);
-// 	// 	expect(toggle.pageX).toEqual(50);
-// 	// 	// moveToggle(toggle, 0, 100);
-// 	// 	console.log(left);
-// 	// 	console.log(moveToggle(toggle, 0, 100));
-// 	// 	// expect(left).toEqual(50);
-// 	// });
+	// it('mousemove', function() {
+	// 	spyOnEvent(toggle, 'mousedown');
+	// 	spyOnEvent(toggle, 'mousemove');
+	// 	moveToggle(toggle, 0, 100);
+	// 	toggle.trigger('mousedown');
+	// 	toggle.trigger('mousemove', toggle.pageX = 50);
+	// 	expect(toggle.pageX).toEqual(50);
+	// 	// moveToggle(toggle, 0, 100);
+	// 	console.log(left);
+	// 	console.log(moveToggle(toggle, 0, 100));
+	// 	// expect(left).toEqual(50);
+	// });
 // });
 

@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "jasmine-jquery": "^2.1.1",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "karma-coverage": "^2.0.1"
   }
 }
