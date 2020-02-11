@@ -1,24 +1,24 @@
 import {initViewMarkup} from './init-view-markup.ts';
 import {Scale} from './scale.ts';
 import {setViewValue} from './set-view-value.ts';
-import {SliderData} from './data.ts';
+import {Data} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
 import {setMouseHandler, round} from './functions.ts';
 
-interface ViewValue {
+interface Value {
 	min: number;
 	max: number;
 }
-interface ViewTabText {
+interface TabText {
 	min: string;
 	max: string;
 }
 
 class View {
 
-	data: SliderData;
-	viewValue: ViewValue;
-	viewTabText: ViewTabText;
+	data: Data;
+	viewValue: Value;
+	viewTabText: TabText;
 	container: HTMLElement;
 	minToggleElem: HTMLElement;
 	maxToggleElem: HTMLElement;
@@ -89,4 +89,4 @@ class View {
 	}
 }
 
-export {View, ViewValue, ViewTabText};
+export {View, Value, TabText};

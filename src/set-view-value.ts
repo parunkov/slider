@@ -1,15 +1,15 @@
 import {Toggle} from './toggle.ts';
-import {ViewValue} from './view.ts';
+import {Value} from './view.ts';
 import {setMouseHandler} from './functions.ts';
-import {SliderData} from './data.ts';
+import {Data} from './data.ts';
 
-function setViewValue(slider: HTMLElement, data: SliderData) {
+function setViewValue(slider: HTMLElement, data: Data) {
 
 	let isVertical = data.isVertical;
 	let isRange = data.isRange;
 	let isTab = data.isTab;
 
-	let precent: ViewValue = {
+	let precent: Value = {
 		min: 0,
 		max: 0
 	};
@@ -116,7 +116,6 @@ function setViewValue(slider: HTMLElement, data: SliderData) {
 			setRanre();
 			precent.min = setPrecent(toggleMin.value);
 			precent.max = setPrecent(toggleMax.value);
-			// slider.dispatchEvent(new CustomEvent('changeValue'));
 		}
 		setMouseHandler(maxToggleElem, onMouseMovePrecent);
 		setMouseHandler(minToggleElem, onMouseMovePrecent);

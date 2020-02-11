@@ -1,5 +1,5 @@
-import {View, ViewValue, ViewTabText} from './view.ts';
-import {SliderData} from './data.ts';
+import {View, Value, TabText} from './view.ts';
+import {Data} from './data.ts';
 import {Model} from './model.ts';
 
 import {setMouseHandler, round} from './functions.ts';
@@ -9,15 +9,15 @@ const toModel = (value, min, max) => (min + (max - min) * value);
 
 class Presenter {
 
-	data: SliderData;
+	data: Data;
 	view: any;
 	model: any;
 	max: number;
 	min: number;
-	value: ViewValue;
-	viewValue: ViewValue;
-	modelValue: ViewValue;
-	modelTabText: ViewTabText;
+	value: Value;
+	viewValue: Value;
+	modelValue: Value;
+	modelTabText: TabText;
 
 	constructor(data) {
 		this.data = data;

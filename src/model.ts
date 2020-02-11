@@ -1,13 +1,13 @@
-import {SliderData} from './data.ts';
-import {ViewValue, ViewTabText} from './view.ts';
+import {Data} from './data.ts';
+import {Value, TabText} from './view.ts';
 import {setMouseHandler, round} from './functions.ts';
 
 
 class Model {
 
-	data: SliderData;
-	value: ViewValue;
-	tabText: ViewTabText;
+	data: Data;
+	value: Value;
+	tabText: TabText;
 	observer: HTMLElement;
 	min: number;
 	max: number;

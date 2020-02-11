@@ -1,4 +1,4 @@
-interface SliderData {
+interface Data {
 	wrapId: string;
 	step: number;
 	minValue: number;
@@ -12,7 +12,7 @@ interface SliderData {
 	scaleQuantity: number;
 }
 
-const sliderData1: SliderData = {
+const sliderData1: Data = {
 	wrapId: '#ts-slider__wrap-1',
 	step: 0.01,
 	minValue: 7,
@@ -25,7 +25,7 @@ const sliderData1: SliderData = {
 	isScale: true,
 	scaleQuantity: 4
 }
-const sliderData2: SliderData = {
+const sliderData2: Data = {
 	wrapId: '#ts-slider__wrap-2',
 	step: 10,
 	minValue: 102,
@@ -39,4 +39,4 @@ const sliderData2: SliderData = {
 	scaleQuantity: 5
 }
 
-export {SliderData, sliderData1, sliderData2};
+export {Data, sliderData1, sliderData2};
