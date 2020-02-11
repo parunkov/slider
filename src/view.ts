@@ -61,25 +61,16 @@ class View {
 		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
 
 		this.container.addEventListener('initValue', () => {
-			// console.log(this.viewValue.min + ' ' + this.viewValue.max);
 			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);
 			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
-			// this.minTabElem.textContent = this.viewTabText.min;
-			// this.maxTabElem.textContent = this.viewTabText.max;
 			this.setTab();
 		});
 	}
 
 	onMoveToggle() {
 		this.viewValue = setViewValue(this.container, this.data);
-		// console.log(this.viewValue);
 		const onMouseMove = (moveEvt) => {
-			// const setTabValue = (value) => Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) * value / 100) / this.data.step) * this.data.step;
-			// this.minTabElem.textContent = `${round(setTabValue(this.viewValue.min), this.data.step)}`;
-			// this.maxTabElem.textContent = `${round(setTabValue(this.viewValue.max), this.data.step)}`;
-			
 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
-			// console.log(this.viewValue);
 		}
 		setMouseHandler(this.container, onMouseMove);
 	}
@@ -94,7 +85,6 @@ class View {
 		this.container.addEventListener('changeTab', (evt) => {
 			evt.preventDefault();
 			this.setTab();
-			// console.log(this.minTabElem.textContent);
 		});
 	}
 }

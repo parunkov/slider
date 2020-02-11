@@ -28,24 +28,14 @@ class Model {
 	}
 
 	init() {
-		// this.min = +round(this.data.minValue, this.data.step);
-		// this.max = +round(this.data.maxValue, this.data.step);
 		this.tabText.min = round(this.data.minToggleValue, this.data.step);
 		this.tabText.max = round(this.data.maxToggleValue, this.data.step);
-		// console.log(this.value.max);
 	}
 
 	addListener() {
-		// const onMouseMove = (evt) => {
-		// 	console.log(this.value);
-		// }
-		// setMouseHandler(document, onMouseMove);
-		// console.log(this.observer);
 		this.observer.addEventListener('changeValue', (evt) => {
-			// console.log(this.value);
 			this.tabText.min = round(this.value.min, this.data.step);
 			this.tabText.max = round(this.value.max, this.data.step);
-			// console.log(this.tabText);
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
