@@ -10,8 +10,8 @@ const toModel = (value, min, max) => (min + (max - min) * value);
 class Presenter {
 
 	data: Data;
-	view: any;
-	model: any;
+	view: View;
+	model: Model;
 	max: number;
 	min: number;
 	value: Value;
@@ -35,9 +35,17 @@ class Presenter {
 		this.view.viewTabText.max = this.model.tabText.max;
 	}
 
+	initScale() {
+		console.log(this.model.scale);
+		this.view.scale = this.model.scale;
+		this.view.container.dispatchEvent(new CustomEvent('initScale'));
+	}
+
 	init() {
 		this.view = new View(this.data);
 		this.model = new Model(this.data);
+
+		this.initScale();
 
 		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);

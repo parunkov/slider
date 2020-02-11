@@ -25,6 +25,7 @@ class View {
 	minTabElem: HTMLElement;
 	maxTabElem: HTMLElement;
 	size: number;
+	scale: string[];
 
 	constructor(data) {
 		this.data = data;
@@ -32,6 +33,7 @@ class View {
 			min: '',
 			max: ''
 		}
+		this.scale = [];
 		this.initView();
 		this.setToggle();
 		this.onMoveToggle();
@@ -76,9 +78,12 @@ class View {
 	}
 
 	addScale() {
-		if (this.data.isScale) {
-			const scale = new Scale(this.container, this.data);
-		}
+		this.container.addEventListener('initScale', (evt) => {
+			evt.preventDefault();
+			if (this.data.isScale) {
+				const scale = new Scale(this.container, this.scale, this.data.isVertical);
+			}
+		});
 	}
 
 	changeTab() {
