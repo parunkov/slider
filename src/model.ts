@@ -7,6 +7,7 @@ class Model {
 
 	data: Data;
 	value: Value;
+	precent: Value;
 	tabText: TabText;
 	observer: HTMLElement;
 	min: number;
@@ -23,6 +24,10 @@ class Model {
 			min: 0,
 			max: 0
 		}
+		this.precent {
+			min: 0,
+			max: 0
+		}
 		this.scale = [];
 		this.observer = document.createElement('Event');
 		this.init();
@@ -31,23 +36,34 @@ class Model {
 	}
 
 	init() {
-		this.tabText.min = round(this.data.minToggleValue, this.data.step);
-		this.tabText.max = round(this.data.maxToggleValue, this.data.step);
+		if (this.data.isArray) {
+			this.tabText.min = '!!!';
+			this.tabText.max = '&&&';
+		} else {
+			this.tabText.min = round(this.data.minToggleValue, this.data.step);
+			this.tabText.max = round(this.data.maxToggleValue, this.data.step);
+		}
 	}
 
 	setScale() {
-		if (this.data.isScale) {
-			let quantity = this.data.scaleQuantity;
-			if (quantity < 2) {
-				quantity = 2;
+		if (this.data.isArray) {
+			if (this.data.isScale) {
+				this.scale = this.data.array;
 			}
-			for (let i = 0; i < quantity; i++) {
-				let textValue: number = Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) / (quantity - 1) * i) / this.data.step) * this.data.step;
-				let text: string = round(textValue, this.data.step);
-				// console.log(text);
-				this.scale.push(text);
+		} else {
+			if (this.data.isScale) {
+				let quantity = this.data.scaleQuantity;
+				if (quantity < 2) {
+					quantity = 2;
+				}
+				for (let i = 0; i < quantity; i++) {
+					let textValue: number = Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) / (quantity - 1) * i) / this.data.step) * this.data.step;
+					let text: string = round(textValue, this.data.step);
+					// console.log(text);
+					this.scale.push(text);
+				}
+				// console.log(this.scale);
 			}
-			// console.log(this.scale);
 		}
 	}
 

@@ -1,5 +1,7 @@
 interface Data {
 	wrapId: string;
+	isArray: boolean;
+	array: string[];
 	step: number;
 	minValue: number;
 	maxValue: number;
@@ -14,6 +16,8 @@ interface Data {
 
 const sliderData1: Data = {
 	wrapId: '#ts-slider__wrap-1',
+	isArray: false,
+	array: [],
 	step: 0.01,
 	minValue: 7,
 	maxValue: 105,
@@ -27,6 +31,8 @@ const sliderData1: Data = {
 }
 const sliderData2: Data = {
 	wrapId: '#ts-slider__wrap-2',
+	isArray: true,
+	array: ['мало', 'немного', 'средне', 'больше', 'много'],
 	step: 10,
 	minValue: 102,
 	maxValue: 308,

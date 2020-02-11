@@ -49,6 +49,9 @@ class Presenter {
 
 		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+
+		console.log(this.view.viewValue);
+
 		this.setTabText();
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
