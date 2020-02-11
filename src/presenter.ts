@@ -36,7 +36,7 @@ class Presenter {
 	}
 
 	initScale() {
-		console.log(this.model.scale);
+		// console.log(this.model.scale);
 		this.view.scale = this.model.scale;
 		this.view.container.dispatchEvent(new CustomEvent('initScale'));
 	}
@@ -44,14 +44,11 @@ class Presenter {
 	init() {
 		this.view = new View(this.data);
 		this.model = new Model(this.data);
-
 		this.initScale();
-
 		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
-
-		console.log(this.view.viewValue);
-
+		this.model.precent = this.view.viewValue;
+		this.model.observer.dispatchEvent(new CustomEvent('setPrecent'));
 		this.setTabText();
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
@@ -65,8 +62,7 @@ class Presenter {
 			evt.preventDefault();
 			this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
 			this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
-			this.model.observer.dispatchEvent(new CustomEvent('changeValue'))
-
+			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
 		}
 		this.view.container.addEventListener('moveToggle', onChangeView);
 	}

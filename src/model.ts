@@ -24,7 +24,7 @@ class Model {
 			min: 0,
 			max: 0
 		}
-		this.precent {
+		this.precent = {
 			min: 0,
 			max: 0
 		}
@@ -34,11 +34,17 @@ class Model {
 		this.setScale();
 		this.addListener();
 	}
-
+	setArrayValue() {
+		let min = Math.round(this.precent.min * (this.data.array.length - 1));
+		let max = Math.round(this.precent.max * (this.data.array.length - 1));
+		this.tabText.min = this.data.array[min];
+		this.tabText.max = this.data.array[max];
+	}
 	init() {
 		if (this.data.isArray) {
-			this.tabText.min = '!!!';
-			this.tabText.max = '&&&';
+			this.observer.addEventListener('setPrecent', () => {
+				this.setArrayValue();
+			});
 		} else {
 			this.tabText.min = round(this.data.minToggleValue, this.data.step);
 			this.tabText.max = round(this.data.maxToggleValue, this.data.step);
@@ -59,18 +65,20 @@ class Model {
 				for (let i = 0; i < quantity; i++) {
 					let textValue: number = Math.round((this.data.minValue + (this.data.maxValue - this.data.minValue) / (quantity - 1) * i) / this.data.step) * this.data.step;
 					let text: string = round(textValue, this.data.step);
-					// console.log(text);
 					this.scale.push(text);
 				}
-				// console.log(this.scale);
 			}
 		}
 	}
 
 	addListener() {
 		this.observer.addEventListener('changeValue', (evt) => {
-			this.tabText.min = round(this.value.min, this.data.step);
-			this.tabText.max = round(this.value.max, this.data.step);
+			if (this.data.isArray) {
+				this.setArrayValue();
+			} else {
+				this.tabText.min = round(this.value.min, this.data.step);
+				this.tabText.max = round(this.value.max, this.data.step);
+			}
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
