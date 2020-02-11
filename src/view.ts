@@ -78,8 +78,7 @@ class View {
 	}
 
 	addScale() {
-		this.container.addEventListener('initScale', (evt) => {
-			evt.preventDefault();
+		this.container.addEventListener('initScale', () => {
 			if (this.data.isScale) {
 				const scale = new Scale(this.container, this.scale, this.data.isVertical);
 			}
@@ -87,8 +86,7 @@ class View {
 	}
 
 	changeTab() {
-		this.container.addEventListener('changeTab', (evt) => {
-			evt.preventDefault();
+		this.container.addEventListener('changeTab', () => {
 			this.setTab();
 		});
 	}

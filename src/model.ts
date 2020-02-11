@@ -72,7 +72,7 @@ class Model {
 	}
 
 	addListener() {
-		this.observer.addEventListener('changeValue', (evt) => {
+		this.observer.addEventListener('changeValue', () => {
 			if (this.data.isArray) {
 				this.setArrayValue();
 			} else {

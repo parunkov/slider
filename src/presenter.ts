@@ -36,7 +36,6 @@ class Presenter {
 	}
 
 	initScale() {
-		// console.log(this.model.scale);
 		this.view.scale = this.model.scale;
 		this.view.container.dispatchEvent(new CustomEvent('initScale'));
 	}
@@ -52,14 +51,13 @@ class Presenter {
 		this.setTabText();
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
-		this.view.container.addEventListener('changeValue', (evt) => {
+		this.view.container.addEventListener('changeValue', () => {
 			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
 		});
 	}
 
 	onMoveToggle() {
-		const onChangeView = (evt) => {
-			evt.preventDefault();
+		const onChangeView = () => {
 			this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
 			this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
 			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
@@ -68,8 +66,7 @@ class Presenter {
 	}
 
 	onChangeTabText() {
-		this.model.observer.addEventListener('changeTabText', (evt) => {
-			evt.preventDefault();
+		this.model.observer.addEventListener('changeTabText', () => {
 			this.setTabText();
 			this.view.container.dispatchEvent(new CustomEvent('changeTab'));
 		});
