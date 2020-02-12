@@ -13,6 +13,7 @@ describe('Модуль Toggle', function() {
 		clearStyle();
 		toggle.vertical = false;
 		toggle.setStyle();
+		// console.log(toggle);
 		expect(toggleDiv.style.left).toBe('200px');
 		expect(toggleDiv.style.top).toBe('');
 	});
