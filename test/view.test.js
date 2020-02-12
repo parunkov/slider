@@ -9,11 +9,11 @@ describe('Модуль View', function() {
 		wrapId: '#viewwrapid',
 		isArray: false,
 		array: [],
-		step: 0.01,
-		minValue: 7,
-		maxValue: 105,
-		minToggleValue: 39.67,
-		maxToggleValue: 72.33,
+		step: 1,
+		minValue: 0,
+		maxValue: 10,
+		minToggleValue: 3,
+		maxToggleValue: 5,
 		isRange: true,
 		isVertical: false,
 		isTab: true,
@@ -44,18 +44,18 @@ describe('Модуль View', function() {
 		expect(view.viewTabText).toEqual({min: '', max: ''});
 		sliderWrap.remove();
 	});	
-	it('vertical - добавляет модификатор', function() {
+	it('Устанавливает стиль бегунков', function() {
 		add();
 		view.viewValue = {min: 0.2, max: 0.8};
 		view.container.dispatchEvent(new CustomEvent('initValue'));
 		view.setToggle();
-		console.log(view.minToggleElem.style.left);
-		expect().to;
+		expect(view.minToggleElem.style.left).toEqual('20px');
+		expect(view.maxToggleElem.style.left).toEqual('80px');
 		sliderWrap.remove();
 	});
-	it('vertical - добавляет модификатор', function() {
-		add();
-		expect().to;
-		sliderWrap.remove();
-	});
+	// it('', function() {
+	// 	add();
+	// 	expect().to;
+	// 	sliderWrap.remove();
+	// });
 });
