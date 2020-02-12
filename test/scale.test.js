@@ -26,7 +26,7 @@ describe('Модуль Scale', function() {
 		// console.log(bar);
 		expect(bar.querySelector('div')).toHaveClass('ts-slider__scale-item--vertical');
 	});
-	it('scale-item - добавляет нужное количество', function() {
+	it('scale-item - добавляет нужное количество делений', function() {
 		add();
 		const scale = new Scale(slider, ['10', '20', '30', '40'], false);
 		expect(bar.querySelectorAll('.ts-slider__scale-item').length).toEqual(4);
