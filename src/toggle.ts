@@ -1,3 +1,4 @@
+import {setLimit} from './functions.ts';
 
 const setToggleStyle = (toggle: HTMLElement, value: number, vertical: boolean) => {
 		if (vertical) {
@@ -43,11 +44,7 @@ class Toggle {
 					this.mouseValue = pageX - shiftX;
 				}
 				this.value = this.mouseValue;
-				if (this.value > this.max) {
-					this.value = this.max;
-				} else if (this.value < this.min) {
-					this.value = this.min;
-				}
+				this.value = setLimit(this.value, this.min, this.max);
 				if (this.isFixed) {
 					this.value = startValue;
 				}

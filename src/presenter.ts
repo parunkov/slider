@@ -15,7 +15,7 @@ class Presenter {
 	max: number;
 	min: number;
 	value: Value;
-	viewValue: Value;
+	// viewValue: Value;
 	modelValue: Value;
 	modelTabText: TabText;
 

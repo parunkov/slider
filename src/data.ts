@@ -1,3 +1,5 @@
+import {setLimit} from './functions.ts';
+
 interface Data {
 	wrapId: string;
 	isArray: boolean;
@@ -21,8 +23,8 @@ const sliderData1: Data = {
 	step: 0.01,
 	minValue: 7,
 	maxValue: 105,
-	minToggleValue: 30,
-	maxToggleValue: 60,
+	minToggleValue: 39.67,
+	maxToggleValue: 72.33,
 	isRange: true,
 	isVertical: false,
 	isTab: true,
@@ -44,5 +46,13 @@ const sliderData2: Data = {
 	isScale: true,
 	scaleQuantity: 5
 }
+
+const setDataLimit = (data: Data) => {
+	data.minToggleValue = setLimit(data.minToggleValue, data.minValue, data.maxValue);
+	data.maxToggleValue = setLimit(data.maxToggleValue, data.minValue, data.maxValue);
+}
+
+setDataLimit(sliderData1);
+setDataLimit(sliderData2);
 
 export {Data, sliderData1, sliderData2};
