@@ -4,8 +4,8 @@ import {Model} from './model.ts';
 
 import {setMouseHandler, round} from './functions.ts';
 
-const toView = (value, min, max) => (value - min) / (max - min);
-const toModel = (value, min, max) => (min + (max - min) * value);
+const toView = (value: number, min: number, max: number) => (value - min) / (max - min);
+const toModel = (value: number, min: number, max: number) => (min + (max - min) * value);
 
 class Presenter {
 
@@ -16,7 +16,7 @@ class Presenter {
 	min: number;
 	value: Value;
 	// viewValue: Value;
-	modelValue: Value;
+	// modelValue: Value;
 	modelTabText: TabText;
 
 	constructor(data) {
@@ -73,4 +73,4 @@ class Presenter {
 	}
 }
 
-export {Presenter};
+export {toView, toModel, Presenter};
