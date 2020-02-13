@@ -1,0 +1,44 @@
+.page__wrap {
+	font-family: 'Arial';
+	color: grey;
+}
+.page__h1 {
+	text-align: center;
+}
+.page__row {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-wrap: nowrap;
+}
+.page__col {
+	flex: 1 1 100px;
+	padding: 30px;
+	padding-right: 30px;
+	border: 1px solid grey;
+	text-align: center;
+}
+.page__col--11, .page__col--12 {
+	border-bottom: none;;
+}
+.page__col--12, .page__col--22 {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	flex-wrap: nowrap;
+	border-left: none;
+}
+.page__input-wrap {
+	flex: 1 0 10%;
+	padding-left: 20px;
+	text-align: right;
+	vertical-align: bottom;
+}
+.page__input {
+	display: block;
+	margin-top: 20px;
+}
