@@ -5,7 +5,7 @@
 	/*padding-top: 30px;*/
 	box-sizing: border-box;
 	position: relative;
-	width: 300px;
+	width: 100%;
 	height: 100px;
 	margin: 0 auto;
 }
@@ -84,7 +84,7 @@
 }
 .ts-slider__toggle-value--vertical:after {
 	top: 6.5px;
-	left: -4.9px;
+	left: -4.5px;
 	border-top: 5px solid transparent;
 	border-right: 5px solid #6fcf97;
 	border-bottom: 5px solid transparent;

@@ -6,6 +6,8 @@ import {setMouseHandler, round} from './functions.ts';
 class Model {
 
 	data: Data;
+	minInput: any;
+	maxInput: any;
 	value: Value;
 	precent: Value;
 	tabText: TabText;
@@ -34,12 +36,20 @@ class Model {
 		this.setScale();
 		this.addListener();
 	}
+
+	setInput() {
+		this.minInput.value = this.tabText.min;
+		this.maxInput.value = this.tabText.max;
+	}
+
 	setArrayValue() {
 		let min = Math.round(this.precent.min * (this.data.array.length - 1));
 		let max = Math.round(this.precent.max * (this.data.array.length - 1));
 		this.tabText.min = this.data.array[min];
 		this.tabText.max = this.data.array[max];
+		this.setInput();
 	}
+
 	init() {
 		if (this.data.isArray) {
 			this.observer.addEventListener('setPrecent', () => {
@@ -49,6 +59,9 @@ class Model {
 			this.tabText.min = round(this.data.minToggleValue, this.data.step);
 			this.tabText.max = round(this.data.maxToggleValue, this.data.step);
 		}
+		this.minInput = document.querySelector('#' + this.data.minInputId);
+		this.maxInput = document.querySelector('#' + this.data.maxInputId);
+		this.setInput();
 	}
 
 	setScale() {
@@ -79,6 +92,7 @@ class Model {
 				this.tabText.min = round(this.value.min, this.data.step);
 				this.tabText.max = round(this.value.max, this.data.step);
 			}
+			this.setInput();
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}

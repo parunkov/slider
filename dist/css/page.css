@@ -14,11 +14,11 @@
 	flex-wrap: nowrap;
 }
 .page__col {
-	flex: 1 1 100px;
-	padding: 30px;
-	padding-right: 30px;
+	flex: 1 1 300px;
+	padding: 40px;
 	border: 1px solid grey;
 	text-align: center;
+	min-width: 300px;
 }
 .page__col--11, .page__col--12 {
 	border-bottom: none;;
@@ -31,6 +31,7 @@
 	display: flex;
 	flex-wrap: nowrap;
 	border-left: none;
+	min-width: 600px;
 }
 .page__input-wrap {
 	flex: 1 0 10%;
