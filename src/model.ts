@@ -35,11 +35,13 @@ class Model {
 		this.init();
 		this.setScale();
 		this.addListener();
+		this.changeInput();
 	}
 
 	setInput() {
 		this.minInput.value = this.tabText.min;
 		this.maxInput.value = this.tabText.max;
+		// console.log('set');
 	}
 
 	setArrayValue() {
@@ -62,6 +64,14 @@ class Model {
 		this.minInput = document.querySelector('#' + this.data.minInputId);
 		this.maxInput = document.querySelector('#' + this.data.maxInputId);
 		this.setInput();
+		// for (let key in this.minInput) {
+		// 	console.log(key + ':' + this.minInput[key]);
+		// }
+		// this.minInput.value = '!!!!';
+		// console.log(this.minInput.value);
+		// this.minInput.addEventListener('unfocus', () => {
+		// 	console.log(222);
+		// });
 	}
 
 	setScale() {
@@ -93,7 +103,16 @@ class Model {
 				this.tabText.max = round(this.value.max, this.data.step);
 			}
 			this.setInput();
+			// console.log(this.minInput.readonly);
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
+		});
+	}
+	changeInput() {
+		this.minInput.addEventListener('blur', () => {
+			// console.log(this.minInput.value);
+			this.value.min = this.minInput.value;
+			console.log(this.value.min);
+			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		});
 	}
 }

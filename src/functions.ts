@@ -1,17 +1,14 @@
 const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 
 	const onMouseDown = (evt) => {
-		evt.preventDefault();
 		if (onDovn) {
 			onDovn(evt);
 		}
 		
 		const onMouseMove = (moveEvt) => {
-			moveEvt.preventDefault();
 			onMove(moveEvt);
 		}
 		const onMouseUp = (upEvt) => {
-			upEvt.preventDefault();
 			if (onUp) {
 				onUp(upEvt);
 			}

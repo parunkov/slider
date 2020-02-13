@@ -15,7 +15,6 @@ function setViewValue(slider: HTMLElement, data: Data) {
 	};
 
 	window.addEventListener('load', (windowLoadEvt) => {
-		windowLoadEvt.preventDefault();
 		const minToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
 		const maxToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
 		const range: HTMLElement = slider.querySelector('.ts-slider__range');

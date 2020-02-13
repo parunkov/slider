@@ -24,14 +24,16 @@
 	border-bottom: none;;
 }
 .page__col--12, .page__col--22 {
+	border-left: none;
+	min-width: 600px;
+}
+.page__form-wrap {
 	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
 	flex-wrap: nowrap;
-	border-left: none;
-	min-width: 600px;
 }
 .page__input-wrap {
 	flex: 1 0 10%;
