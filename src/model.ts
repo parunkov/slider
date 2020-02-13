@@ -110,8 +110,9 @@ class Model {
 	changeInput() {
 		this.minInput.addEventListener('blur', () => {
 			// console.log(this.minInput.value);
-			this.value.min = this.minInput.value;
-			console.log(this.value.min);
+			this.value.min = +this.minInput.value;
+			// console.log(this.value.min);
+
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		});
 	}

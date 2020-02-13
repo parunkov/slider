@@ -35,6 +35,7 @@ class View {
 		}
 		this.scale = [];
 		this.initView();
+		// this.onViewCange();
 		this.setToggle();
 		this.onMoveToggle();
 		this.addScale();
@@ -68,9 +69,12 @@ class View {
 			this.setTab();
 		});
 	}
-
+	onViewCange() {
+		// this.viewValue = setViewValue(this.container, this.data);
+	}
 	onMoveToggle() {
 		this.viewValue = setViewValue(this.container, this.data);
+		this.onViewCange();
 		const onMouseMove = (moveEvt) => {
 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
 		}

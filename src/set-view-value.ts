@@ -14,7 +14,7 @@ function setViewValue(slider: HTMLElement, data: Data) {
 		max: 0
 	};
 
-	window.addEventListener('load', (windowLoadEvt) => {
+	window.addEventListener('load', () => {
 		const minToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
 		const maxToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
 		const range: HTMLElement = slider.querySelector('.ts-slider__range');
@@ -51,7 +51,8 @@ function setViewValue(slider: HTMLElement, data: Data) {
 			toggleMin.value = 0;
 		}
 
-		const setRanre = () => {
+		const setRange = () => {
+			console.log('Set Range');
 			toggleMax.min = toggleMin.value;
 			toggleMin.max = toggleMax.value;
 			if (isVertical) {
@@ -62,7 +63,7 @@ function setViewValue(slider: HTMLElement, data: Data) {
 				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
 			}
 		}
-		setRanre();
+		setRange();
 
 		const onMouseDownCoincidence = (evt) => {
 			evt.preventDefault();
@@ -112,7 +113,7 @@ function setViewValue(slider: HTMLElement, data: Data) {
 		maxToggleElem.addEventListener('mousedown', onMouseDownCoincidence);
 
 		const onMouseMovePrecent = (moveEvt) => {
-			setRanre();
+			setRange();
 			precent.min = setPrecent(toggleMin.value);
 			precent.max = setPrecent(toggleMax.value);
 		}

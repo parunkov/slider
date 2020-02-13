@@ -28,6 +28,7 @@ class Presenter {
 		this.init();
 		this.onMoveToggle();
 		this.onChangeTabText();
+		this.onCangeInput();
 	}
 
 	setTabText() {
@@ -61,6 +62,7 @@ class Presenter {
 			this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
 			this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
 			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
+			// console.log(this.model.value);
 		}
 		this.view.container.addEventListener('moveToggle', onChangeView);
 	}
@@ -69,6 +71,20 @@ class Presenter {
 		this.model.observer.addEventListener('changeTabText', () => {
 			this.setTabText();
 			this.view.container.dispatchEvent(new CustomEvent('changeTab'));
+		});
+	}
+	onCangeInput() {
+		this.model.observer.addEventListener('changeInput', () => {
+			// console.log('cvb');
+			this.value.min = +this.model.value.min;
+			// console.log(this.model.value);
+			this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
+			this.view.container.dispatchEvent(new CustomEvent('initValue'));
+			this.view.onViewCange();
+			// this.view.setToggle();
+			// this.view.minToggleElem.style.left = this.view.viewValue.min * this.view.size + 'px';
+			// this.view.viewTabText.min = this.model.tabText.min;
+			// console.log(this.view.viewValue.min);
 		});
 	}
 }
