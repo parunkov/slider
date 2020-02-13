@@ -50,12 +50,40 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['spec'/*, 'coverage'*/],
+        reporters: ['spec', 'coverage'],
 
-        // coverageReporter: {
-        //   type : 'html',
-        //   dir : 'coverage/'
-        // },
+        coverageReporter: {
+          type : 'html',
+          dir : 'coverage/',
+          subdir: '.',
+          // includeAllSources: true,
+          // check: {
+          //   // global: {
+          //   //   statements: 50,
+          //   //   branches: 50,
+          //   //   functions: 50,
+          //   //   lines: 50,
+
+          //   //   // excludes: [
+          //   //   //   'foo/bar/**/*.js'
+          //   //   // ]
+          //   // },
+          //   // each: {
+          //   //   statements: 50,
+          //   //   branches: 50,
+          //   //   functions: 50,
+          //   //   lines: 50,
+          //   //   // excludes: [
+          //   //   //   'other/directory/**/*.js'
+          //   //   // ],
+          //   //   // overrides: {
+          //   //   //   'baz/component/**/*.js': {
+          //   //   //     statements: 98
+          //   //   //   }
+          //   //   // }
+          //   // }
+          // }
+        },
 
         // web server port
         port: 9876,
