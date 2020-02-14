@@ -24,7 +24,7 @@ const sliderData1: Data = {
 	maxInputId: 'page__input-12',
 	isArray: false,
 	array: [],
-	step: 0.01,
+	step: 10,
 	minValue: 7,
 	maxValue: 105,
 	minToggleValue: 39.67,

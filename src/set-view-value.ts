@@ -6,9 +6,9 @@ import {markup} from './init-view-markup.ts';
 
 function setViewValue(slider: HTMLElement, data: Data) {
 
-	let isVertical = data.isVertical;
-	let isRange = data.isRange;
-	let isTab = data.isTab;
+	let isVertical: boolean = data.isVertical;
+	let isRange: boolean = data.isRange;
+	let isTab: boolean = data.isTab;
 
 	let precent: Value = {
 		min: 0,
@@ -60,7 +60,6 @@ function setViewValue(slider: HTMLElement, data: Data) {
 		setRange();
 
 		const onMouseDownCoincidence = (evt) => {
-			evt.preventDefault();
 			let coincidenceToggle: boolean = false;
 			maxToggleElem.hidden = true;
 			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
@@ -69,7 +68,6 @@ function setViewValue(slider: HTMLElement, data: Data) {
 			startValue = toggleMax.value;
 
 			const onMouseMove = (moveEvt) => {
-				// moveEvt.preventDefault();
 				if (coincidenceToggle) {
 					toggleMin.mouseValue = toggleMax.mouseValue;
 					toggleMax.isFixed = true;

@@ -102,8 +102,8 @@ class Model {
 		const onBlur = () => {
 			this.value.min = +this.minInput.value;
 			this.value.max = +this.maxInput.value;
-			this.tabText.min = this.minInput.value;
-			this.tabText.max = this.maxInput.value;
+			this.tabText.min = round(this.minInput.value, this.data.step);
+			this.tabText.max = round(this.maxInput.value, this.data.step);
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		}
 		this.minInput.addEventListener('blur', onBlur);

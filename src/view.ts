@@ -69,10 +69,9 @@ class View {
 			this.setTab();
 		});
 	}
-	
+
 	onMoveToggle() {
 		this.viewValue = setViewValue(this.container, this.data);
-		// this.onViewCange();
 		const onMouseMove = (moveEvt) => {
 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
 		}
