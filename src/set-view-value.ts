@@ -69,7 +69,7 @@ function setViewValue(slider: HTMLElement, data: Data) {
 			startValue = toggleMax.value;
 
 			const onMouseMove = (moveEvt) => {
-				moveEvt.preventDefault();
+				// moveEvt.preventDefault();
 				if (coincidenceToggle) {
 					toggleMin.mouseValue = toggleMax.mouseValue;
 					toggleMax.isFixed = true;

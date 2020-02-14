@@ -79,8 +79,8 @@ class Presenter {
 			this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 			this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
 			this.view.container.dispatchEvent(new CustomEvent('initValue'));
-			this.view.onViewCange();
-			this.view.setToggle();
+			// this.view.onViewCange();
+			// this.view.setToggle();
 			// this.view.minToggleElem.style.left = this.view.viewValue.min * this.view.size + 'px';
 			// this.view.viewTabText.min = this.model.tabText.min;
 			// console.log(this.view.viewValue.min);

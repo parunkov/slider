@@ -7,6 +7,7 @@ const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 		
 		const onMouseMove = (moveEvt) => {
 			onMove(moveEvt);
+			console.log(111);
 		}
 		const onMouseUp = (upEvt) => {
 			if (onUp) {
@@ -19,7 +20,7 @@ const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 		document.addEventListener('mouseup', onMouseUp);
 	}
 
-	document.addEventListener('mousedown', onMouseDown);
+	elem.addEventListener('mousedown', onMouseDown);
 
 }
 
