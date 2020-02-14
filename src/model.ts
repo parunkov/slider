@@ -64,14 +64,6 @@ class Model {
 		this.minInput = document.querySelector('#' + this.data.minInputId);
 		this.maxInput = document.querySelector('#' + this.data.maxInputId);
 		this.setInput();
-		// for (let key in this.minInput) {
-		// 	console.log(key + ':' + this.minInput[key]);
-		// }
-		// this.minInput.value = '!!!!';
-		// console.log(this.minInput.value);
-		// this.minInput.addEventListener('unfocus', () => {
-		// 	console.log(222);
-		// });
 	}
 
 	setScale() {
@@ -103,19 +95,19 @@ class Model {
 				this.tabText.max = round(this.value.max, this.data.step);
 			}
 			this.setInput();
-			// console.log(this.minInput.readonly);
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
 	changeInput() {
-		this.minInput.addEventListener('blur', () => {
+		const onBlur = () => {
 			this.value.min = +this.minInput.value;
-			this.observer.dispatchEvent(new CustomEvent('changeInput'));
-		});
-		this.maxInput.addEventListener('blur', () => {
 			this.value.max = +this.maxInput.value;
+			this.tabText.min = this.minInput.value;
+			this.tabText.max = this.maxInput.value;
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
-		});
+		}
+		this.minInput.addEventListener('blur', onBlur);
+		this.maxInput.addEventListener('blur', onBlur);
 	}
 }
 

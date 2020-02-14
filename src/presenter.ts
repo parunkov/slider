@@ -1,7 +1,8 @@
 import {View, Value, TabText} from './view.ts';
 import {Data} from './data.ts';
 import {Model} from './model.ts';
-import {setMouseHandler, round} from './functions.ts';
+import {setMouseHandler, round, setRangeStyle} from './functions.ts';
+import {markup} from './init-view-markup.ts';
 
 const toView = (value: number, min: number, max: number) => (value - min) / (max - min);
 const toModel = (value: number, min: number, max: number) => (min + (max - min) * value);
@@ -14,8 +15,6 @@ class Presenter {
 	max: number;
 	min: number;
 	value: Value;
-	// viewValue: Value;
-	// modelValue: Value;
 	modelTabText: TabText;
 
 	constructor(data) {
@@ -40,12 +39,21 @@ class Presenter {
 		this.view.container.dispatchEvent(new CustomEvent('initScale'));
 	}
 
+	setToView() {
+		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
+		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+	}
+
+	setToModel() {
+		this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
+		this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
+	}
+
 	init() {
 		this.view = new View(this.data);
 		this.model = new Model(this.data);
 		this.initScale();
-		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
-		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+		this.setToView();
 		this.model.precent = this.view.viewValue;
 		this.model.observer.dispatchEvent(new CustomEvent('setPrecent'));
 		this.setTabText();
@@ -58,10 +66,8 @@ class Presenter {
 
 	onMoveToggle() {
 		const onChangeView = () => {
-			this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
-			this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
+			this.setToModel();
 			this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
-			// console.log(this.model.value);
 		}
 		this.view.container.addEventListener('moveToggle', onChangeView);
 	}
@@ -74,16 +80,13 @@ class Presenter {
 	}
 	onCangeInput() {
 		this.model.observer.addEventListener('changeInput', () => {
+			this.view.viewTabText = this.model.tabText;
 			this.value.min = +this.model.value.min;
 			this.value.max = +this.model.value.max;
-			this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
-			this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+			this.setToView();
 			this.view.container.dispatchEvent(new CustomEvent('initValue'));
-			// this.view.onViewCange();
-			// this.view.setToggle();
-			// this.view.minToggleElem.style.left = this.view.viewValue.min * this.view.size + 'px';
-			// this.view.viewTabText.min = this.model.tabText.min;
-			// console.log(this.view.viewValue.min);
+			const range: HTMLElement = markup(this.view.container).range;
+			setRangeStyle(range, this.view.viewValue.min * this.view.size, this.view.viewValue.max * this.view.size, this.data.isVertical);
 		});
 	}
 }

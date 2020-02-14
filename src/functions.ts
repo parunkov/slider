@@ -7,7 +7,6 @@ const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 		
 		const onMouseMove = (moveEvt) => {
 			onMove(moveEvt);
-			console.log(111);
 		}
 		const onMouseUp = (upEvt) => {
 			if (onUp) {
