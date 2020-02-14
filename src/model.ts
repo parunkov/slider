@@ -109,10 +109,11 @@ class Model {
 	}
 	changeInput() {
 		this.minInput.addEventListener('blur', () => {
-			// console.log(this.minInput.value);
 			this.value.min = +this.minInput.value;
-			// console.log(this.value.min);
-
+			this.observer.dispatchEvent(new CustomEvent('changeInput'));
+		});
+		this.maxInput.addEventListener('blur', () => {
+			this.value.max = +this.maxInput.value;
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		});
 	}

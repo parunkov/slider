@@ -39,9 +39,6 @@ const setLimit = (value: number, min: number, max: number) => {
 }
 
 const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical: boolean) => {
-	// console.log('Set Range');
-	// toggleMax.min = toggleMin.value;
-	// toggleMin.max = toggleMax.value;
 	if (isVertical) {
 		range.style.top = `${min}px`;
 		range.style.height = `${(max - min)}px`;

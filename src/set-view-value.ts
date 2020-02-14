@@ -2,6 +2,7 @@ import {Toggle} from './toggle.ts';
 import {Value} from './view.ts';
 import {setMouseHandler, setRangeStyle} from './functions.ts';
 import {Data} from './data.ts';
+import {markup} from './init-view-markup.ts';
 
 function setViewValue(slider: HTMLElement, data: Data) {
 
@@ -15,10 +16,10 @@ function setViewValue(slider: HTMLElement, data: Data) {
 	};
 
 	window.addEventListener('load', () => {
-		const minToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--min');
-		const maxToggleElem: HTMLElement = slider.querySelector('.ts-slider__toggle--max');
-		const range: HTMLElement = slider.querySelector('.ts-slider__range');
-		const barElem: HTMLElement = slider.querySelector('.ts-slider__bar');
+		const minToggleElem: HTMLElement = markup(slider).min;
+		const maxToggleElem: HTMLElement = markup(slider).max;
+		const range: HTMLElement = markup(slider).range;
+		const barElem: HTMLElement = markup(slider).bar;
 		const barWidth: number = barElem.offsetWidth;
 		const barHeight: number = barElem.offsetHeight;
 		let barMax;

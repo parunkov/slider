@@ -4,6 +4,7 @@ import {setViewValue} from './set-view-value.ts';
 import {Data} from './data.ts';
 import {setToggleStyle} from './toggle.ts';
 import {setMouseHandler, round} from './functions.ts';
+import {markup} from './init-view-markup.ts';
 
 interface Value {
 	min: number;
@@ -58,10 +59,10 @@ class View {
 	}
 
 	setToggle() {
-		this.minToggleElem = this.container.querySelector('.ts-slider__toggle--min');
-		this.maxToggleElem = this.container.querySelector('.ts-slider__toggle--max');
-		this.minTabElem = this.container.querySelector('.ts-slider__toggle-value--min');
-		this.maxTabElem = this.container.querySelector('.ts-slider__toggle-value--max');
+		this.minToggleElem = markup(this.container).min;
+		this.maxToggleElem = markup(this.container).max;
+		this.minTabElem = markup(this.container).minTab;
+		this.maxTabElem = markup(this.container).maxTab;
 
 		this.container.addEventListener('initValue', () => {
 			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);

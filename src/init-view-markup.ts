@@ -1,4 +1,4 @@
-export function initViewMarkup(wrap: string, vertical: boolean) {
+const initViewMarkup = (wrap: string, vertical: boolean) => {
 	const contolMarkup: string = `<div class="ts-slider__container">
           <div class="ts-slider__bar">
             <div class="ts-slider__toggle ts-slider__toggle--min">
@@ -22,3 +22,24 @@ export function initViewMarkup(wrap: string, vertical: boolean) {
   }
 }
 
+const markup = (slider: HTMLElement) => {
+  interface Markup {
+    min: HTMLElement;
+    max: HTMLElement;
+    range: HTMLElement;
+    bar: HTMLElement;
+    minTab: HTMLElement;
+    maxTab: HTMLElement;
+  }
+  let markup: Markup = {  
+     min: slider.querySelector('.ts-slider__toggle--min'),
+     max: slider.querySelector('.ts-slider__toggle--max'),
+     range: slider.querySelector('.ts-slider__range'),
+     bar: slider.querySelector('.ts-slider__bar'),
+     minTab: slider.querySelector('.ts-slider__toggle-value--min'),
+     maxTab: slider.querySelector('.ts-slider__toggle-value--max')
+  }
+  return markup;
+}
+
+export {initViewMarkup, markup};

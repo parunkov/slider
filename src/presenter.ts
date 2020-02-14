@@ -1,7 +1,6 @@
 import {View, Value, TabText} from './view.ts';
 import {Data} from './data.ts';
 import {Model} from './model.ts';
-
 import {setMouseHandler, round} from './functions.ts';
 
 const toView = (value: number, min: number, max: number) => (value - min) / (max - min);
@@ -75,13 +74,13 @@ class Presenter {
 	}
 	onCangeInput() {
 		this.model.observer.addEventListener('changeInput', () => {
-			// console.log('cvb');
 			this.value.min = +this.model.value.min;
-			// console.log(this.model.value);
+			this.value.max = +this.model.value.max;
 			this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
+			this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
 			this.view.container.dispatchEvent(new CustomEvent('initValue'));
 			this.view.onViewCange();
-			// this.view.setToggle();
+			this.view.setToggle();
 			// this.view.minToggleElem.style.left = this.view.viewValue.min * this.view.size + 'px';
 			// this.view.viewTabText.min = this.model.tabText.min;
 			// console.log(this.view.viewValue.min);
