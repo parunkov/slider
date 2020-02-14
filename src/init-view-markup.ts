@@ -21,3 +21,4 @@ export function initViewMarkup(wrap: string, vertical: boolean) {
     }
   }
 }
+

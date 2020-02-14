@@ -38,17 +38,17 @@ const setLimit = (value: number, min: number, max: number) => {
 	return value;
 }
 
-const setRange = (range: HTMLElement, min: number, max: number, isVertical: boolean) => {
+const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical: boolean) => {
 	// console.log('Set Range');
 	// toggleMax.min = toggleMin.value;
 	// toggleMin.max = toggleMax.value;
 	if (isVertical) {
-		range.style.top = `${toggleMin.value}px`;
-		range.style.height = `${(toggleMax.value - toggleMin.value)}px`;
+		range.style.top = `${min}px`;
+		range.style.height = `${(max - min)}px`;
 	} else {
-		range.style.left = `${toggleMin.value}px`;
-		range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
+		range.style.left = `${min}px`;
+		range.style.width = `${(max - min)}px`;
 	}
 }
 
-export {setMouseHandler, round, setLimit};
+export {setMouseHandler, round, setLimit, setRangeStyle};

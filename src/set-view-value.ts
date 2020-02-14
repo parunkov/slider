@@ -1,6 +1,6 @@
 import {Toggle} from './toggle.ts';
 import {Value} from './view.ts';
-import {setMouseHandler} from './functions.ts';
+import {setMouseHandler, setRangeStyle} from './functions.ts';
 import {Data} from './data.ts';
 
 function setViewValue(slider: HTMLElement, data: Data) {
@@ -52,16 +52,9 @@ function setViewValue(slider: HTMLElement, data: Data) {
 		}
 
 		const setRange = () => {
-			console.log('Set Range');
 			toggleMax.min = toggleMin.value;
 			toggleMin.max = toggleMax.value;
-			if (isVertical) {
-				range.style.top = `${toggleMin.value}px`;
-				range.style.height = `${(toggleMax.value - toggleMin.value)}px`;
-			} else {
-				range.style.left = `${toggleMin.value}px`;
-				range.style.width = `${(toggleMax.value - toggleMin.value)}px`;
-			}
+			setRangeStyle(range, toggleMin.value, toggleMax.value, isVertical);
 		}
 		setRange();
 
