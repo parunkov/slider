@@ -95,6 +95,7 @@ class Model {
 				this.tabText.max = round(this.value.max, this.data.step);
 			}
 			this.setInput();
+			// console.log(333);
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}

@@ -91,7 +91,7 @@ function setViewValue(slider: HTMLElement, data: Data) {
 				}
 			}
 			const onMouseUp = (upEvt) => {
-				upEvt.preventDefault();
+				// upEvt.preventDefault();
 				toggleMin.mouseValue = toggleMin.value;
 				toggleMax.isFixed = false;
 				toggleMin.isFixed = false;

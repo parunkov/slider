@@ -42,6 +42,7 @@ class Presenter {
 	setToView() {
 		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+		// console.log(this.view.viewValue);
 	}
 
 	setToModel() {
@@ -83,10 +84,17 @@ class Presenter {
 			this.view.viewTabText = this.model.tabText;
 			this.value.min = +this.model.value.min;
 			this.value.max = +this.model.value.max;
+			// console.log(this.value.min + ' ' + this.value.max);
 			this.setToView();
-			this.view.container.dispatchEvent(new CustomEvent('initValue'));
+			this.setToModel();
+			// console.log(111);
+			// console.log(this.view.viewValue);
+			// this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 			const range: HTMLElement = markup(this.view.container).range;
 			setRangeStyle(range, this.view.viewValue.min * this.view.size, this.view.viewValue.max * this.view.size, this.data.isVertical);
+			// console.log(this.view.viewValue.min * this.view.size + ' ' + this.view.viewValue.max * this.view.size);
+			this.view.container.dispatchEvent(new CustomEvent('changeInput'));
+			// this.view.container.dispatchEvent(new CustomEvent('moveToggle'));
 		});
 	}
 }

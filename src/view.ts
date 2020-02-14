@@ -40,6 +40,7 @@ class View {
 		this.onMoveToggle();
 		this.addScale();
 		this.changeTab();
+		this.changeInput();
 	}
 
 	initView() {
@@ -50,6 +51,7 @@ class View {
 		} else {
 			this.size = this.container.offsetWidth;
 		}
+		this.viewValue = setViewValue(this.container, this.data);
 	}
 
 	setTab() {
@@ -68,12 +70,14 @@ class View {
 			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
 			this.setTab();
 		});
+		// this.viewValue = setViewValue(this.container, this.data);
 	}
 
 	onMoveToggle() {
-		this.viewValue = setViewValue(this.container, this.data);
+		// this.viewValue = setViewValue(this.container, this.data);
 		const onMouseMove = (moveEvt) => {
 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
+			// console.log(this.viewValue);
 		}
 		setMouseHandler(this.container, onMouseMove);
 	}
@@ -88,6 +92,15 @@ class View {
 
 	changeTab() {
 		this.container.addEventListener('changeTab', () => {
+			this.setTab();
+		});
+	}
+	changeInput() {
+		this.container.addEventListener('changeInput', () => {
+			// console.log(222);
+			// console.log(this.viewValue);
+			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);
+			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
 			this.setTab();
 		});
 	}

@@ -46,6 +46,7 @@ const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical:
 		range.style.left = `${min}px`;
 		range.style.width = `${(max - min)}px`;
 	}
+	// console.log(min + ' ' + max);
 }
 
 export {setMouseHandler, round, setLimit, setRangeStyle};
