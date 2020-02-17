@@ -34,9 +34,9 @@ describe('Модуль View', function() {
 		expect(view.data).toBe(data);
 		sliderWrap.remove();
 	});
-	it('Устанавливает view.viewValue', function() {
+	it('Устанавливает view.precent', function() {
 		add();
-		expect(view.viewValue).toEqual({min: 0, max: 0});
+		expect(view.precent).toEqual({min: 0, max: 0});
 		sliderWrap.remove();
 	});	
 	it('Устанавливает view.viewTabText', function() {
@@ -46,9 +46,9 @@ describe('Модуль View', function() {
 	});	
 	it('Устанавливает стиль бегунков', function() {
 		add();
-		view.viewValue = {min: 0.2, max: 0.8};
+		view.precent = {min: 0.2, max: 0.8};
 		view.container.dispatchEvent(new CustomEvent('initValue'));
-		view.setToggle();
+		view.createToggle();
 		expect(view.minToggleElem.style.left).toEqual('20px');
 		expect(view.maxToggleElem.style.left).toEqual('80px');
 		sliderWrap.remove();
