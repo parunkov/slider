@@ -25,7 +25,7 @@ const sliderData1: Data = {
 	isArray: false,
 	array: [],
 	step: 1,
-	minValue: 10,
+	minValue: 0,
 	maxValue: 100,
 	minToggleValue: 20,
 	maxToggleValue: 40,

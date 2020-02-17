@@ -38,6 +38,8 @@ const setLimit = (value: number, min: number, max: number) => {
 	return value;
 }
 
+const toPrecent = (value: number, min: number, max: number) => (value - min) / (max - min);
+
 const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical: boolean) => {
 	if (isVertical) {
 		range.style.top = `${min}px`;
@@ -49,4 +51,4 @@ const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical:
 	// console.log(min + ' ' + max);
 }
 
-export {setMouseHandler, round, setLimit, setRangeStyle};
+export {setMouseHandler, round, setLimit, toPrecent, setRangeStyle};

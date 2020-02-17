@@ -47,7 +47,7 @@
 	transform: translate(0, -10px);
 }
 .ts-slider__toggle--min {
-	/*background: red;*/
+	background: red;
 }
 .ts-slider__toggle-value {
 	position: absolute;
