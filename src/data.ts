@@ -1,22 +1,5 @@
 import {setLimit} from './functions.ts';
-
-interface Data {
-	wrapId: string;
-	minInputId: string;
-	maxInputId: string;
-	isArray: boolean;
-	array: string[];
-	step: number;
-	minValue: number;
-	maxValue: number;
-	minToggleValue: number;
-	maxToggleValue: number;
-	isRange: boolean;
-	isVertical: boolean;
-	isTab: boolean;
-	isScale: boolean;
-	scaleQuantity: number;
-}
+import {Data} from './interfaces.ts';
 
 const sliderData1: Data = {
 	wrapId: '#ts-slider__wrap-1',

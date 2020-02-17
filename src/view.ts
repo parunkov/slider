@@ -2,19 +2,9 @@
 
 import {initViewMarkup, markup} from './init-view-markup.ts';
 import {Scale} from './scale.ts';
-// import {setViewValue} from './set-view-value.ts';
-import {Data} from './data.ts';
+import {Data, Value, TabText} from './interfaces.ts';
 import {setToggleStyle, Toggle} from './toggle.ts';
 import {setMouseHandler, round, toPrecent, setRangeStyle} from './functions.ts';
-
-interface Value {
-	min: number;
-	max: number;
-}
-interface TabText {
-	min: string;
-	max: string;
-}
 
 class View {
 
@@ -46,11 +36,9 @@ class View {
 		this.initView();
 		this.createToggle();
 		this.onToggleCoincidence();
-		// this.setToggle();
-		// this.onMoveToggle();
 		this.addScale();
-		// this.changeTab();
-		// this.changeInput();
+		this.changeTab();
+		this.changeInput();
 	}
 
 	initView() {
@@ -82,7 +70,6 @@ class View {
 		const maxTogglePrecent = toPrecent(this.data.maxToggleValue, this.data.minValue, this.data.maxValue);
 		this.minToggle = new Toggle(this.minToggleElem, minTogglePrecent, this.size, this.data.isVertical);
 		this.maxToggle = new Toggle(this.maxToggleElem, maxTogglePrecent, this.size, this.data.isVertical);
-		// this.setTab();
 		this.minToggle.min = 0;
 		this.maxToggle.max = 1;
 		if (!this.data.isRange) {
@@ -90,18 +77,19 @@ class View {
 		}
 		setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
 
-		const onMouseMove = () => {
+		const onMouseMove = (moveEvt) => {
 			this.minToggle.max = this.maxToggle.precent;
 			this.maxToggle.min = this.minToggle.precent;
 			setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
 			this.precent.min = this.minToggle.precent;
 			this.precent.max = this.maxToggle.precent;
-			// console.log(this.precent);
 			this.setTab();
 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
 		}
 		setMouseHandler(document, onMouseMove);
-		// this.setTab();
+		this.container.addEventListener('mousemove', (evt) => {
+			evt.preventDefault();
+		});
 	}
 
 	onToggleCoincidence() {
@@ -151,31 +139,6 @@ class View {
 		this.maxToggleElem.addEventListener('mousedown', onMouseDownCoincidence);
 	}
 
-
-
-// 	setToggle() {
-// 		this.minToggleElem = markup(this.container).min;
-// 		this.maxToggleElem = markup(this.container).max;
-// 		this.minTabElem = markup(this.container).minTab;
-// 		this.maxTabElem = markup(this.container).maxTab;
-
-// 		this.container.addEventListener('initValue', () => {
-// 			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);
-// 			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
-// 			this.setTab();
-// 		});
-// 		// this.viewValue = setViewValue(this.container, this.data);
-// 	}
-
-// 	onMoveToggle() {
-// 		// this.viewValue = setViewValue(this.container, this.data);
-// 		const onMouseMove = (moveEvt) => {
-// 			this.container.dispatchEvent(new CustomEvent('moveToggle'));
-// 			// console.log(this.viewValue);
-// 		}
-// 		setMouseHandler(this.container, onMouseMove);
-// 	}
-
 	addScale() {
 		this.container.addEventListener('initScale', () => {
 			if (this.data.isScale) {
@@ -184,23 +147,24 @@ class View {
 		});
 	}
 
-// 	changeTab() {
-// 		this.container.addEventListener('changeTab', () => {
-// 			this.setTab();
-// 		});
-// 	}
-// 	changeInput() {
-// 		this.container.addEventListener('changeInput', () => {
-// 			// console.log(222);
-// 			// console.log(this.viewValue);
-// 			setToggleStyle(this.minToggleElem, this.viewValue.min * this.size, this.data.isVertical);
-// 			setToggleStyle(this.maxToggleElem, this.viewValue.max * this.size, this.data.isVertical);
-// 			this.setTab();
-// 		});
-// 	}
-// }
+	changeTab() {
+		this.container.addEventListener('changeTab', () => {
+			this.setTab();
+		});
+	}
 
-export {View, Value, TabText};
+	changeInput() {
+		this.container.addEventListener('changeInput', () => {
+			this.minToggle.precent = this.precent.min;
+			this.maxToggle.precent = this.precent.max;
+			this.minToggle.changeToggle();
+			this.maxToggle.changeToggle();
+			this.setTab();
+		});
+	}
+}
+
+export {View};
 
 
 

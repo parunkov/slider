@@ -1,5 +1,5 @@
-import {View, Value, TabText} from './view.ts';
-import {Data} from './data.ts';
+import {View} from './view.ts';
+import {Data, Value, TabText} from './interfaces.ts';
 import {Model} from './model.ts';
 import {setMouseHandler, round, setRangeStyle} from './functions.ts';
 import {markup} from './init-view-markup.ts';

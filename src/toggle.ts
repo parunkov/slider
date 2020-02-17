@@ -31,9 +31,17 @@ class Toggle {
 		this.setStyle();
 		this.onMoveToggle();
 	}
+
 	setStyle() {
 		setToggleStyle(this.toggle, this.pixel, this.isVertical);
 	}
+
+	changeToggle() {
+		this.mousePixel = this.precent * this.size;
+		this.pixel = this.mousePixel;
+		this.setStyle();
+	}
+
 	onMoveToggle() {
 		const onMouseDown = (evt) => {
 			let shiftX: number = evt.clientX - this.toggle.offsetLeft;
