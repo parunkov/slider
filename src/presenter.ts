@@ -30,8 +30,8 @@ class Presenter {
 	}
 
 	setTabText() {
-		this.view.viewTabText.min = this.model.tabText.min;
-		this.view.viewTabText.max = this.model.tabText.max;
+		this.view.tabText.min = this.model.tabText.min;
+		this.view.tabText.max = this.model.tabText.max;
 	}
 
 	initScale() {
@@ -40,14 +40,14 @@ class Presenter {
 	}
 
 	setToView() {
-		this.view.viewValue.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
-		this.view.viewValue.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
-		// console.log(this.view.viewValue);
+		this.view.precent.min = toView(this.value.min, this.data.minValue, this.data.maxValue);
+		this.view.precent.max = toView(this.value.max, this.data.minValue, this.data.maxValue);
+		// console.log(this.view.precent);
 	}
 
 	setToModel() {
-		this.model.value.min = toModel(this.view.viewValue.min, this.data.minValue, this.data.maxValue);
-		this.model.value.max = toModel(this.view.viewValue.max, this.data.minValue, this.data.maxValue);
+		this.model.value.min = toModel(this.view.precent.min, this.data.minValue, this.data.maxValue);
+		this.model.value.max = toModel(this.view.precent.max, this.data.minValue, this.data.maxValue);
 	}
 
 	init() {
@@ -55,9 +55,10 @@ class Presenter {
 		this.model = new Model(this.data);
 		this.initScale();
 		this.setToView();
-		this.model.precent = this.view.viewValue;
+		this.model.precent = this.view.precent;
 		this.model.observer.dispatchEvent(new CustomEvent('setPrecent'));
 		this.setTabText();
+		this.view.setTab();
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
 		this.view.container.addEventListener('changeValue', () => {
@@ -81,7 +82,7 @@ class Presenter {
 	}
 	onCangeInput() {
 		this.model.observer.addEventListener('changeInput', () => {
-			this.view.viewTabText = this.model.tabText;
+			this.view.tabText = this.model.tabText;
 			this.value.min = +this.model.value.min;
 			this.value.max = +this.model.value.max;
 			// console.log(this.value.min + ' ' + this.value.max);
@@ -91,7 +92,7 @@ class Presenter {
 			// console.log(this.view.viewValue);
 			// this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 			const range: HTMLElement = markup(this.view.container).range;
-			setRangeStyle(range, this.view.viewValue.min * this.view.size, this.view.viewValue.max * this.view.size, this.data.isVertical);
+			setRangeStyle(range, this.view.precent.min * this.view.size, this.view.precent.max * this.view.size, this.data.isVertical);
 			// console.log(this.view.viewValue.min * this.view.size + ' ' + this.view.viewValue.max * this.view.size);
 			this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 			// this.view.container.dispatchEvent(new CustomEvent('moveToggle'));

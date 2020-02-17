@@ -52,7 +52,7 @@ class Toggle {
 				}
 				this.setStyle();
 				this.precent = this.pixel / this.size;
-				console.log(this.precent);
+				// console.log(this.precent);
 			}
 			moveAt(evt.pageX, evt.pageY);
 

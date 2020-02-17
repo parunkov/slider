@@ -19,8 +19,8 @@ interface TabText {
 class View {
 
 	data: Data;
-	viewValue: Value;
-	viewTabText: TabText;
+	precent: Value;
+	tabText: TabText;
 	container: HTMLElement;
 	minToggleElem: HTMLElement;
 	maxToggleElem: HTMLElement;
@@ -34,7 +34,11 @@ class View {
 
 	constructor(data) {
 		this.data = data;
-		this.viewTabText = {
+		this.precent = {
+			min: 0,
+			max: 0
+		}
+		this.tabText = {
 			min: '',
 			max: ''
 		}
@@ -44,7 +48,7 @@ class View {
 		this.onToggleCoincidence();
 		// this.setToggle();
 		// this.onMoveToggle();
-		// this.addScale();
+		this.addScale();
 		// this.changeTab();
 		// this.changeInput();
 	}
@@ -67,12 +71,18 @@ class View {
 			this.minToggleElem.hidden = true;
 		}
 	}
-	
+
+	setTab() {
+		this.minTabElem.textContent = this.tabText.min;
+		this.maxTabElem.textContent = this.tabText.max;
+	}
+
 	createToggle() {
 		const minTogglePrecent = toPrecent(this.data.minToggleValue, this.data.minValue, this.data.maxValue);
 		const maxTogglePrecent = toPrecent(this.data.maxToggleValue, this.data.minValue, this.data.maxValue);
 		this.minToggle = new Toggle(this.minToggleElem, minTogglePrecent, this.size, this.data.isVertical);
 		this.maxToggle = new Toggle(this.maxToggleElem, maxTogglePrecent, this.size, this.data.isVertical);
+		// this.setTab();
 		this.minToggle.min = 0;
 		this.maxToggle.max = 1;
 		if (!this.data.isRange) {
@@ -84,8 +94,14 @@ class View {
 			this.minToggle.max = this.maxToggle.precent;
 			this.maxToggle.min = this.minToggle.precent;
 			setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
+			this.precent.min = this.minToggle.precent;
+			this.precent.max = this.maxToggle.precent;
+			// console.log(this.precent);
+			this.setTab();
+			this.container.dispatchEvent(new CustomEvent('moveToggle'));
 		}
-		document.addEventListener('mousemove', onMouseMove);
+		setMouseHandler(document, onMouseMove);
+		// this.setTab();
 	}
 
 	onToggleCoincidence() {
@@ -136,10 +152,6 @@ class View {
 	}
 
 
-// 	setTab() {
-// 		this.minTabElem.textContent = this.viewTabText.min;
-// 		this.maxTabElem.textContent = this.viewTabText.max;
-// 	}
 
 // 	setToggle() {
 // 		this.minToggleElem = markup(this.container).min;
@@ -164,13 +176,13 @@ class View {
 // 		setMouseHandler(this.container, onMouseMove);
 // 	}
 
-// 	addScale() {
-// 		this.container.addEventListener('initScale', () => {
-// 			if (this.data.isScale) {
-// 				const scale = new Scale(this.container, this.scale, this.data.isVertical);
-// 			}
-// 		});
-// 	}
+	addScale() {
+		this.container.addEventListener('initScale', () => {
+			if (this.data.isScale) {
+				const scale = new Scale(this.container, this.scale, this.data.isVertical);
+			}
+		});
+	}
 
 // 	changeTab() {
 // 		this.container.addEventListener('changeTab', () => {
