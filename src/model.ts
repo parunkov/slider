@@ -1,7 +1,6 @@
 import {Data, Value, TabText} from './interfaces.ts';
 import {setMouseHandler, round, setLimit} from './functions.ts';
 
-
 class Model {
 
 	data: Data;
@@ -15,7 +14,7 @@ class Model {
 	max: number;
 	scale: string[];
 
-	constructor(data) {
+	constructor(data) {		
 		this.data = data;
 		this.tabText = {
 			min: '',

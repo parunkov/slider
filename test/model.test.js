@@ -5,8 +5,12 @@ describe('Модуль Model', function() {
 
 	let sliderWrap;
 	let model;
+	let input1;
+	let input2;
 	const data = {
 		wrapId: '#modelwrapid',
+		minInputId: 'page__input-1',
+		maxInputId: 'page__input-2',
 		isArray: false,
 		array: [],
 		step: 1,
@@ -20,10 +24,21 @@ describe('Модуль Model', function() {
 		isScale: true,
 		scaleQuantity: 4
 	}
+
 	const add = () => {
+
 		sliderWrap = setFixtures()[0];
 		sliderWrap.setAttribute('id','modelwrapid');
 		document.body.appendChild(sliderWrap);
+
+		input1 = setFixtures()[0];
+		input1.setAttribute('id','page__input-1');
+		document.body.appendChild(input1);
+
+		input2 = setFixtures()[0];
+		input2.setAttribute('id','page__input-2');
+		document.body.appendChild(input2);
+
 		model = new Model(data);
 	}
 	

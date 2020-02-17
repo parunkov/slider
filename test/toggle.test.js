@@ -2,7 +2,7 @@ import {$} from '../node_modules/jquery/dist/jquery.js';
 import {Toggle} from '../src/toggle.ts';
 
 let toggleDiv = setFixtures()[0];
-let toggle = new Toggle(toggleDiv, 0, 300, 200, false);
+let toggle = new Toggle(toggleDiv, 0.5, 200, false);
 const clearStyle = () => {
 	toggleDiv.style.left = '';
 	toggleDiv.style.top = '';
@@ -11,18 +11,18 @@ const clearStyle = () => {
 describe('Модуль Toggle', function() {
 	it('setStyle horizontal - устанавливает style.left', function() {
 		clearStyle();
-		toggle.vertical = false;
+		toggle.isVertical = false;
 		toggle.setStyle();
 		// console.log(toggle);
-		expect(toggleDiv.style.left).toBe('200px');
+		expect(toggleDiv.style.left).toBe('100px');
 		expect(toggleDiv.style.top).toBe('');
 	});
 	it('setStyle vertical - устанавливает style.top', function() {
 		clearStyle();
-		toggle.vertical = true;
+		toggle.isVertical = true;
 		toggle.setStyle();
 		expect(toggleDiv.style.left).toBe('');
-		expect(toggleDiv.style.top).toBe('200px');
+		expect(toggleDiv.style.top).toBe('100px');
 	});
 });
 
