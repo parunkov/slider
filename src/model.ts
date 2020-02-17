@@ -1,6 +1,5 @@
-// import {Data} from './data.ts';
 import {Data, Value, TabText} from './interfaces.ts';
-import {setMouseHandler, round} from './functions.ts';
+import {setMouseHandler, round, setLimit} from './functions.ts';
 
 
 class Model {
@@ -41,7 +40,6 @@ class Model {
 	setInput() {
 		this.minInput.value = this.tabText.min;
 		this.maxInput.value = this.tabText.max;
-		// console.log('set');
 	}
 
 	setArrayValue() {
@@ -95,7 +93,6 @@ class Model {
 				this.tabText.max = round(this.value.max, this.data.step);
 			}
 			this.setInput();
-			// console.log(333);
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
@@ -103,6 +100,12 @@ class Model {
 		const onBlur = () => {
 			this.value.min = +this.minInput.value;
 			this.value.max = +this.maxInput.value;
+			// console.log(this.value.min + ' ' + this.value.max + ' ' + this.data.minValue);
+			this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
+			this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
+			// console.log(this.value.min + ' ' + this.value.max);
+			this.minInput.value = this.value.min.toString();
+			this.maxInput.value = this.value.max.toString();
 			this.tabText.min = round(this.minInput.value, this.data.step);
 			this.tabText.max = round(this.maxInput.value, this.data.step);
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));

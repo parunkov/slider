@@ -65,6 +65,10 @@ class View {
 		this.maxTabElem.textContent = this.tabText.max;
 	}
 
+	setRange() {
+		setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
+	}
+
 	createToggle() {
 		const minTogglePrecent = toPrecent(this.data.minToggleValue, this.data.minValue, this.data.maxValue);
 		const maxTogglePrecent = toPrecent(this.data.maxToggleValue, this.data.minValue, this.data.maxValue);
@@ -75,7 +79,7 @@ class View {
 		if (!this.data.isRange) {
 			this.minToggle.precent = 0;
 		}
-		setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
+		this.setRange();
 
 		const onMouseMove = (moveEvt) => {
 			this.minToggle.max = this.maxToggle.precent;
@@ -160,6 +164,7 @@ class View {
 			this.minToggle.changeToggle();
 			this.maxToggle.changeToggle();
 			this.setTab();
+			this.setRange();
 		});
 	}
 }

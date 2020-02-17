@@ -20,7 +20,6 @@ const setMouseHandler = (elem, onMove, onDovn?, onUp?) => {
 	}
 
 	elem.addEventListener('mousedown', onMouseDown);
-
 }
 
 const round = (value: number, step: number) => {
@@ -32,13 +31,17 @@ const round = (value: number, step: number) => {
 const setLimit = (value: number, min: number, max: number) => {
 	if (value > max) {
 		value = max;
+		console.log('больше');
 	} else if (value < min) {
 		value = min;
+		console.log('меньше');
 	}
 	return value;
 }
 
 const toPrecent = (value: number, min: number, max: number) => (value - min) / (max - min);
+
+const toValue = (value: number, min: number, max: number) => (min + (max - min) * value);
 
 const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical: boolean) => {
 	if (isVertical) {
@@ -48,7 +51,6 @@ const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical:
 		range.style.left = `${min}px`;
 		range.style.width = `${(max - min)}px`;
 	}
-	// console.log(min + ' ' + max);
 }
 
-export {setMouseHandler, round, setLimit, toPrecent, setRangeStyle};
+export {setMouseHandler, round, setLimit, toPrecent, toValue, setRangeStyle};
