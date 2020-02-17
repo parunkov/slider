@@ -98,16 +98,34 @@ class Model {
 	}
 	changeInput() {
 		const onBlur = () => {
-			this.value.min = +this.minInput.value;
-			this.value.max = +this.maxInput.value;
-			// console.log(this.value.min + ' ' + this.value.max + ' ' + this.data.minValue);
-			this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
-			this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
-			// console.log(this.value.min + ' ' + this.value.max);
-			this.minInput.value = this.value.min.toString();
-			this.maxInput.value = this.value.max.toString();
-			this.tabText.min = round(this.minInput.value, this.data.step);
-			this.tabText.max = round(this.maxInput.value, this.data.step);
+			if (this.data.isArray) {
+				const inArray = (value, limit) => {
+					if (this.data.array.includes(value)) {
+						return value;
+					} else {
+						return limit;
+					}
+				}
+				this.minInput.value = inArray(this.minInput.value, this.data.array[0]);
+				this.maxInput.value = inArray(this.maxInput.value, this.data.array[this.data.array.length - 1]);
+				this.value.min = this.data.array.indexOf(this.minInput.value);
+				this.value.max = this.data.array.indexOf(this.maxInput.value);
+				if (this.value.min > this.value.max) {
+					this.value.min = this.value.max;
+					this.minInput.value = this.maxInput.value;
+				}
+				this.tabText.min = this.minInput.value;
+				this.tabText.max = this.maxInput.value;
+			} else {
+				this.value.min = +this.minInput.value;
+				this.value.max = +this.maxInput.value;
+				this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
+				this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
+				this.minInput.value = this.value.min.toString();
+				this.maxInput.value = this.value.max.toString();
+				this.tabText.min = round(this.minInput.value, this.data.step);
+				this.tabText.max = round(this.maxInput.value, this.data.step);
+			}
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		}
 		this.minInput.addEventListener('blur', onBlur);

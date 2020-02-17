@@ -31,10 +31,8 @@ const round = (value: number, step: number) => {
 const setLimit = (value: number, min: number, max: number) => {
 	if (value > max) {
 		value = max;
-		console.log('больше');
 	} else if (value < min) {
 		value = min;
-		console.log('меньше');
 	}
 	return value;
 }
