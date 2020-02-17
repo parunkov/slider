@@ -39,7 +39,6 @@ class Presenter {
 	setToView() {
 		this.view.precent.min = toPrecent(this.value.min, this.data.minValue, this.data.maxValue);
 		this.view.precent.max = toPrecent(this.value.max, this.data.minValue, this.data.maxValue);
-		// console.log(this.view.precent);
 	}
 
 	setToModel() {
@@ -80,10 +79,16 @@ class Presenter {
 	onCangeInput() {
 		this.model.observer.addEventListener('changeInput', () => {
 			this.view.tabText = this.model.tabText;
-			this.value.min = +this.model.value.min;
-			this.value.max = +this.model.value.max;
-			this.setToView();
-			this.setToModel();
+			if (this.data.isArray) {
+				this.view.precent.min = this.model.value.min / (this.data.array.length - 1);
+				this.view.precent.max = this.model.value.max / (this.data.array.length -1);
+				console.log(this.view.precent);
+			} else {
+				this.value.min = +this.model.value.min;
+				this.value.max = +this.model.value.max;
+				this.setToView();
+				this.setToModel();
+			}
 			this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 		});
 	}
