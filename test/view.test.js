@@ -48,16 +48,14 @@ describe('Модуль View', function() {
 	});	
 	it('Устанавливает стиль бегунков', function() {
 		add();
-		// view.precent = {min: 0.2, max: 0.8};
-		// view.container.dispatchEvent(new CustomEvent('initValue'));
 		view.createToggle();
 		expect(view.minToggleElem.style.left).toEqual('30px');
 		expect(view.maxToggleElem.style.left).toEqual('50px');
 		sliderWrap.remove();
 	});
-	// it('', function() {
-	// 	add();
-	// 	expect().to;
-	// 	sliderWrap.remove();
-	// });
+	it('Создает шкалу', function() {
+		add();
+		expect(view.scale).toBeDefined;
+		sliderWrap.remove();
+	});
 });
