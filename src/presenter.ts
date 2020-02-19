@@ -6,6 +6,7 @@ import {markup} from './init-view-markup.ts';
 
 class Presenter {
 
+	wrap: HTMLElement;
 	data: Data;
 	view: View;
 	model: Model;
@@ -14,7 +15,9 @@ class Presenter {
 	value: Value;
 	modelTabText: TabText;
 
-	constructor(data) {
+	constructor(data, wrap) {
+
+		this.wrap = wrap;
 		this.data = data;
 		this.value = {
 			min: this.data.minToggleValue,
@@ -47,7 +50,7 @@ class Presenter {
 	}
 
 	init() {
-		this.view = new View(this.data);
+		this.view = new View(this.data, this.wrap);
 		this.model = new Model(this.data);
 		this.initScale();
 		this.setToView();

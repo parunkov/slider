@@ -1,4 +1,4 @@
-const initViewMarkup = (wrap: string, vertical: boolean) => {
+const initViewMarkup = (controlWrap: HTMLElement, vertical: boolean) => {
 	const contolMarkup: string = `<div class="ts-slider__container">
           <div class="ts-slider__bar">
             <div class="ts-slider__toggle ts-slider__toggle--min">
@@ -10,7 +10,8 @@ const initViewMarkup = (wrap: string, vertical: boolean) => {
             <div class="ts-slider__range"></div>
           </div>
         </div>`;
-	const controlWrap: HTMLElement = document.querySelector(wrap);
+	// const controlWrap: HTMLElement = document.querySelector(wrap);
+  // console.log(controlWrap);
 	controlWrap.innerHTML = contolMarkup;
   const div = controlWrap.querySelectorAll('div');
   if (vertical) {

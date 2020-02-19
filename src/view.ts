@@ -6,6 +6,7 @@ import {setMouseHandler, round, toPrecent, setRangeStyle} from './functions.ts';
 
 class View {
 
+	wrap: HTMLElement;
 	data: Data;
 	precent: Value;
 	tabText: TabText;
@@ -20,7 +21,9 @@ class View {
 	size: number;
 	scale: string[];
 
-	constructor(data) {
+	constructor(data, wrap) {
+
+		this.wrap = wrap;
 		this.data = data;
 		this.precent = {
 			min: 0,
@@ -40,8 +43,9 @@ class View {
 	}
 
 	initView() {
-		initViewMarkup(this.data.wrapId, this.data.isVertical);
-		this.container = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
+		initViewMarkup(this.wrap, this.data.isVertical);
+		// this.container = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
+		this.container = this.wrap.querySelector('.ts-slider__container');
 		if (this.data.isVertical) {
 			this.size = this.container.offsetHeight;
 		} else {
