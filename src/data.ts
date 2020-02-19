@@ -1,23 +1,23 @@
 import {setLimit} from './functions.ts';
 import {Data} from './interfaces.ts';
 
-// const sliderData1: Data = {
-// 	// wrapId: '#ts-slider__wrap-1',
-// 	minInputId: 'page__input-11',
-// 	maxInputId: 'page__input-12',
-// 	isArray: false,
-// 	array: [],
-// 	step: 0.1,
-// 	minValue: 20,
-// 	maxValue: 100,
-// 	minToggleValue: 40,
-// 	maxToggleValue: 80,
-// 	isRange: true,
-// 	isVertical: false,
-// 	isTab: true,
-// 	isScale: true,
-// 	scaleQuantity: 4
-// }
+const defaultData: Data = {
+	// wrapId: '#ts-slider__wrap-1',
+	minInputId: 'ts-slider__min-input',
+	maxInputId: 'ts-slider__max-input',
+	isArray: false,
+	array: [],
+	step: 1,
+	minValue: 0,
+	maxValue: 100,
+	minToggleValue: 25,
+	maxToggleValue: 75,
+	isRange: true,
+	isVertical: false,
+	isTab: true,
+	isScale: true,
+	scaleQuantity: 4
+}
 // const sliderData2: Data = {
 // 	// wrapId: '#ts-slider__wrap-2',
 // 	minInputId: 'page__input-21',
@@ -41,7 +41,7 @@ const setDataLimit = (data: Data) => {
 	data.maxToggleValue = setLimit(data.maxToggleValue, data.minValue, data.maxValue);
 }
 
-setDataLimit(sliderData1);
-setDataLimit(sliderData2);
+// setDataLimit(sliderData1);
+// setDataLimit(sliderData2);
 
-export {Data, sliderData1, sliderData2};
+export {setDataLimit, defaultData};

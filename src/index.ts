@@ -2,7 +2,7 @@
 // import {View} from './view.ts';
 import {Presenter} from './presenter.ts';
 
-import {sliderData1, sliderData2} from './data.ts';
+import {setDataLimit, defaultData} from './data.ts';
 
 // import {jQuery} from '../node_modules/jquery/dist/jquery.js';
 
@@ -15,10 +15,15 @@ import {sliderData1, sliderData2} from './data.ts';
 // console.log($);
 
 (function($) {
-	$.fn.tsSlider = function(data) {
+	$.fn.tsSlider = function(options) {
 		const id: string = '#' + this.prop('id');
 		const wrap = document.querySelector(id);
-		const presenter1 = new Presenter(data, wrap);
+		let data = options;
+		let data1 = Object.assign(defaultData, options);
+		console.log(data1);
+		setDataLimit(data);
+		const presenter = new Presenter(data, wrap);
+		return this;
 	}
 })(jQuery);
 

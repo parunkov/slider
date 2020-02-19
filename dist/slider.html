@@ -67,40 +67,41 @@
     <script type="text/javascript" src="./bundle.js"></script></body>
     <script>
       const sliderData1 = {
-  // wrapId: '#ts-slider__wrap-1',
-  minInputId: 'page__input-11',
-  maxInputId: 'page__input-12',
-  isArray: false,
-  array: [],
-  step: 0.1,
-  minValue: 20,
-  maxValue: 100,
-  minToggleValue: 40,
-  maxToggleValue: 80,
-  isRange: true,
-  isVertical: false,
-  isTab: true,
-  isScale: true,
-  scaleQuantity: 4
-}
-const sliderData2 = {
-  // wrapId: '#ts-slider__wrap-2',
-  minInputId: 'page__input-21',
-  maxInputId: 'page__input-22',
-  isArray: true,
-  array: ['мало', 'немного', 'средне', 'больше', 'много'],
-  step: 1,
-  minValue: 0,
-  maxValue: 10,
-  minToggleValue: 2,
-  maxToggleValue: 8,
-  isRange: true,
-  isVertical: true,
-  isTab: true,
-  isScale: true,
-  scaleQuantity: 5
-}
+        // wrapId: '#ts-slider__wrap-1',
+        minInputId: 'page__input-11',
+        maxInputId: 'page__input-12',
+        isArray: false,
+        array: [],
+        step: 0.1,
+        minValue: 20,
+        maxValue: 100,
+        minToggleValue: 40,
+        maxToggleValue: 80,
+        isRange: true,
+        isVertical: false,
+        isTab: true,
+        isScale: true,
+        scaleQuantity: 4
+      }
+      const sliderData2 = {
+        // wrapId: '#ts-slider__wrap-2',
+        minInputId: 'page__input-21',
+        maxInputId: 'page__input-22',
+        isArray: true,
+        array: ['мало', 'немного', 'средне', 'больше', 'много'],
+        step: 1,
+        minValue: 0,
+        maxValue: 10,
+        minToggleValue: 2,
+        maxToggleValue: 8,
+        isRange: true,
+        isVertical: true,
+        isTab: true,
+        isScale: true,
+        scaleQuantity: 5
+      }
       $('#ts-slider__wrap-1').tsSlider(sliderData1);
       $('#ts-slider__wrap-2').tsSlider(sliderData2);
+      // console.log($('#ts-slider__wrap-1').tsSlider(sliderData1));
     </script>
     </html>
