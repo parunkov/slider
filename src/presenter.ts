@@ -9,7 +9,6 @@ class Presenter {
 
 	wrap: HTMLElement;
 	data: Data;
-	// defaultData: Data;
 	options: any;
 	view: View;
 	model: Model;
@@ -19,14 +18,10 @@ class Presenter {
 	modelTabText: TabText;
 
 	constructor(options, wrap) {
-
+		
 		this.wrap = wrap;
 		this.options = options;
 		this.createData();
-		// this.value = {
-		// 	min: this.data.minToggleValue,
-		// 	max: this.data.maxToggleValue
-		// }
 		this.init();
 		this.onMoveToggle();
 		this.onChangeTabText();
@@ -54,10 +49,6 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-		// this.value = {
-		// 	min: this.data.minToggleValue,
-		// 	max: this.data.maxToggleValue
-		// }
 		this.setValue();
 	}
 

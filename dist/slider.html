@@ -95,28 +95,31 @@
         minToggleValue: 2,
         maxToggleValue: 8,
         isRange: true,
-        isVertical: true,
+        isVertical: false,
         isTab: true,
         isScale: true,
         scaleQuantity: 5
       }
       const sliderData3 = {
-        // wrapId: '#ts-slider__wrap-2',
-        // minInputId: 'page__input-21',
-        // maxInputId: 'page__input-22',
-        isArray: true,
-        array: ['мало', 'немного', 'средне', 'больше', 'много'],
-        step: 1,
-        minValue: 0,
-        maxValue: 10,
-        minToggleValue: 2,
-        maxToggleValue: 8,
-        isRange: false,
-        isVertical: true,
-        isTab: true,
-        isScale: true,
-        scaleQuantity: 5
+        isVertical: true
       }
+      // const sliderData3 = {
+      //   // wrapId: '#ts-slider__wrap-2',
+      //   // minInputId: 'page__input-21',
+      //   // maxInputId: 'page__input-22',
+      //   isArray: true,
+      //   array: ['мало', 'немного', 'средне', 'больше', 'много'],
+      //   step: 1,
+      //   minValue: 0,
+      //   maxValue: 10,
+      //   minToggleValue: 2,
+      //   maxToggleValue: 8,
+      //   isRange: false,
+      //   isVertical: true,
+      //   isTab: true,
+      //   isScale: true,
+      //   scaleQuantity: 5
+      // }
       const sliderData4 = {
         // wrapId: '#ts-slider__wrap-1',
         // minInputId: 'page__input-11',
@@ -137,7 +140,7 @@
       $('#ts-slider__wrap-1').tsSlider(sliderData1);
       $('#ts-slider__wrap-1').tsSlider(sliderData3, 'change');
       $('#ts-slider__wrap-2').tsSlider(sliderData2);
-      $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
+      // $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
       // console.log($('#ts-slider__wrap-1').tsSlider(sliderData1));
     </script>
     </html>

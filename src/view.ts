@@ -44,7 +44,6 @@ class View {
 
 	initView() {
 		initViewMarkup(this.wrap, this.data.isVertical);
-		// this.container = document.querySelector(this.data.wrapId).querySelector('.ts-slider__container');
 		this.container = this.wrap.querySelector('.ts-slider__container');
 		if (this.data.isVertical) {
 			this.size = this.container.offsetHeight;
@@ -173,6 +172,10 @@ class View {
 			this.setTab();
 			this.setRange();
 		});
+	}
+
+	removeMarkup() {
+		this.container.remove();
 	}
 }
 
