@@ -39,6 +39,13 @@ class Model {
 	setInput() {
 		this.minInput.value = this.tabText.min;
 		this.maxInput.value = this.tabText.max;
+		if (!this.data.isRange) {
+			if (this.data.isArray) {
+				this.minInput.value = this.data.array[0];
+			} else {
+				this.minInput.value = this.data.minValue;
+			}
+		}
 	}
 
 	setArrayValue() {
