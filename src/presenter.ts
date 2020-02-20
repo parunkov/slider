@@ -21,19 +21,23 @@ class Presenter {
 	constructor(options, wrap) {
 
 		this.wrap = wrap;
-		// this.data = data;
-		// this.defaultData = defaultData;
 		this.options = options;
 		this.createData();
-		this.value = {
-			min: this.data.minToggleValue,
-			max: this.data.maxToggleValue
-		}
-		// this.createData();
+		// this.value = {
+		// 	min: this.data.minToggleValue,
+		// 	max: this.data.maxToggleValue
+		// }
 		this.init();
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
+	}
+
+	setValue() {
+		this.value = {
+			min: this.data.minToggleValue,
+			max: this.data.maxToggleValue
+		}
 	}
 
 	createData() {
@@ -48,10 +52,18 @@ class Presenter {
 		  }
 		  return clObj;
 		}
-		// console.log(defaultData);
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-		// console.log(this.data);
+		// this.value = {
+		// 	min: this.data.minToggleValue,
+		// 	max: this.data.maxToggleValue
+		// }
+		this.setValue();
+	}
+
+	changeData() {
+		this.data = Object.assign(this.data, this.options);
+		this.setValue();
 	}
 
 	setTabText() {
