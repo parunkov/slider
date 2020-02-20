@@ -22,7 +22,7 @@ class Presenter {
 
 		this.wrap = wrap;
 		// this.data = data;
-		this.defaultData = defaultData;
+		// this.defaultData = defaultData;
 		this.options = options;
 		this.createData();
 		this.value = {
@@ -48,10 +48,10 @@ class Presenter {
 		  }
 		  return clObj;
 		}
-		console.log(defaultData);
+		// console.log(defaultData);
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-		console.log(this.data);
+		// console.log(this.data);
 	}
 
 	setTabText() {

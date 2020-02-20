@@ -65,6 +65,7 @@ class Toggle {
 			moveAt(evt.pageX, evt.pageY);
 
 			const onMouseMove = (moveEvt) => {
+				moveEvt.preventDefault();
 				moveAt(moveEvt.pageX, moveEvt. pageY);
 			}
 			const onMouseUp = (upEvt) => {

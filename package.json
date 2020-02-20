@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
+    "@types/jquery": "^3.3.32",
     "karma": "^4.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-cli": "^2.0.0",
