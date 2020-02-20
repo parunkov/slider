@@ -3,11 +3,14 @@ import {Data, Value, TabText} from './interfaces.ts';
 import {Model} from './model.ts';
 import {setMouseHandler, round, setRangeStyle, toPrecent, toValue} from './functions.ts';
 import {markup} from './init-view-markup.ts';
+import {defaultData} from './data.ts';
 
 class Presenter {
 
 	wrap: HTMLElement;
 	data: Data;
+	// defaultData: Data;
+	options: any;
 	view: View;
 	model: Model;
 	max: number;
@@ -15,18 +18,40 @@ class Presenter {
 	value: Value;
 	modelTabText: TabText;
 
-	constructor(data, wrap) {
+	constructor(options, wrap) {
 
 		this.wrap = wrap;
-		this.data = data;
+		// this.data = data;
+		this.defaultData = defaultData;
+		this.options = options;
+		this.createData();
 		this.value = {
 			min: this.data.minToggleValue,
 			max: this.data.maxToggleValue
 		}
+		// this.createData();
 		this.init();
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
+	}
+
+	createData() {
+		function deepClone(obj) {
+		  const clObj = {};
+		  for(const i in obj) {
+		    if (obj[i] instanceof Object) {
+		      clObj[i] = deepClone(obj[i]);
+		      continue;
+		    }
+		    clObj[i] = obj[i];
+		  }
+		  return clObj;
+		}
+		console.log(defaultData);
+		const dataClone = deepClone(defaultData);
+		this.data = Object.assign(dataClone, this.options);
+		console.log(this.data);
 	}
 
 	setTabText() {
@@ -50,8 +75,10 @@ class Presenter {
 	}
 
 	init() {
-		this.view = new View(this.data, this.wrap);
-		this.model = new Model(this.data);
+		const viewData = this.data;
+		const modelData = this.data;
+		this.view = new View(viewData, this.wrap);
+		this.model = new Model(modelData);
 		this.initScale();
 		this.setToView();
 		this.model.precent = this.view.precent;

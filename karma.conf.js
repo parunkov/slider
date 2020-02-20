@@ -54,8 +54,23 @@ module.exports = function(config) {
 
         coverageReporter: {
           type : 'html',
-          dir : 'coverage/'
+          dir : 'coverage/',
+          // all: true,
+          // // fixWebpackSourcePaths: true,
+          // instrumenterOptions: {
+          //   istanbul: { noCompact: true },
+          // },
         },
+
+      //   coverageReporter: {
+      // dir: 'coverage/',
+      // reporters: [{ type: 'html' }],
+      // all: true,
+      // fixWebpackSourcePaths: true,
+      // instrumenterOptions: {
+      //   istanbul: { noCompact: true },
+      // },
+    // },
 
         // web server port
         port: 9876,

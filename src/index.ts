@@ -18,11 +18,7 @@ import {setDataLimit, defaultData} from './data.ts';
 	$.fn.tsSlider = function(options) {
 		const id: string = '#' + this.prop('id');
 		const wrap = document.querySelector(id);
-		let data = options;
-		let data1 = Object.assign(defaultData, options);
-		console.log(data1);
-		setDataLimit(data);
-		const presenter = new Presenter(data, wrap);
+		const presenter = new Presenter(options, wrap);
 		return this;
 	}
 })(jQuery);
