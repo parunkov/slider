@@ -20,13 +20,14 @@ import {Presenter} from './presenter.ts';
 		const id: string = '#' + this.prop('id');
 		if ( method === 'change' && window[id] ) {
 			const change = methods.change.apply( this, arguments );
-			return change;
+			// return change;
 		} else if ( typeof method === 'object' || ! method || ! window[id] ) {
 			const init = methods.init.apply( this, arguments );
-			return init;
+			// return init;
 		} else {
 			$.error( 'Метод с именем ' +  method + ' не существует для jQuery.tsSlider' );
 		} 
+		return this;
 	}
 })(jQuery);
 
