@@ -3,7 +3,7 @@ import {Presenter} from './presenter.ts';
 (function($) {
 	// let presenter;
 	const methods = {
-		presenter: undefined;
+		presenter: undefined,
 		init: function(options) {
 			// console.log('init');
 			const id: string = '#' + this.prop('id');
