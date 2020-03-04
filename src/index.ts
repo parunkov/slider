@@ -9,14 +9,10 @@ import {Presenter} from './presenter.ts';
 			window[id] = presenter;
 		},
 		change: function(options) {
-			// console.log('change');
 			const id: string = '#' + this.prop('id');
 			const presenter = window[id];
 			presenter.options = options;
 			presenter.changeData();
-		},
-		arrayChange: function(options) {
-			// console.log('arrayChange');
 		}
 	}
 

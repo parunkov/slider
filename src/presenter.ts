@@ -56,6 +56,9 @@ class Presenter {
 		this.data = Object.assign(this.data, this.options);
 		this.setValue();
 		this.init();
+		this.onMoveToggle();
+		this.onChangeTabText();
+		this.onCangeInput();
 	}
 
 	setTabText() {

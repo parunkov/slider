@@ -67,7 +67,6 @@
     <script type="text/javascript" src="./ts-slider.js"></script></body>
     <script>
       const sliderData1 = {
-        // wrapId: '#ts-slider__wrap-1',
         minInputId: 'page__input-11',
         maxInputId: 'page__input-12',
         isArray: false,
@@ -84,7 +83,6 @@
         scaleQuantity: 4
       }
       const sliderData2 = {
-        // wrapId: '#ts-slider__wrap-2',
         minInputId: 'page__input-21',
         maxInputId: 'page__input-22',
         isArray: true,
@@ -103,31 +101,9 @@
       const sliderData3 = {
         isVertical: true
       }
-      // const sliderData3 = {
-      //   // wrapId: '#ts-slider__wrap-2',
-      //   // minInputId: 'page__input-21',
-      //   // maxInputId: 'page__input-22',
-      //   isArray: true,
-      //   array: ['мало', 'немного', 'средне', 'больше', 'много'],
-      //   step: 1,
-      //   minValue: 0,
-      //   maxValue: 10,
-      //   minToggleValue: 2,
-      //   maxToggleValue: 8,
-      //   isRange: false,
-      //   isVertical: true,
-      //   isTab: true,
-      //   isScale: true,
-      //   scaleQuantity: 5
-      // }
       const sliderData4 = {
-        // wrapId: '#ts-slider__wrap-1',
-        // minInputId: 'page__input-11',
-        // maxInputId: 'page__input-12',
-        isArray: false,
-        array: [],
-        // step: 0.1,
-        // minValue: 20,
+        isArray: true,
+        array: ['один', 'два', 'три', 'четыре'],
         maxValue: 100,
         minToggleValue: 40,
         maxToggleValue: 80,
@@ -138,10 +114,9 @@
         scaleQuantity: 11
       }
       $('#ts-slider__wrap-1').tsSlider(sliderData1);
-      $('#ts-slider__wrap-1').tsSlider(sliderData3, 'change');
-      // $('#ts-slider__wrap-1').tsSlider(sliderData3, 'arrayChange');
+      // $('#ts-slider__wrap-1').tsSlider(sliderData3, 'change');
       $('#ts-slider__wrap-2').tsSlider(sliderData2);
-      // $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
+      $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
       // console.log($('#ts-slider__wrap-1').tsSlider(sliderData1));
     </script>
     </html>
