@@ -57,10 +57,29 @@
             </form>
           </div>
         </div>
-        <!-- <div class="page__row page__row--3">
-          <div class="page__col page__col--31"></div>
-          <div class="page__col page__col--32"></div>
-        </div> -->
+        <div class="page__row page__row--3">
+          <div class="page__col page__col--31">
+            <div id="ts-slider__wrap-3"></div>
+          </div>
+          <div class="page__col page__col--32">
+            <form action="URL">
+              <div class="page__form-wrap">                
+                <div class="page__input-wrap">
+                  <h3>Минимум</h3>
+                </div>
+                <div class="page__input-wrap">
+                  <input type="text" class="page__input" id="page__input-31">
+                </div>
+                <div class="page__input-wrap">
+                  <h3>Максимум</h3>
+                </div>
+                <div class="page__input-wrap">
+                  <input type="text" class="page__input" id="page__input-32">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <script type="text/javascript" src="./jquery-3.4.1.min.js"></script></body>
@@ -71,20 +90,36 @@
         maxInputId: 'page__input-12',
         isArray: false,
         array: [],
-        // step: 0.1,
+        step: 10,
         // minValue: 20,
         maxValue: 100,
         // minToggleValue: 40,
         maxToggleValue: 80,
         isRange: true,
         isVertical: false,
-        isTab: true,
+        isTab: false,
         isScale: true,
         scaleQuantity: 4
       }
       const sliderData2 = {
         minInputId: 'page__input-21',
         maxInputId: 'page__input-22',
+        isArray: false,
+        array: [],
+        step: 0.1,
+        minValue: 20,
+        maxValue: 100,
+        minToggleValue: 40,
+        maxToggleValue: 80,
+        isRange: true,
+        isVertical: false,
+        isTab: true,
+        isScale: false,
+        scaleQuantity: 4
+      }
+      const sliderData3 = {
+        minInputId: 'page__input-31',
+        maxInputId: 'page__input-32',
         isArray: true,
         array: ['мало', 'немного', 'средне', 'больше', 'много'],
         step: 1,
@@ -93,30 +128,31 @@
         minToggleValue: 2,
         maxToggleValue: 8,
         isRange: true,
-        isVertical: false,
+        isVertical: true,
         isTab: true,
         isScale: true,
         scaleQuantity: 5
       }
-      const sliderData3 = {
-        isVertical: true
-      }
-      const sliderData4 = {
-        isArray: true,
-        array: ['один', 'два', 'три', 'четыре'],
-        maxValue: 100,
-        minToggleValue: 40,
-        maxToggleValue: 80,
-        isRange: true,
-        isVertical: true,
-        isTab: true,
-        isScale: true,
-        scaleQuantity: 11
-      }
+      // const sliderData3 = {
+      //   isVertical: true
+      // }
+      // const sliderData4 = {
+      //   isArray: true,
+      //   array: ['один', 'два', 'три', 'четыре'],
+      //   maxValue: 100,
+      //   minToggleValue: 40,
+      //   maxToggleValue: 80,
+      //   isRange: true,
+      //   isVertical: true,
+      //   isTab: true,
+      //   isScale: true,
+      //   scaleQuantity: 11
+      // }
       $('#ts-slider__wrap-1').tsSlider(sliderData1);
       // $('#ts-slider__wrap-1').tsSlider(sliderData3, 'change');
       $('#ts-slider__wrap-2').tsSlider(sliderData2);
-      $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
+      // $('#ts-slider__wrap-2').tsSlider(sliderData4, 'change');
       // console.log($('#ts-slider__wrap-1').tsSlider(sliderData1));
+      $('#ts-slider__wrap-3').tsSlider(sliderData3);
     </script>
     </html>

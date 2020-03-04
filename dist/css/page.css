@@ -20,10 +20,10 @@
 	text-align: center;
 	min-width: 300px;
 }
-.page__col--11, .page__col--12 {
-	border-bottom: none;;
+.page__col--11, .page__col--12, .page__col--21, .page__col--22 {
+	border-bottom: none;
 }
-.page__col--12, .page__col--22 {
+.page__col--12, .page__col--22, .page__col--32 {
 	border-left: none;
 	min-width: 600px;
 }
