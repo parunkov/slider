@@ -53,7 +53,10 @@ class Presenter {
 	}
 
 	changeData() {
+		// console.log('changeData');
+		// console.log(this.options);
 		this.data = Object.assign(this.data, this.options);
+		// console.log(this.data);
 		this.setValue();
 	}
 
