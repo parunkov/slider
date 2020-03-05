@@ -49,12 +49,8 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-<<<<<<< HEAD
-		this.setValue();		
-=======
 		setDataLimit(this.data);
 		this.setValue();
->>>>>>> work6
 	}
 
 	changeData() {
@@ -65,7 +61,6 @@ class Presenter {
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
-		// this.model.changeInput();
 	}
 
 	setTabText() {
