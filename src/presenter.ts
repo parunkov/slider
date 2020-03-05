@@ -49,13 +49,13 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-		setDataLimit(this.data);
+		// setDataLimit(this.data);
 		this.setValue();
 	}
 
 	changeData() {
 		this.data = Object.assign(this.data, this.options);
-		setDataLimit(this.data);
+		// setDataLimit(this.data);
 		this.setValue();
 		this.init();
 		this.onMoveToggle();
