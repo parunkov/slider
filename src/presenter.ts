@@ -49,7 +49,7 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
-		this.setValue();
+		this.setValue();		
 	}
 
 	changeData() {
@@ -59,6 +59,7 @@ class Presenter {
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
+		// this.model.changeInput();
 	}
 
 	setTabText() {
@@ -86,12 +87,14 @@ class Presenter {
 		const modelData = this.data;
 		this.view = new View(viewData, this.wrap);
 		this.model = new Model(modelData);
+		this.setValueLimit();
 		this.initScale();
 		this.setToView();
 		this.model.precent = this.view.precent;
 		this.model.observer.dispatchEvent(new CustomEvent('setPrecent'));
 		this.setTabText();
 		this.view.setTab();
+		// this.setValueLimit();
 		this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
 		this.view.container.addEventListener('changeValue', () => {
@@ -121,13 +124,21 @@ class Presenter {
 				this.view.precent.max = this.model.value.max / (this.data.array.length -1);
 				console.log(this.view.precent);
 			} else {
-				this.value.min = +this.model.value.min;
-				this.value.max = +this.model.value.max;
-				this.setToView();
-				this.setToModel();
+				// this.value.min = +this.model.value.min;
+				// this.value.max = +this.model.value.max;
+				// this.setToView();
+				// this.setToModel();
+				this.setValueLimit();
 			}
 			this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 		});
+	}
+	setValueLimit() {
+		this.value.min = +this.model.value.min;
+		this.value.max = +this.model.value.max;
+		this.setToView();
+		this.setToModel();
+		// this.view.container.dispatchEvent(new CustomEvent('changeInput'));
 	}
 }
 

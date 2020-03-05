@@ -46,6 +46,10 @@ class Model {
 				this.minInput.value = this.data.minValue;
 			}
 		}
+		// this.changeInput();
+		if (!this.data.isArray) {
+			this.setInputLimit();
+		}
 	}
 
 	setArrayValue() {
@@ -102,6 +106,18 @@ class Model {
 			this.observer.dispatchEvent(new CustomEvent('changeTabText'));
 		});
 	}
+
+	setInputLimit() {
+		this.value.min = +this.minInput.value;
+		this.value.max = +this.maxInput.value;
+		this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
+		this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
+		this.minInput.value = this.value.min.toString();
+		this.maxInput.value = this.value.max.toString();
+		this.tabText.min = round(this.minInput.value, this.data.step);
+		this.tabText.max = round(this.maxInput.value, this.data.step);
+	}
+
 	changeInput() {
 		const onBlur = () => {
 			if (this.data.isArray) {
@@ -123,14 +139,15 @@ class Model {
 				this.tabText.min = this.minInput.value;
 				this.tabText.max = this.maxInput.value;
 			} else {
-				this.value.min = +this.minInput.value;
-				this.value.max = +this.maxInput.value;
-				this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
-				this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
-				this.minInput.value = this.value.min.toString();
-				this.maxInput.value = this.value.max.toString();
-				this.tabText.min = round(this.minInput.value, this.data.step);
-				this.tabText.max = round(this.maxInput.value, this.data.step);
+				// this.value.min = +this.minInput.value;
+				// this.value.max = +this.maxInput.value;
+				// this.value.min = setLimit(this.value.min, this.data.minValue, this.value.max);
+				// this.value.max = setLimit(this.value.max, this.value.min, this.data.maxValue);
+				// this.minInput.value = this.value.min.toString();
+				// this.maxInput.value = this.value.max.toString();
+				// this.tabText.min = round(this.minInput.value, this.data.step);
+				// this.tabText.max = round(this.maxInput.value, this.data.step);
+				this.setInputLimit();
 			}
 			this.observer.dispatchEvent(new CustomEvent('changeInput'));
 		}
