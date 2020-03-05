@@ -31,31 +31,31 @@ describe('Модуль View', function() {
 		// console.log(view);
 	}
 	
-	it('Устанавливает view.data', function() {
-		add();
-		expect(view.data).toBe(data);
-		sliderWrap.remove();
-	});
-	it('Устанавливает view.precent', function() {
-		add();
-		expect(view.precent).toEqual({min: 0, max: 0});
-		sliderWrap.remove();
-	});	
-	it('Устанавливает view.tabText', function() {
-		add();
-		expect(view.tabText).toEqual({min: '', max: ''});
-		sliderWrap.remove();
-	});	
-	it('Устанавливает стиль бегунков', function() {
-		add();
-		view.createToggle();
-		expect(view.minToggleElem.style.left).toEqual('30px');
-		expect(view.maxToggleElem.style.left).toEqual('50px');
-		sliderWrap.remove();
-	});
-	it('Создает шкалу', function() {
-		add();
-		expect(view.scale).toBeDefined;
-		sliderWrap.remove();
-	});
+	// it('Устанавливает view.data', function() {
+	// 	add();
+	// 	expect(view.data).toBe(data);
+	// 	sliderWrap.remove();
+	// });
+	// it('Устанавливает view.precent', function() {
+	// 	add();
+	// 	expect(view.precent).toEqual({min: 0, max: 0});
+	// 	sliderWrap.remove();
+	// });	
+	// it('Устанавливает view.tabText', function() {
+	// 	add();
+	// 	expect(view.tabText).toEqual({min: '', max: ''});
+	// 	sliderWrap.remove();
+	// });	
+	// it('Устанавливает стиль бегунков', function() {
+	// 	add();
+	// 	view.createToggle();
+	// 	expect(view.minToggleElem.style.left).toEqual('30px');
+	// 	expect(view.maxToggleElem.style.left).toEqual('50px');
+	// 	sliderWrap.remove();
+	// });
+	// it('Создает шкалу', function() {
+	// 	add();
+	// 	expect(view.scale).toBeDefined;
+	// 	sliderWrap.remove();
+	// });
 });

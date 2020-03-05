@@ -50,37 +50,41 @@ describe('Модуль Presenter', function() {
 	// 	expect(toModel(0.3, 0, 100)).toEqual(30);
 	// 	sliderWrap.remove();
 	// });
-	it('Создает view', function() {
-		add();
-		expect(presenter.view).toBeDefined;
-		sliderWrap.remove();
-	});
-	it('Создает model', function() {
-		add();
-		expect(presenter.model).toBeDefined;
-		sliderWrap.remove();
-	});
-	it('Задает текст для Tab в виде', function() {
-		add();
-		expect(presenter.view.tabText).toEqual({min: '3', max: '5'});
-		sliderWrap.remove();
-	});
+
+
+	// it('Создает view', function() {
+	// 	add();
+	// 	expect(presenter.view).toBeDefined;
+	// 	sliderWrap.remove();
+	// });
+	// it('Создает model', function() {
+	// 	add();
+	// 	expect(presenter.model).toBeDefined;
+	// 	sliderWrap.remove();
+	// });
+	// it('Задает текст для Tab в виде', function() {
+	// 	add();
+	// 	expect(presenter.view.tabText).toEqual({min: '3', max: '5'});
+	// 	sliderWrap.remove();
+	// });
 	
-	it('Устанавливает presenter.data', function() {
-		add();
-		expect(presenter.data).toBe(data);
-		sliderWrap.remove();
-	});
-	it('Устанавливает presenter.value', function() {
-		add();
-		expect(presenter.value).toEqual({min: 3, max: 5});
-		sliderWrap.remove();
-	});
-	it('Устанавливает шкалу в виде', function() {
-		add();
-		expect(presenter.view.scale.length).toEqual(5);
-		sliderWrap.remove();
-	});	
+	// it('Устанавливает presenter.data', function() {
+	// 	add();
+	// 	expect(presenter.data).toBe(data);
+	// 	sliderWrap.remove();
+	// });
+	// it('Устанавливает presenter.value', function() {
+	// 	add();
+	// 	expect(presenter.value).toEqual({min: 3, max: 5});
+	// 	sliderWrap.remove();
+	// });
+	// it('Устанавливает шкалу в виде', function() {
+	// 	add();
+	// 	expect(presenter.view.scale.length).toEqual(5);
+	// 	sliderWrap.remove();
+	// });	
+
+	
 	// it('', function() {
 	// 	add();
 	// 	expect().to;

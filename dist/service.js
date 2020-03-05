@@ -31,7 +31,6 @@
 
 		const onBtnClick = (evt) => {
 			evt.preventDefault();
-			// console.log(id);
 			let data = new Object();
 			data.minValue = +minInput.value;
 			data.maxValue = +maxInput.value;

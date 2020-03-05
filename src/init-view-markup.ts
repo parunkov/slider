@@ -10,8 +10,6 @@ const initViewMarkup = (controlWrap: HTMLElement, vertical: boolean) => {
             <div class="ts-slider__range"></div>
           </div>
         </div>`;
-	// const controlWrap: HTMLElement = document.querySelector(wrap);
-  // console.log(controlWrap);
 	controlWrap.innerHTML = contolMarkup;
   const div = controlWrap.querySelectorAll('div');
   if (vertical) {
