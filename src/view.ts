@@ -106,7 +106,7 @@ class View {
 		const onMouseDownCoincidence = (evt) => {
 			let coincidenceToggle: boolean = false;
 			this.maxToggleElem.hidden = true;
-			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
+			coincidenceToggle = document.elementFromPoint(evt.clientX, evt.clientY).classList.contains('ts-slider__toggle--min');
 			this.maxToggleElem.hidden = false;
 			let startPixel: number;
 			startPixel = this.maxToggle.pixel;

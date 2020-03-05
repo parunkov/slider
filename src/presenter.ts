@@ -26,6 +26,10 @@ class Presenter {
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
+
+		document.addEventListener('load', () => {
+			console.log('load');
+		});
 	}
 
 	setValue() {
