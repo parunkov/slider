@@ -40,6 +40,15 @@ class View {
 		this.addScale();
 		this.changeTab();
 		this.changeInput();
+
+		// window.addEventListener('resize', (evt) => {
+		// 	this.initView();
+		// 	this.createToggle();
+		// 	this.onToggleCoincidence();
+		// 	this.addScale();
+		// 	this.changeTab();
+		// 	this.changeInput();
+		// });
 	}
 
 	initView() {
@@ -104,9 +113,12 @@ class View {
 
 	onToggleCoincidence() {
 		const onMouseDownCoincidence = (evt) => {
+			console.log('!!!');
 			let coincidenceToggle: boolean = false;
 			this.maxToggleElem.hidden = true;
+			console.log(document.elementFromPoint(evt.pageX, evt.pageY));
 			coincidenceToggle = document.elementFromPoint(evt.pageX, evt.pageY).classList.contains('ts-slider__toggle--min');
+			console.log(coincidenceToggle);
 			this.maxToggleElem.hidden = false;
 			let startPixel: number;
 			startPixel = this.maxToggle.pixel;

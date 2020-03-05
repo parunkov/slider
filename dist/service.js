@@ -43,4 +43,9 @@
 
 	}
 	setControl(id1, form1, data1);
+
+	document.addEventListener('mousedown', (evt) => {
+		console.log(evt.pageX + ' ' + evt.pageY);
+	});
+
 })();

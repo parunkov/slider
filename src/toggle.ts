@@ -44,9 +44,10 @@ class Toggle {
 
 	onMoveToggle() {
 		const onMouseDown = (evt) => {
-			let shiftX: number = evt.clientX - this.toggle.offsetLeft;
-			let shiftY: number = evt.clientY - this.toggle.offsetTop;
+			let shiftX: number = evt.pageX - this.toggle.offsetLeft;
+			let shiftY: number = evt.pageY - this.toggle.offsetTop;
 			let startPixel: number = this.mousePixel;
+			// console.log(startPixel);
 			const moveAt = (pageX, pageY) => {
 				if (this.isVertical) {
 					this.mousePixel = pageY - shiftY;

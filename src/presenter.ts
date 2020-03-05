@@ -26,6 +26,17 @@ class Presenter {
 		this.onMoveToggle();
 		this.onChangeTabText();
 		this.onCangeInput();
+
+		// window.addEventListener('resize', () => {
+		// 	this.init();
+		// });
+		// window.addEventListener('scroll', () => {
+		// 	console.log('scroll');
+		// 	this.init();
+		// 	this.onMoveToggle();
+		// 	this.onChangeTabText();
+		// 	this.onCangeInput();
+		// });
 	}
 
 	setValue() {
