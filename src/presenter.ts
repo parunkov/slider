@@ -3,7 +3,7 @@ import {Data, Value, TabText} from './interfaces.ts';
 import {Model} from './model.ts';
 import {setMouseHandler, round, setRangeStyle, toPrecent, toValue} from './functions.ts';
 import {markup} from './init-view-markup.ts';
-import {defaultData} from './data.ts';
+import {defaultData, setDataLimit} from './data.ts';
 
 class Presenter {
 
@@ -27,8 +27,8 @@ class Presenter {
 		this.onChangeTabText();
 		this.onCangeInput();
 
-		document.addEventListener('load', () => {
-			console.log('load');
+		window.addEventListener('resize', () => {
+			this.init();
 		});
 	}
 
@@ -53,11 +53,13 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
+		setDataLimit(this.data);
 		this.setValue();
 	}
 
 	changeData() {
 		this.data = Object.assign(this.data, this.options);
+		setDataLimit(this.data);
 		this.setValue();
 		this.init();
 		this.onMoveToggle();
