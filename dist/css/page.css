@@ -14,18 +14,23 @@
 	flex-wrap: nowrap;
 }
 .page__col {
-	flex: 1 1 300px;
+	/*flex: 1 0 300px;*/
 	padding: 40px;
 	border: 1px solid grey;
 	text-align: center;
-	min-width: 300px;
+	/*min-width: 300px;*/
 }
 .page__col--11, .page__col--12, .page__col--21, .page__col--22 {
 	border-bottom: none;
 }
+.page__col--11, .page__col--21, .page__col--31 {
+	flex: 0 0 30%;
+	min-width: 300px;
+}
 .page__col--12, .page__col--22, .page__col--32 {
+	flex: 1 1 30%;
 	border-left: none;
-	min-width: 600px;
+	min-width: 500px;
 }
 .page__form-wrap {
 	display: -webkit-flex;
