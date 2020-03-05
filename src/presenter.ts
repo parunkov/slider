@@ -3,7 +3,7 @@ import {Data, Value, TabText} from './interfaces.ts';
 import {Model} from './model.ts';
 import {setMouseHandler, round, setRangeStyle, toPrecent, toValue} from './functions.ts';
 import {markup} from './init-view-markup.ts';
-import {defaultData} from './data.ts';
+import {defaultData, setDataLimit} from './data.ts';
 
 class Presenter {
 
@@ -49,11 +49,17 @@ class Presenter {
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
+<<<<<<< HEAD
 		this.setValue();		
+=======
+		setDataLimit(this.data);
+		this.setValue();
+>>>>>>> work6
 	}
 
 	changeData() {
 		this.data = Object.assign(this.data, this.options);
+		setDataLimit(this.data);
 		this.setValue();
 		this.init();
 		this.onMoveToggle();
