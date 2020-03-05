@@ -30,7 +30,7 @@
 .page__col--12, .page__col--22, .page__col--32 {
 	flex: 1 1 30%;
 	border-left: none;
-	min-width: 500px;
+	min-width: 800px;
 }
 .page__form-wrap {
 	display: -webkit-flex;
@@ -49,8 +49,17 @@
 .page__input {
 	display: block;
 	margin-top: 20px;
+	font-size: 1.17em;
 }
 .page__checkbox {
 	margin-top: 25px;
 	margin-right: 100%;
+}
+.page__button {
+	font-size: 1.17em;
+}
+.page__textarea {
+	width: 100%;
+	font-size: 16pt;
+	margin-bottom: 20px;
 }

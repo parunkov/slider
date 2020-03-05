@@ -45,6 +45,25 @@
 		}
 		btn.addEventListener('click', onBtnClick);
 	}
+
 	setControl(id1, form1, data1);
 	setControl(id2, form2, data2);
+
+	const setArray = (id, form, data) => {
+		const textarea = form.querySelector('.page__textarea');
+		const btn = form.querySelector('.page__button');
+
+		textarea.value = data.array.join(', ');
+
+		const onBtnClick = (evt) => {
+			evt.preventDefault();
+			console.log(textarea.value);
+			data.array = textarea.value.split(', ');
+			$(id).tsSlider(data, 'change');
+		}
+
+		btn.addEventListener('click', onBtnClick);
+	}
+
+	setArray(id3, form3, data3);
 })();
