@@ -28,11 +28,15 @@ describe('Модуль View', function() {
 		document.body.appendChild(sliderWrap);
 		view = new View(data, sliderWrap);
 	}
+	const remove = () => {
+		sliderWrap.remove();
+		view = undefined;
+	}
 	
 	it('Устанавливает view.data', function() {
 		add();
 		expect(view.data).toBe(data);
-		sliderWrap.remove();
+		remove();
 	});
 	it('Создает view', function() {
 		add();
@@ -41,7 +45,7 @@ describe('Модуль View', function() {
 		expect(view.minTabElem).toBeDefined();
 		expect(view.maxTabElem).toBeDefined();
 		expect(view.rangeElem).toBeDefined();
-		sliderWrap.remove();
+		remove();
 	});
 	it('Скрывает minToggle', function() {
 		add();
@@ -49,29 +53,29 @@ describe('Модуль View', function() {
 		view.data.isRange = false;
 		view.initView();
 		expect(view.minToggleElem.hidden).toBe(true);
-		sliderWrap.remove();
+		remove();
 	});
 	it('Устанавливает view.tabText', function() {
 		add();
 		expect(view.tabText).toEqual({min: '', max: ''});
-		sliderWrap.remove();
+		remove();
 	});	
 	it('Устанавливает view.precent', function() {
 		add();
 		expect(view.precent).toEqual({min: 0, max: 0});
-		sliderWrap.remove();
+		remove();
 	});	
 	it('Устанавливает стиль бегунков', function() {
 		add();
 		view.createToggle();
 		expect(view.minToggleElem.style.left).toEqual('30px');
 		expect(view.maxToggleElem.style.left).toEqual('50px');
-		sliderWrap.remove();
+		remove();
 	});
 	it('Создает шкалу', function() {
 		add();
 		expect(view.scale).toBeDefined;
-		sliderWrap.remove();
+		remove();
 	});
 	it('Меняет текст tab', function() {
 		add();
@@ -80,7 +84,7 @@ describe('Модуль View', function() {
 		view.container.dispatchEvent(new CustomEvent('changeTab'));
 		expect(view.minTabElem.textContent).toEqual('aaa');
 		expect(view.maxTabElem.textContent).toEqual('sss');
-		sliderWrap.remove();
+		remove();
 	});
 	// it('Отображает изменение input', function() {
 	// 	// add();
@@ -98,6 +102,6 @@ describe('Модуль View', function() {
 	// 	view.container.dispatchEvent(new CustomEvent('changeInput'));
 	// 	console.log(view.minToggle.precent);
 	// 	expect(view.minToggleElem.textContent).toEqual('2');
-	// 	sliderWrap.remove();
+	// 	remove();
 	// });
 });
