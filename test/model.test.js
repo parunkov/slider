@@ -77,7 +77,7 @@ describe('Модуль Model', function() {
 	});
 	it('Создает массив значений шкалы', function() {
 		add();
-		expect(model.scale).toEqual([ '0', '3', '7', '10' ]);
+		expect(model.scale).toEqual(['0', '3', '7', '10']);
 		remove();
 	});
 	it('Отслеживает изменение значения', function() {
