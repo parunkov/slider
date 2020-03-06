@@ -8,7 +8,6 @@ describe('Модуль Presenter', function() {
 	let input1;
 	let input2;
 	const data = {
-		wrapId: '#presenterwrapid',
 		minInputId: 'page__input-11',
 		maxInputId: 'page__input-12',
 		isArray: false,
@@ -37,7 +36,7 @@ describe('Модуль Presenter', function() {
 		input2.setAttribute('id','page__input-12');
 		document.body.appendChild(input2);
 
-		presenter = new Presenter(data);
+		presenter = new Presenter(data, sliderWrap);
 	}
 
 	// it('Функция toPrecent пересчитывает value', function() {
@@ -52,37 +51,37 @@ describe('Модуль Presenter', function() {
 	// });
 
 
-	// it('Создает view', function() {
-	// 	add();
-	// 	expect(presenter.view).toBeDefined;
-	// 	sliderWrap.remove();
-	// });
-	// it('Создает model', function() {
-	// 	add();
-	// 	expect(presenter.model).toBeDefined;
-	// 	sliderWrap.remove();
-	// });
-	// it('Задает текст для Tab в виде', function() {
-	// 	add();
-	// 	expect(presenter.view.tabText).toEqual({min: '3', max: '5'});
-	// 	sliderWrap.remove();
-	// });
+	it('Создает view', function() {
+		add();
+		expect(presenter.view).toBeDefined;
+		sliderWrap.remove();
+	});
+	it('Создает model', function() {
+		add();
+		expect(presenter.model).toBeDefined;
+		sliderWrap.remove();
+	});
+	it('Задает текст для Tab в виде', function() {
+		add();
+		expect(presenter.view.tabText).toEqual({min: '3', max: '5'});
+		sliderWrap.remove();
+	});
 	
 	// it('Устанавливает presenter.data', function() {
 	// 	add();
 	// 	expect(presenter.data).toBe(data);
 	// 	sliderWrap.remove();
 	// });
-	// it('Устанавливает presenter.value', function() {
-	// 	add();
-	// 	expect(presenter.value).toEqual({min: 3, max: 5});
-	// 	sliderWrap.remove();
-	// });
-	// it('Устанавливает шкалу в виде', function() {
-	// 	add();
-	// 	expect(presenter.view.scale.length).toEqual(5);
-	// 	sliderWrap.remove();
-	// });	
+	it('Устанавливает presenter.value', function() {
+		add();
+		expect(presenter.value).toEqual({min: 3, max: 5});
+		sliderWrap.remove();
+	});
+	it('Устанавливает шкалу в виде', function() {
+		add();
+		expect(presenter.view.scale.length).toEqual(5);
+		sliderWrap.remove();
+	});	
 
 	
 	// it('', function() {
