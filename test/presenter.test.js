@@ -93,15 +93,25 @@ describe('Модуль Presenter', function() {
 		expect(presenter.model.value.max).toEqual(6);
 		remove();
 	});
-	it('', function() {
+	it('Отслеживает move toggle', function() {
 		add();
-		expect().to;
+		presenter.view.precent.max = 0.8;
+		presenter.view.container.dispatchEvent(new CustomEvent('moveToggle'));
+		expect(presenter.model.value.max).toEqual(8);
 		remove();
 	});
-	
-	// it('', function() {
-	// 	add();
-	// 	expect().to;
-	// 	sliderWrap.remove();
-	// });
+	it('Отслеживает change tab text', function() {
+		add();
+		presenter.model.tabText.min = '4';
+		presenter.model.observer.dispatchEvent(new CustomEvent('changeTabText'));
+		expect(presenter.view.tabText.min).toEqual('4');
+		remove();
+	});	
+	it('Отслеживает change input', function() {
+		add();
+		presenter.model.value.max = '4';
+		presenter.model.observer.dispatchEvent(new CustomEvent('changeInput'));
+		expect(presenter.view.precent.max).toEqual(0.4);
+		sliderWrap.remove();
+	});
 });
