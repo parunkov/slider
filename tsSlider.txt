@@ -145,3 +145,19 @@ const options = {
 
     Изменяет отображение слайдера снаружи скриптом в соответсвии с options.
 
+Архитектура приложения
+
+  Слой "Презентер"
+
+    Содержит модули index.ts, data.ts, functions.ts, interfaces.ts, presenter.ts.
+
+    Модуль index.ts
+
+      Точка входа webpack. Обертка для jQuery плагина.
+
+      Методы
+
+        methods.init() - создает презентер
+        mrthods.change() - меняет данные презентера
+
+    

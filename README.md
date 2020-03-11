@@ -1,5 +1,5 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update
+DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE
 
 
 - [Overview](#overview)
@@ -9,7 +9,7 @@
   - [Karma, Jasmine](#karma-jasmine)
   - [All together](#all-together)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+END doctoc generated TOC please keep comment here to allow auto update
 
 # Overview
 
@@ -70,3 +70,168 @@ TypeScript, Webpack, Jasmine, and Karma
 
 - https://templecoding.com/blog/2016/02/02/how-to-setup-testing-using-typescript-mocha-chai-sinon-karma-and-webpack
 - https://github.com/thitemple/TypescriptMochaWebpackDemo
+ -->
+
+ tsSlider
+
+Описание
+ 
+Кастомизируемый jQuery плагин слайдера. Написан на typescript, сборка - webpack, тесты - karma, jasmine, jasmine-jQuery. Настраивается и изменяется внешний вид слайдера. При перетаскивании бегунков слайдера изменяются значения связанных инпутов, при изменении значений инпутов меняется значение бегунков.
+
+Использование
+
+Подключите стили из папки /dist/css:
+
+<head> 
+  ... 
+  <link href="./css/ts-slider.css" rel="stylesheet">
+</head>
+
+Подключите jQuery и скрипт ts-slider.js:
+
+<body>
+  ...
+  <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="./ts-slider.js"></script>
+</body>
+
+Задайте опции в объекте, например:
+
+const options = {
+  minInputId: 'page__input-11',
+  maxInputId: 'page__input-12',
+  isArray: false,
+  step: 10,
+  isRange: true,
+  isVertical: false,
+  scaleQuantity: 4
+}
+
+Инициализируйте плагин на элементе с id, например #my-id:
+
+  $('#my-id').tsSlider(options);
+
+Опции
+
+  minInputId
+
+    Тип string
+    Значение по умолчанию 'ts-slider__min-input'
+
+    Id инпута type="text" с  минимальным значением диапазона.
+
+  maxInputId
+
+    Тип string
+    Значение по умолчанию 'ts-slider__max-input'
+
+    Id инпута type="text" с значением слайдера или ммаксимальным значением диапазона.
+
+  isArray
+
+    Тип boolean
+    Значение по умолчанию false
+
+    Устанавливает слайдер по массиву строк от первого до последнего элемента, шкала слайдера создается из элементов массива.
+
+  array
+
+    Тип array
+    Значение по умолчанию []
+
+    Массив строк для слайдера.
+
+  step
+
+    Тип number
+    Значение по умолчанию 1
+
+    Шаг слайдера.
+
+  minValue
+
+    Тип number
+    Значение по умолчанию 0
+
+    Минимальное значение шкалы слайдера.
+
+  maxValue
+
+    Тип number
+    Значение по умолчанию 100
+
+    Максимальное значение шкалы слайдера.
+
+  minToggleValue
+
+    Тип number
+    Значение по умолчанию 25
+
+    Минимальное значение диапазона слайдера по умолчанию.
+
+  maxToggleValue
+
+    Тип number
+    Значение по умолчанию 75
+
+    Значение слайдера или максимальное значение диапазона слайдера по умолчанию.
+
+  isRange
+
+    Тип boolean
+    Значение по умолчанию true
+
+    Включает диапазон для слайдера.
+
+  isVertical
+
+    Тип boolean
+    Значение по умолчанию false
+
+    Включает вертикальный вид слайдера.
+
+  isTab
+
+    Тип boolean
+    Значение по умолчанию true
+
+    Включает отображение значений слайдера над бегунками.
+
+  isScale
+
+    Тип boolean
+    Значение по умолчанию true
+
+    Включает отображение шкалы слайдера.
+
+  scaleQuantity
+
+    Тип number
+    Значение по умолчанию 4
+
+    Количество значений шкалы слайдера, при isArray = true игнорируется.
+
+Методы
+  
+  Change
+
+    Пример использования $('#my-id').tsSlider(options, 'change');
+
+    Изменяет отображение слайдера снаружи скриптом в соответсвии с options.
+
+Архитектура приложения
+
+  Слой "Презентер"
+
+    Содержит модули index.ts, data.ts, functions.ts, interfaces.ts, presenter.ts.
+
+    Модуль index.ts
+
+      Точка входа webpack. Обертка для jQuery плагина.
+
+      Методы
+
+        methods.init() - создает презентер
+        mrthods.change() - меняет данные презентера
+
+    
