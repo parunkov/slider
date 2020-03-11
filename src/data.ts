@@ -16,6 +16,7 @@ const defaultData: Data = {
 	isTab: true,
 	isScale: true,
 	scaleQuantity: 4
+}
 
 const setDataLimit = (data: Data) => {
 	data.minToggleValue = setLimit(data.minToggleValue, data.minValue, data.maxValue);
