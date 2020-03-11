@@ -72,9 +72,9 @@ TypeScript, Webpack, Jasmine, and Karma
 - https://github.com/thitemple/TypescriptMochaWebpackDemo
  -->
 
- tsSlider
+# tsSlider
 
-Описание
+## Описание
  
 Кастомизируемый jQuery плагин слайдера. Написан на typescript, сборка - webpack, тесты - karma, jasmine, jasmine-jQuery. Настраивается и изменяется внешний вид слайдера. При перетаскивании бегунков слайдера изменяются значения связанных инпутов, при изменении значений инпутов меняется значение бегунков.
 
