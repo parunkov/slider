@@ -82,30 +82,30 @@ TypeScript, Webpack, Jasmine, and Karma
 
 Подключите стили из папки /dist/css:
 
-		<head> 
-		  ... 
-		  <link href="./css/ts-slider.css" rel="stylesheet">
-		</head>
+	<head> 
+	  ... 
+	  <link href="./css/ts-slider.css" rel="stylesheet">
+	</head>
 
 Подключите jQuery и скрипт ts-slider.js:
 
-		<body>
-		  ...
-		  <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
-		  <script type="text/javascript" src="./ts-slider.js"></script>
-		</body>
+	<body>
+	  ...
+	  <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
+	  <script type="text/javascript" src="./ts-slider.js"></script>
+	</body>
 
 Задайте опции в объекте, например:
 
-		const options = {
-		  minInputId: 'page__input-11',
-		  maxInputId: 'page__input-12',
-		  isArray: false,
-		  step: 10,
-		  isRange: true,
-		  isVertical: false,
-		  scaleQuantity: 4
-		}
+	const options = {
+	  minInputId: 'page__input-11',
+	  maxInputId: 'page__input-12',
+	  isArray: false,
+	  step: 10,
+	  isRange: true,
+	  isVertical: false,
+	  scaleQuantity: 4
+	}
 
 Инициализируйте плагин на элементе с id, например #my-id:
 
@@ -227,11 +227,39 @@ TypeScript, Webpack, Jasmine, and Karma
 
 ### Модуль index.ts
 
-	Точка входа webpack. Обертка для jQuery плагина.
+Точка входа webpack. Обертка для jQuery плагина.
 
-Методы
+Методы:
 
 	methods.init() - создает презентер
 	mrthods.change() - меняет данные презентера
 
+### Модуль presenter.ts
+
+#### Класс Presenter
+
+Создает и изменяет данные, создает вид и модель. Отслеживает изменения вида и модели, осуществляет пресчет и передачу данных между ними.
+
+Свойства:
+	
+	wrap - элемент-обертка, в котором создается слайдер
+	data - данные слайдера
+	options - опции слайдера
+	view - вид
+	model - модель
+	value - значение слайдера
+
+Методы:
+
+	setValue() - устанавливает значение слайдера из данных
+	createData() - клонирует данные по умолчанию и объединяет их с опциями, исправляет неверные значения
+	changeData() - изменяет данные при изменении снаружи, инициализирует слайдер с новыми данными
+	setTabText() - передает текст над бегунком из модели в вид
+	initScale() - создает шкалу, создает событие initScale в виде
+	setToView() - рассчитывает данные для вида
+	setToModel() - рассчитывает данные для модели
+	init() - создает вид и модель, создает событие setPrecent в моделие, создает событие initValue в виде, отслеживает событие changeValue в виде и при его возникновении создает событие changeValue в модели
+	onMoveToggle() - отслеживает событие moveToggle в виде и при его возникновении создает событие changeValue в модели
+	onChangeTabText() - отслеживает событие changeTabText в модели и при его возникновении создает событие changeTab в виде
+	onCangeInput() - рассчитывает текст над бегунком в виде при изменении инпута, отслеживает событие changeInput в модели и при его возникновении создает событие changeInput в виде
     
