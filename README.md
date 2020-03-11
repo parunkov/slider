@@ -78,22 +78,22 @@ TypeScript, Webpack, Jasmine, and Karma
  
 Кастомизируемый jQuery плагин слайдера. Написан на typescript, сборка - webpack, тесты - karma, jasmine, jasmine-jQuery. Настраивается и изменяется внешний вид слайдера. При перетаскивании бегунков слайдера изменяются значения связанных инпутов, при изменении значений инпутов меняется значение бегунков.
 
-Использование
+## Использование
 
 Подключите стили из папки /dist/css:
 
-<head> 
-  ... 
-  <link href="./css/ts-slider.css" rel="stylesheet">
-</head>
+		<head> 
+		  ... 
+		  <link href="./css/ts-slider.css" rel="stylesheet">
+		</head>
 
 Подключите jQuery и скрипт ts-slider.js:
 
-<body>
-  ...
-  <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="./ts-slider.js"></script>
-</body>
+		<body>
+		  ...
+		  <script type="text/javascript" src="./jquery-3.4.1.min.js"></script>
+		  <script type="text/javascript" src="./ts-slider.js"></script>
+		</body>
 
 Задайте опции в объекте, например:
 
@@ -111,7 +111,7 @@ const options = {
 
   $('#my-id').tsSlider(options);
 
-Опции
+## Опции
 
   minInputId
 
