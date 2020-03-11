@@ -12,10 +12,10 @@ class Presenter {
 	options: any;
 	view: View;
 	model: Model;
-	max: number;
-	min: number;
+	// max: number;
+	// min: number;
 	value: Value;
-	modelTabText: TabText;
+	// modelTabText: TabText;
 
 	constructor(options, wrap) {
 		
