@@ -97,19 +97,19 @@ TypeScript, Webpack, Jasmine, and Karma
 
 Задайте опции в объекте, например:
 
-const options = {
-  minInputId: 'page__input-11',
-  maxInputId: 'page__input-12',
-  isArray: false,
-  step: 10,
-  isRange: true,
-  isVertical: false,
-  scaleQuantity: 4
-}
+		const options = {
+		  minInputId: 'page__input-11',
+		  maxInputId: 'page__input-12',
+		  isArray: false,
+		  step: 10,
+		  isRange: true,
+		  isVertical: false,
+		  scaleQuantity: 4
+		}
 
 Инициализируйте плагин на элементе с id, например #my-id:
 
-  $('#my-id').tsSlider(options);
+		  $('#my-id').tsSlider(options);
 
 ## Опции
 
@@ -211,27 +211,27 @@ const options = {
 
     Количество значений шкалы слайдера, при isArray = true игнорируется.
 
-Методы
+# Методы
   
-  Change
+### Change
 
     Пример использования $('#my-id').tsSlider(options, 'change');
 
     Изменяет отображение слайдера снаружи скриптом в соответсвии с options.
 
-Архитектура приложения
+# Архитектура приложения
 
-  Слой "Презентер"
+## Слой "Презентер"
 
-    Содержит модули index.ts, data.ts, functions.ts, interfaces.ts, presenter.ts.
+Содержит модули index.ts, data.ts, functions.ts, interfaces.ts, presenter.ts.
 
-    Модуль index.ts
+### Модуль index.ts
 
-      Точка входа webpack. Обертка для jQuery плагина.
+	Точка входа webpack. Обертка для jQuery плагина.
 
-      Методы
+Методы
 
-        methods.init() - создает презентер
-        mrthods.change() - меняет данные презентера
+	methods.init() - создает презентер
+	mrthods.change() - меняет данные презентера
 
     
