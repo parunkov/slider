@@ -86,22 +86,4 @@ describe('Модуль View', function() {
 		expect(view.maxTabElem.textContent).toEqual('sss');
 		remove();
 	});
-	// it('Отображает изменение input', function() {
-	// 	// add();
-	// 	const minIput = setFixtures()[0];
-	// 	const maxIput = setFixtures()[0];
-	// 	minIput.setAttribute('id','page__input-1');
-	// 	minIput.setAttribute('id','page__input-2');
-	// 	document.body.appendChild(minIput);
-	// 	document.body.appendChild(maxIput);
-	// 	add();
-	// 	// minIput.value = '2';
-	// 	// maxIput.value = '4';
-	// 	view.precent.min = 0.2;
-	// 	view.changeInput();
-	// 	view.container.dispatchEvent(new CustomEvent('changeInput'));
-	// 	console.log(view.minToggle.precent);
-	// 	expect(view.minToggleElem.textContent).toEqual('2');
-	// 	remove();
-	// });
 });

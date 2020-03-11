@@ -1,6 +1,5 @@
 
 interface Data {
-	// wrapId: string;
 	minInputId: string;
 	maxInputId: string;
 	isArray: boolean;
