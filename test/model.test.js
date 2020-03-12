@@ -23,7 +23,7 @@ describe('Модуль Model', function() {
 		scaleQuantity: 4
 	}
 
-	const add = () => {
+	beforeEach(function() {
 
 		sliderWrap = setFixtures()[0];
 		sliderWrap.setAttribute('id','modelwrapid');
@@ -38,32 +38,25 @@ describe('Модуль Model', function() {
 		document.body.appendChild(input2);
 
 		model = new Model(data);
-	}
+	});
 
-	const remove = () => {
+	afterEach(function() {
 		sliderWrap.remove();
 		model = undefined;
-	}
+	});
 	
 	it('Устанавливает model.data', function() {
-		add();
 		expect(model.data).toBe(data);
-		remove();
 	});
 	it('Устанавливает model.value', function() {
-		add();
 		expect(model.value).toEqual({min: 0, max: 0});
-		remove();
 	});	
 	it('Устанавливает model.TabText', function() {
-		add();
 		model.value = {min: 10, max: 20};
 		model.observer.dispatchEvent(new CustomEvent('changeValue'));
 		expect(model.tabText).toEqual({min: '10', max: '20'});
-		remove();
 	});	
 	it('Изменяет input', function() {
-		add();
 		model.tabText.min = 'aaa';
 		model.tabText.max = 'sss';
 		model.setInput();
@@ -72,18 +65,13 @@ describe('Модуль Model', function() {
 		model.data.isRange = false;
 		model.init();
 		expect(model.minInput.value).toEqual(0);
-		remove();
 	});
 	it('Создает массив значений шкалы', function() {
-		add();
 		expect(model.scale).toEqual(['0', '3', '7', '10']);
-		remove();
 	});
 	it('Отслеживает изменение значения', function() {
-		add();
 		model.value.min = 2;
 		model.observer.dispatchEvent(new CustomEvent('changeValue'));
 		expect(model.tabText.min).toEqual('2');
-		remove();
 	});
 });
