@@ -10,8 +10,6 @@ class Model {
 	precent: Value;
 	tabText: TabText;
 	observer: HTMLElement;
-	min: number;
-	max: number;
 	scale: string[];
 
 	constructor(data) {		
