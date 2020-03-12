@@ -1,4 +1,3 @@
-import {$} from '../node_modules/jquery/dist/jquery.js';
 import {round, setLimit, toPrecent, toValue, setRangeStyle} from '../src/functions.ts';
 
 describe('Функция round', function() {

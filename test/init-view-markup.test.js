@@ -1,4 +1,3 @@
-import {$} from '../node_modules/jquery/dist/jquery.js';
 import {initViewMarkup, markup} from '../src/init-view-markup.ts';
 
 let sliderWrap;

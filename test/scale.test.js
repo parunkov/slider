@@ -1,4 +1,3 @@
-import {$} from '../node_modules/jquery/dist/jquery.js';
 import {Scale} from '../src/scale.ts';
 
 

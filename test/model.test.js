@@ -1,4 +1,3 @@
-import {$} from '../node_modules/jquery/dist/jquery.js';
 import {Model} from '../src/model.ts';
 
 describe('Модуль Model', function() {

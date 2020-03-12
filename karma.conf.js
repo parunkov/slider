@@ -29,7 +29,7 @@ module.exports = function(config) {
         frameworks: ['jasmine-jquery', 'jasmine'],
 
         // list of files / patterns to load in the browser
-        files: ['test/*.ts', 'test/*.js'],
+        files: [/*'src/*.ts', */'test/*.ts', 'test/*.js'],
 
         // list of files / patterns to exclude
         exclude: [],
@@ -37,8 +37,11 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            // 'src/**/*.ts': ['coverage'],
+            // 'test/**/*.js': ['coverage'],
             'test/**/*.ts': ['webpack'],
-            'test/**/*.js': ['webpack'],
+            'test/**/*.js': ['coverage', 'webpack'],
+            // 'test/**/*.js': ['coverage'],
         },
         webpack: {
             module: webpackConfig.module,
@@ -50,16 +53,23 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+
         reporters: ['spec', 'coverage'],
 
         coverageReporter: {
           type : 'html',
           dir : 'coverage/',
-          // all: true,
-          // // fixWebpackSourcePaths: true,
-          // instrumenterOptions: {
-          //   istanbul: { noCompact: true },
-          // },
+          reporters: [
+            { type:'html', subdir: './' },
+          ],
+          instrumenterOptions: {
+            istanbul: {
+                noCompact: true,
+                esModules: true
+            }
+          },
+          all: true,
+          fixWebpackSourcePaths: true,
         },
 
       //   coverageReporter: {
