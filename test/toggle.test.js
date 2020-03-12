@@ -51,12 +51,14 @@ describe('Модуль Toggle', function() {
 		move();
 		expect(toggleDiv.style.left).toEqual('100px');
 		expect(toggleDiv.style.top).toEqual('0px');
+		expect(toggle.precent).toEqual(0.5);
 	});
 	it('Бегунок перетаскивается по вертикали при isVertical = true', function() {
 		toggle.isVertical = true;
 		move();
 		expect(toggleDiv.style.left).toEqual('0px');
 		expect(toggleDiv.style.top).toEqual('100px');
+		expect(toggle.precent).toEqual(0.5);
 	});
 });
 
