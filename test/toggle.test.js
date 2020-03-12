@@ -10,22 +10,27 @@ const add = () => {
 	toggle = new Toggle(toggleDiv, 0.5, 200, false);
 	document.body.appendChild(wrap);
 	wrap.appendChild(toggleDiv);
-	console.log(1);
-	alert(1);
 	wrap.style.position = 'absolute';
+	wrap.style.left = '0';
+	wrap.style.top = '0';
+	wrap.style.width = '100px';
+	wrap.style.height = '20px';
+	wrap.style.background = 'green';
 	toggleDiv.style.position = 'absolute';
 	toggleDiv.style.left = '0';
 	toggleDiv.style.top = '0';
 	toggleDiv.style.width = '20px';
 	toggleDiv.style.height = '20px';
 	toggleDiv.style.background = 'red';
-	console.log(1);
-	alert(1);
 }
-// const clearStyle = () => {
-// 	toggleDiv.style.left = '0';
-// 	toggleDiv.style.top = '0';
-// }
+const move = () => {
+	let mousedown = new MouseEvent('mousedown', {clientX: 0, clientY: 0});
+	let mousemove = new MouseEvent('mousemove', {clientX: 100, clientY: 100});
+	let mouseup = new MouseEvent('mouseup');
+	toggleDiv.dispatchEvent(mousedown);
+	document.dispatchEvent(mousemove);
+	document.dispatchEvent(mouseup);
+}
 const remove = () => {
 	toggleDiv.remove();
 	toggle = undefined;
@@ -34,7 +39,6 @@ const remove = () => {
 describe('Модуль Toggle', function() {
 	it('setStyle horizontal - устанавливает style.left', function() {
 		add();
-		// clearStyle();
 		toggle.isVertical = false;
 		toggle.setStyle();
 		expect(toggleDiv.style.left).toBe('100px');
@@ -43,35 +47,26 @@ describe('Модуль Toggle', function() {
 	});
 	it('setStyle vertical - устанавливает style.top', function() {
 		add();
-		// clearStyle();
 		toggle.isVertical = true;
 		toggle.setStyle();
 		expect(toggleDiv.style.left).toBe('0px');
 		expect(toggleDiv.style.top).toBe('100px');
 		remove();
 	});
-	it('!', function() {
+	it('Бегунок перетаскивается по горизонтали при isVertical = false', function() {
 		add();
-		// clearStyle();
 		toggle.isVertical = false;
-		toggle.onMoveToggle();
-		// const spy = spyOn(toggle, 'onMoveToggle');
-		// const mousedown = new MouseEvent('mousedown');
-		// toggle.mousePixel = 0;
-		// console.log(toggle.clientX);
-		let mousedown = new MouseEvent('mousedown', {clientX: 10, clientY: 10});
-		let mousemove = new MouseEvent('mousemove', {clientX: 100, clientY: 100});
-		let mouseup = new MouseEvent('mouseup');
-		// console.log(mousemove.offsetLeft);
-		toggleDiv.dispatchEvent(mousedown);
-		// console.log(toggle.a);
-		toggleDiv.dispatchEvent(mousemove);
-		// console.log(toggle.a);
-		toggleDiv.dispatchEvent(mouseup);
-		expect(toggle.precent).toEqual(5);
-		expect(toggleDiv.style.left).toBe('100px');
-		expect(toggleDiv.style.top).toBe('100px');
-		// expect(spy).toHaveBeenCalled();
+		move();
+		expect(toggleDiv.style.left).toEqual('100px');
+		expect(toggleDiv.style.top).toEqual('0px');
+		remove();
+	});
+	it('Бегунок перетаскивается по вертикали при isVertical = true', function() {
+		add();
+		toggle.isVertical = true;
+		move();
+		expect(toggleDiv.style.left).toEqual('0px');
+		expect(toggleDiv.style.top).toEqual('100px');
 		remove();
 	});
 });
