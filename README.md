@@ -295,20 +295,20 @@ TypeScript, Webpack, Jasmine, and Karma
 
 Свойства:
   
-  wrap - элемент-обертка, в котором создается слайдер
-  data - данные слайдера
-  precent - значение бегунков слайдера в диапазоне от 0 до 1
-  tabText - текст над бегунками
-  container - контейнер слайдера
-  minToggleElem - HTML элемент бегунка min
-  maxToggleElem - HTML элемент бегунка max
-  minToggle - объект бегунка min
-  maxToggle - объект бегунка max
-  minTabElem - HTML элемент текста над бегунком min
-  maxTabElem - HTML элемент текста над бегунком max
-  rangeElem - HTML элемент диапазона
-  size - размер контейнера в пикселях
-  scale - массив значений шкалы
+    wrap - элемент-обертка, в котором создается слайдер
+    data - данные слайдера
+    precent - значение бегунков слайдера в диапазоне от 0 до 1
+    tabText - текст над бегунками
+    container - контейнер слайдера
+    minToggleElem - HTML элемент бегунка min
+    maxToggleElem - HTML элемент бегунка max
+    minToggle - объект бегунка min
+    maxToggle - объект бегунка max
+    minTabElem - HTML элемент текста над бегунком min
+    maxTabElem - HTML элемент текста над бегунком max
+    rangeElem - HTML элемент диапазона
+    size - размер контейнера в пикселях
+    scale - массив значений шкалы
 
 Методы:
 
