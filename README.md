@@ -404,3 +404,9 @@ https://parunkov.github.io/slider/dist/
 # Диаграмма классов
 
 <img src="https://github.com/parunkov/slider/blob/master/Untitled%20Diagram%20(18).jpg"></img>
+
+# Тесты
+
+Команда запуска тестов:
+
+    npm i && npm run copy && npm run test
