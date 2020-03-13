@@ -400,3 +400,7 @@ https://parunkov.github.io/slider/dist/
     setScale() - создает массив элементов шкалы
     addListener() - отслеживает событие changeValue в модели, рассчитывает значение и создает событие changeTabText в модели
     changeInput() - отслеживает изменение инпутов, рассчитывает значение и создает событие changeInput в модели
+
+# Диаграмма классов
+
+<img src="https://github.com/parunkov/slider/blob/master/Untitled%20Diagram%20(18).jpg"></img>
