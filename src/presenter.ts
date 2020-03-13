@@ -6,7 +6,7 @@ import {
 	TabText
 } from './interfaces.ts';
 
-import { Model } from './model.ts';
+import Model from './model.ts';
 
 import {
 	setMouseHandler,
