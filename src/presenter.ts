@@ -38,15 +38,15 @@ class Presenter {
 
 	createData() {
 		function deepClone(obj) {
-		  const clObj = {};
-		  for(const i in obj) {
-		    if (obj[i] instanceof Object) {
-		      clObj[i] = deepClone(obj[i]);
-		      continue;
-		    }
-		    clObj[i] = obj[i];
-		  }
-		  return clObj;
+			const clObj = {};
+			for(const i in obj) {
+				if (obj[i] instanceof Object) {
+				clObj[i] = deepClone(obj[i]);
+				continue;
+			}
+			clObj[i] = obj[i];
+			}
+			return clObj;
 		}
 		const dataClone = deepClone(defaultData);
 		this.data = Object.assign(dataClone, this.options);
