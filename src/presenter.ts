@@ -1,9 +1,27 @@
-import {View} from './view.ts';
-import {Data, Value, TabText} from './interfaces.ts';
-import {Model} from './model.ts';
-import {setMouseHandler, round, setRangeStyle, toPrecent, toValue} from './functions.ts';
-import {markup} from './init-view-markup.ts';
-import {defaultData, setDataLimit} from './data.ts';
+import { View } from './view.ts';
+
+import {
+	Data,
+	Value,
+	TabText
+} from './interfaces.ts';
+
+import { Model } from './model.ts';
+
+import {
+	setMouseHandler,
+	round,
+	setRangeStyle,
+	toPrecent,
+	toValue
+} from './functions.ts';
+
+import { markup } from './init-view-markup.ts';
+
+import {
+	defaultData,
+	setDataLimit
+} from './data.ts';
 
 class Presenter {
 
@@ -134,4 +152,4 @@ class Presenter {
 	}
 }
 
-export {Presenter};
+export { Presenter };

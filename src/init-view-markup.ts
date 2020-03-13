@@ -41,4 +41,4 @@ const markup = (slider: HTMLElement) => {
   return markup;
 }
 
-export {initViewMarkup, markup};
+export { initViewMarkup, markup };

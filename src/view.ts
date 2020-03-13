@@ -1,8 +1,27 @@
-import {initViewMarkup, markup} from './init-view-markup.ts';
-import {Scale} from './scale.ts';
-import {Data, Value, TabText} from './interfaces.ts';
-import {setToggleStyle, Toggle} from './toggle.ts';
-import {setMouseHandler, round, toPrecent, setRangeStyle} from './functions.ts';
+import {
+	initViewMarkup,
+	markup
+} from './init-view-markup.ts';
+
+import { Scale } from './scale.ts';
+
+import {
+	Data,
+	Value,
+	TabText
+} from './interfaces.ts';
+
+import {
+	setToggleStyle,
+	Toggle
+} from './toggle.ts';
+
+import {
+	setMouseHandler,
+	round,
+	toPrecent,
+	setRangeStyle
+} from './functions.ts';
 
 class View {
 
@@ -179,4 +198,4 @@ class View {
 	}
 }
 
-export {View};
+export { View };

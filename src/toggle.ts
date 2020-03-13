@@ -1,4 +1,4 @@
-import {setLimit} from './functions.ts';
+import { setLimit } from './functions.ts';
 
 const setToggleStyle = (toggle: HTMLElement, pixel: number, isVertical: boolean) => {
 		if (isVertical) {
@@ -79,4 +79,4 @@ class Toggle {
 	}
 }
 
-export {setToggleStyle, Toggle};
+export { setToggleStyle, Toggle };

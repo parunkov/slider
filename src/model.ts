@@ -1,5 +1,14 @@
-import {Data, Value, TabText} from './interfaces.ts';
-import {setMouseHandler, round, setLimit} from './functions.ts';
+import {
+	Data,
+	Value,
+	TabText
+} from './interfaces.ts';
+
+import {
+	setMouseHandler,
+	round,
+	setLimit
+} from './functions.ts';
 
 class Model {
 
@@ -137,4 +146,4 @@ class Model {
 	}
 }
 
-export {Model};
+export { Model };

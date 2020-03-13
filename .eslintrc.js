@@ -5,9 +5,9 @@ module.exports = {
         "node": true
     },
     "extends": [
-        "eslint:recommended",
+        // "eslint:recommended",
         "airbnb",
-        "plugin:@typescript-eslint/eslint-recommended"
+        // "plugin:@typescript-eslint/eslint-recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -20,9 +20,11 @@ module.exports = {
     },
     "plugins": [
         "@typescript-eslint",
-        "prettier"
+        // "prettier"
     ],
     "rules": {
-        "prettier/prettier": "error"
+        // "prettier/prettier": "error"
+        "linebreak-style": 0,
+        "no-unused-vars": 0
     }
 };

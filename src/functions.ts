@@ -51,4 +51,4 @@ const setRangeStyle = (range: HTMLElement, min: number, max: number, isVertical:
 	}
 }
 
-export {setMouseHandler, round, setLimit, toPrecent, toValue, setRangeStyle};
+export { setMouseHandler, round, setLimit, toPrecent, toValue, setRangeStyle };

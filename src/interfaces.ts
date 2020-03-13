@@ -26,4 +26,4 @@ interface TabText {
 	max: string;
 }
 
-export {Data, Value, TabText};
+export { Data, Value, TabText };

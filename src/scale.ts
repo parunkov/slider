@@ -1,4 +1,4 @@
-import {round} from './functions.ts';
+import { round } from './functions.ts';
 
 export class Scale {
 

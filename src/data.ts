@@ -1,5 +1,5 @@
-import {setLimit} from './functions.ts';
-import {Data} from './interfaces.ts';
+import { setLimit } from './functions.ts';
+import { Data } from './interfaces.ts';
 
 const defaultData: Data = {
   minInputId: 'ts-slider__min-input',
@@ -15,12 +15,12 @@ const defaultData: Data = {
   isVertical: false,
   isTab: true,
   isScale: true,
-  scaleQuantity: 4
-}
+  scaleQuantity: 4,
+};
 
 const setDataLimit = (data: Data) => {
   data.minToggleValue = setLimit(data.minToggleValue, data.minValue, data.maxValue);
   data.maxToggleValue = setLimit(data.maxToggleValue, data.minValue, data.maxValue);
-}
+};
 
-export {setDataLimit, defaultData};
+export { setDataLimit, defaultData };
