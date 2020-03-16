@@ -19,8 +19,10 @@ const defaultData: Data = {
 };
 
 const setDataLimit = (data: Data) => {
-  data.minToggleValue = setLimit(data.minToggleValue, data.minValue, data.maxValue);
-  data.maxToggleValue = setLimit(data.maxToggleValue, data.minValue, data.maxValue);
+  const dataCopy = data;
+  dataCopy.minToggleValue = setLimit(data.minToggleValue, data.minValue, data.maxValue);
+  dataCopy.maxToggleValue = setLimit(data.maxToggleValue, data.minValue, data.maxValue);
+  return dataCopy;
 };
 
 export { setDataLimit, defaultData };
