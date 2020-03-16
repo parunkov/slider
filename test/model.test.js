@@ -1,4 +1,4 @@
-import {Model} from '../src/model.ts';
+import Model from '../src/model.ts';
 
 describe('Модуль Model', function() {
 

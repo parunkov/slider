@@ -1,4 +1,4 @@
-import {View} from './view.ts';
+import View from './view.ts';
 
 import {
 	Data,
@@ -6,7 +6,7 @@ import {
 	TabText
 } from './interfaces.ts';
 
-import {Model} from './model.ts';
+import Model from './model.ts';
 
 import {
 	setMouseHandler,

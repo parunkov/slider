@@ -1,4 +1,4 @@
-import {View} from '../src/view.ts';
+import View from '../src/view.ts';
 
 describe('Модуль View', function() {
 
