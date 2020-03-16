@@ -3,7 +3,7 @@ import {
 	markup
 } from './init-view-markup.ts';
 
-import { Scale } from './scale.ts';
+import Scale from './scale.ts';
 
 import {
 	Data,

@@ -1,4 +1,4 @@
-import {toView, toModel, Presenter} from '../src/presenter.ts';
+import Presenter from '../src/presenter.ts';
 
 describe('Модуль Presenter', function() {
 

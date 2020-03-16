@@ -1,4 +1,4 @@
-import {Scale} from '../src/scale.ts';
+import Scale from '../src/scale.ts';
 
 
 describe('Модуль Scale', function() {

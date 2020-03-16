@@ -1,4 +1,4 @@
-import { Presenter } from './presenter.ts';
+import Presenter from './presenter.ts';
 
 (function ($) {
   const methods = {
