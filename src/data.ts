@@ -25,4 +25,7 @@ const setDataLimit = (data: Data) => {
   return dataCopy;
 };
 
-export { setDataLimit, defaultData };
+export {
+  setDataLimit,
+  defaultData,
+};

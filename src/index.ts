@@ -19,9 +19,9 @@ import { Presenter } from './presenter.ts';
   $.fn.tsSlider = function (options, method?) {
     const id: string = `#${this.prop('id')}`;
     if (method === 'change' && window[id]) {
-      const change = methods.change.apply(this, arguments);
+      methods.change.apply(this, arguments);
     } else if (typeof method === 'object' || !method || !window[id]) {
-      const init = methods.init.apply(this, arguments);
+      methods.init.apply(this, arguments);
     } else {
       $.error(`Метод с именем ${method} не существует для jQuery.tsSlider`);
     }

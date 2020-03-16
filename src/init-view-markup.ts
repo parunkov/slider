@@ -1,4 +1,5 @@
-const initViewMarkup = (controlWrap: HTMLElement, vertical: boolean) => {
+const initViewMarkup = (wrap: HTMLElement, vertical: boolean) => {
+  const controlWrap = wrap;
   const contolMarkup: string = `<div class="ts-slider__container">
   <div class="ts-slider__bar">
   <div class="ts-slider__toggle ts-slider__toggle--min">
@@ -19,6 +20,7 @@ const initViewMarkup = (controlWrap: HTMLElement, vertical: boolean) => {
       div[i].classList.add(verticalClass);
     }
   }
+  return controlWrap;
 };
 
 const markup = (slider: HTMLElement) => {

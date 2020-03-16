@@ -24,7 +24,8 @@ module.exports = {
     ],
     "rules": {
         // "prettier/prettier": "error"
-        "linebreak-style": 0,
-        "no-unused-vars": 0
+        // "linebreak-style": 0,
+        // "no-unused-vars": 0
+        // "linebreak-style": ["error", "windows"],
     }
 };
