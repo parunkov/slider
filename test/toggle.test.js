@@ -1,4 +1,4 @@
-import {Toggle} from '../src/toggle.ts';
+import Toggle from '../src/toggle.ts';
 
 let wrap;
 let toggleDiv;

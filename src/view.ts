@@ -11,10 +11,7 @@ import {
 	TabText
 } from './interfaces.ts';
 
-import {
-	setToggleStyle,
-	Toggle
-} from './toggle.ts';
+import Toggle from './toggle.ts';
 
 import {
 	setMouseHandler,
