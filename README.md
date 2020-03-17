@@ -191,9 +191,9 @@ https://parunkov.github.io/slider/dist/
 	setToView() - рассчитывает данные для вида
 	setToModel() - рассчитывает данные для модели
 	init() - создает вид и модель, создает событие setPrecent в модели,создает событие initValue в виде,
-    отслеживает событие changeValue в виде и при его возникновении создает событие changeValue
+    отслеживает событие changeValue в виде и при его возникновении создает событие changeValue в модели
+	onMoveToggle() - отслеживает событие moveToggle в виде и при его возникновении создает событие changeValue
     в модели
-	onMoveToggle() - отслеживает событие moveToggle в виде и при его возникновении создает событие changeValue в модели
 	onChangeTabText() - отслеживает событие changeTabText в модели и при его возникновении создает событие changeTab
     в виде
 	onCangeInput() - рассчитывает текст над бегунком в виде при изменении инпута, отслеживает событие changeInput
