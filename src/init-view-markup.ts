@@ -14,11 +14,11 @@ const initViewMarkup = (wrap: HTMLElement, vertical: boolean) => {
   controlWrap.innerHTML = contolMarkup;
   const div = controlWrap.querySelectorAll('div');
   if (vertical) {
-    for (let i = 0; i < div.length; i += 1) {
-      const firstClass: string = div[i].classList[0];
+    div.forEach((item) => {
+      const firstClass: string = item.classList[0];
       const verticalClass: string = `${firstClass}--vertical`;
-      div[i].classList.add(verticalClass);
-    }
+      item.classList.add(verticalClass);
+    });
   }
   return controlWrap;
 };
