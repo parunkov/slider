@@ -39,7 +39,10 @@ class Presenter {
     this.onMoveToggle();
     this.onChangeTabText();
     this.onCangeInput();
+    this.onWindowResize();
+  }
 
+  onWindowResize() {
     const onResize = () => {
       this.init();
     };
@@ -103,9 +106,10 @@ class Presenter {
     this.view.setTab();
     this.view.container.dispatchEvent(new CustomEvent('initValue'));
 
-    this.view.container.addEventListener('changeValue', () => {
+    const onChangeValue = () => {
       this.model.observer.dispatchEvent(new CustomEvent('changeValue'));
-    });
+    };
+    this.view.container.addEventListener('changeValue', onChangeValue);
   }
 
   onMoveToggle() {
