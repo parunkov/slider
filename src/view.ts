@@ -204,28 +204,31 @@ class View {
   }
 
   addScale() {
-    this.container.addEventListener('initScale', () => {
+    const onInitScale = () => {
       if (this.data.isScale) {
         const scale = new Scale(this.container, this.scale, this.data.isVertical);
       }
-    });
+    };
+    this.container.addEventListener('initScale', onInitScale);
   }
 
   changeTab() {
-    this.container.addEventListener('changeTab', () => {
+    const onChangeTab = () => {
       this.setTab();
-    });
+    };
+    this.container.addEventListener('changeTab', onChangeTab);
   }
 
   changeInput() {
-    this.container.addEventListener('changeInput', () => {
+    const onChangeInput = () => {
       this.minToggle.precent = this.precent.min;
       this.maxToggle.precent = this.precent.max;
       this.minToggle.changeToggle();
       this.maxToggle.changeToggle();
       this.setTab();
       this.setRange();
-    });
+    };
+    this.container.addEventListener('changeInput', onChangeInput);
   }
 
   removeMarkup() {

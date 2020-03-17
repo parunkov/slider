@@ -40,9 +40,10 @@ class Presenter {
     this.onChangeTabText();
     this.onCangeInput();
 
-    window.addEventListener('resize', () => {
+    const onResize = () => {
       this.init();
-    });
+    };
+    window.addEventListener('resize', onResize);
   }
 
   setValue() {
@@ -116,14 +117,15 @@ class Presenter {
   }
 
   onChangeTabText() {
-    this.model.observer.addEventListener('changeTabText', () => {
+    const onChangeTab = () => {
       this.setTabText();
       this.view.container.dispatchEvent(new CustomEvent('changeTab'));
-    });
+    };
+    this.model.observer.addEventListener('changeTabText', onChangeTab);
   }
 
   onCangeInput() {
-    this.model.observer.addEventListener('changeInput', () => {
+    const onCangeInputText = () => {
       this.view.tabText = this.model.tabText;
       if (this.data.isArray) {
         this.view.precent.min = this.model.value.min / (this.data.array.length - 1);
@@ -135,7 +137,8 @@ class Presenter {
         this.setToModel();
       }
       this.view.container.dispatchEvent(new CustomEvent('changeInput'));
-    });
+    };
+    this.model.observer.addEventListener('changeInput', onCangeInputText);
   }
 }
 

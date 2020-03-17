@@ -53,7 +53,6 @@ class Model {
     this.maxInput.value = this.tabText.max;
     if (!this.data.isRange) {
       if (this.data.isArray) {
-        // this.minInput.value = this.data.array[0];
         [this.minInput.value] = this.data.array;
       } else {
         this.minInput.value = this.data.minValue;
@@ -103,7 +102,7 @@ class Model {
   }
 
   addListener() {
-    this.observer.addEventListener('changeValue', () => {
+    const onChangeValue = () => {
       if (this.data.isArray) {
         this.setArrayValue();
       } else {
@@ -112,7 +111,8 @@ class Model {
       }
       this.setInput();
       this.observer.dispatchEvent(new CustomEvent('changeTabText'));
-    });
+    };
+    this.observer.addEventListener('changeValue', onChangeValue);
   }
 
   changeInput() {
