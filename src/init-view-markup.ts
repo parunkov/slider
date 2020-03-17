@@ -1,25 +1,27 @@
-const initViewMarkup = (controlWrap: HTMLElement, vertical: boolean) => {
-	const contolMarkup: string = `<div class="ts-slider__container">
-          <div class="ts-slider__bar">
-            <div class="ts-slider__toggle ts-slider__toggle--min">
-              <div class="ts-slider__toggle-value ts-slider__toggle-value--min"></div>
-            </div>
-            <div class="ts-slider__toggle ts-slider__toggle--max">
-              <div class="ts-slider__toggle-value ts-slider__toggle-value--max"></div>
-            </div>
-            <div class="ts-slider__range"></div>
-          </div>
-        </div>`;
-	controlWrap.innerHTML = contolMarkup;
+const initViewMarkup = (wrap: HTMLElement, vertical: boolean) => {
+  const controlWrap = wrap;
+  const contolMarkup: string = `<div class="ts-slider__container">
+  <div class="ts-slider__bar">
+  <div class="ts-slider__toggle ts-slider__toggle--min">
+  <div class="ts-slider__toggle-value ts-slider__toggle-value--min"></div>
+  </div>
+  <div class="ts-slider__toggle ts-slider__toggle--max">
+  <div class="ts-slider__toggle-value ts-slider__toggle-value--max"></div>
+  </div>
+  <div class="ts-slider__range"></div>
+  </div>
+  </div>`;
+  controlWrap.innerHTML = contolMarkup;
   const div = controlWrap.querySelectorAll('div');
   if (vertical) {
-    for (let i = 0; i < div.length; i++) {
+    for (let i = 0; i < div.length; i += 1) {
       const firstClass: string = div[i].classList[0];
-      const verticalClass: string = firstClass + '--vertical';
+      const verticalClass: string = `${firstClass}--vertical`;
       div[i].classList.add(verticalClass);
     }
   }
-}
+  return controlWrap;
+};
 
 const markup = (slider: HTMLElement) => {
   interface Markup {
@@ -30,15 +32,18 @@ const markup = (slider: HTMLElement) => {
     minTab: HTMLElement;
     maxTab: HTMLElement;
   }
-  let markup: Markup = {  
-     min: slider.querySelector('.ts-slider__toggle--min'),
-     max: slider.querySelector('.ts-slider__toggle--max'),
-     range: slider.querySelector('.ts-slider__range'),
-     bar: slider.querySelector('.ts-slider__bar'),
-     minTab: slider.querySelector('.ts-slider__toggle-value--min'),
-     maxTab: slider.querySelector('.ts-slider__toggle-value--max')
-  }
-  return markup;
-}
+  const markupSlider: Markup = {
+    min: slider.querySelector('.ts-slider__toggle--min'),
+    max: slider.querySelector('.ts-slider__toggle--max'),
+    range: slider.querySelector('.ts-slider__range'),
+    bar: slider.querySelector('.ts-slider__bar'),
+    minTab: slider.querySelector('.ts-slider__toggle-value--min'),
+    maxTab: slider.querySelector('.ts-slider__toggle-value--max'),
+  };
+  return markupSlider;
+};
 
-export {initViewMarkup, markup};
+export {
+  initViewMarkup,
+  markup,
+};

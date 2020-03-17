@@ -1,182 +1,239 @@
-import {initViewMarkup, markup} from './init-view-markup.ts';
-import {Scale} from './scale.ts';
-import {Data, Value, TabText} from './interfaces.ts';
-import {setToggleStyle, Toggle} from './toggle.ts';
-import {setMouseHandler, round, toPrecent, setRangeStyle} from './functions.ts';
+import {
+  initViewMarkup,
+  markup,
+} from './init-view-markup.ts';
+
+import Scale from './scale.ts';
+
+import {
+  Data,
+  Value,
+  TabText,
+} from './interfaces.ts';
+
+import Toggle from './toggle.ts';
+
+import {
+  setMouseHandler,
+  toPrecent,
+  setRangeStyle,
+} from './functions.ts';
 
 class View {
+  wrap: HTMLElement;
 
-	wrap: HTMLElement;
-	data: Data;
-	precent: Value;
-	tabText: TabText;
-	container: HTMLElement;
-	minToggleElem: HTMLElement;
-	maxToggleElem: HTMLElement;
-	minToggle: Toggle;
-	maxToggle: Toggle;
-	minTabElem: HTMLElement;
-	maxTabElem: HTMLElement;
-	rangeElem: HTMLElement;
-	size: number;
-	scale: string[];
+  data: Data;
 
-	constructor(data, wrap) {
+  precent: Value;
 
-		this.wrap = wrap;
-		this.data = data;
-		this.precent = {
-			min: 0,
-			max: 0
-		}
-		this.tabText = {
-			min: '',
-			max: ''
-		}
-		this.scale = [];
-		this.initView();
-		this.createToggle();
-		this.onToggleCoincidence();
-		this.addScale();
-		this.changeTab();
-		this.changeInput();
-	}
+  tabText: TabText;
 
-	initView() {
-		initViewMarkup(this.wrap, this.data.isVertical);
-		this.container = this.wrap.querySelector('.ts-slider__container');
-		if (this.data.isVertical) {
-			this.size = this.container.offsetHeight;
-		} else {
-			this.size = this.container.offsetWidth;
-		}
-		this.minToggleElem = markup(this.container).min;
-		this.maxToggleElem = markup(this.container).max;
-		this.minTabElem = markup(this.container).minTab;
-		this.maxTabElem = markup(this.container).maxTab;
-		this.rangeElem = markup(this.container).range;
+  container: HTMLElement;
 
-		if (!this.data.isRange) {
-			this.minToggleElem.hidden = true;
-		}
+  minToggleElem: HTMLElement;
 
-		if (!this.data.isTab) {
-			this.minTabElem.hidden = true;
-			this.maxTabElem.hidden = true;
-		}
-	}
+  maxToggleElem: HTMLElement;
 
-	setTab() {
-		this.minTabElem.textContent = this.tabText.min;
-		this.maxTabElem.textContent = this.tabText.max;
-	}
+  minToggle: Toggle;
 
-	setRange() {
-		setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
-	}
+  maxToggle: Toggle;
 
-	createToggle() {
-		const minTogglePrecent = toPrecent(this.data.minToggleValue, this.data.minValue, this.data.maxValue);
-		const maxTogglePrecent = toPrecent(this.data.maxToggleValue, this.data.minValue, this.data.maxValue);
-		this.minToggle = new Toggle(this.minToggleElem, minTogglePrecent, this.size, this.data.isVertical);
-		this.maxToggle = new Toggle(this.maxToggleElem, maxTogglePrecent, this.size, this.data.isVertical);
-		this.minToggle.min = 0;
-		this.maxToggle.max = 1;
-		if (!this.data.isRange) {
-			this.minToggle.precent = 0;
-		}
-		this.setRange();
+  minTabElem: HTMLElement;
 
-		const onMouseMove = (moveEvt) => {
-			this.minToggle.max = this.maxToggle.precent;
-			this.maxToggle.min = this.minToggle.precent;
-			setRangeStyle(this.rangeElem, this.minToggle.precent * this.size, this.maxToggle.precent * this.size, this.data.isVertical);
-			this.precent.min = this.minToggle.precent;
-			this.precent.max = this.maxToggle.precent;
-			this.setTab();
-			this.container.dispatchEvent(new CustomEvent('moveToggle'));
-		}
-		setMouseHandler(document, onMouseMove);
-		this.container.addEventListener('mousemove', (evt) => {
-			evt.preventDefault();
-		});
-	}
+  maxTabElem: HTMLElement;
 
-	onToggleCoincidence() {
-		const onMouseDownCoincidence = (evt) => {
-			let coincidenceToggle: boolean = false;
-			this.maxToggleElem.hidden = true;
-			coincidenceToggle = document.elementFromPoint(evt.clientX, evt.clientY).classList.contains('ts-slider__toggle--min');
-			this.maxToggleElem.hidden = false;
-			let startPixel: number;
-			startPixel = this.maxToggle.pixel;
+  rangeElem: HTMLElement;
 
-			const onMouseMove = (moveEvt) => {
-				if (coincidenceToggle) {
-					this.minToggle.mousePixel = this.maxToggle.mousePixel;
-					this.maxToggle.isFixed = true;
-					this.minToggle.isFixed = true;
-					if (this.maxToggle.mousePixel > startPixel) {
-						this.maxToggle.isFixed = false;
-						this.minToggle.isFixed = true;
-					} else {
-						this.maxToggle.isFixed = true;
-						this.minToggle.isFixed = false;
-						this.minToggle.mousePixel = this.maxToggle.mousePixel;
-						this.minToggle.pixel = this.maxToggle.mousePixel;
-						if (this.minToggle.pixel < 0) {
-							this.minToggle.pixel = 0;
-						}
-						this.minToggle.setStyle();
-						this.minToggle.precent = this.minToggle.pixel / this.size;
-					}
-				} else {
-					this.maxToggle.isFixed = false;
-					this.minToggle.isFixed = false;
-				}
-			}
-			const onMouseUp = (upEvt) => {
-				this.minToggle.mousePixel = this.minToggle.pixel;
-				this.maxToggle.isFixed = false;
-				this.minToggle.isFixed = false;
-				document.removeEventListener('mouseup', onMouseUp);
-				document.removeEventListener('mousemove', onMouseMove);
-			}
-			document.addEventListener('mousemove', onMouseMove);
-			document.addEventListener('mouseup', onMouseUp);
-		}
+  size: number;
 
-		this.maxToggleElem.addEventListener('mousedown', onMouseDownCoincidence);
-	}
+  scale: string[];
 
-	addScale() {
-		this.container.addEventListener('initScale', () => {
-			if (this.data.isScale) {
-				const scale = new Scale(this.container, this.scale, this.data.isVertical);
-			}
-		});
-	}
+  constructor(data, wrap) {
+    this.wrap = wrap;
+    this.data = data;
+    this.precent = {
+      min: 0,
+      max: 0,
+    };
+    this.tabText = {
+      min: '',
+      max: '',
+    };
+    this.scale = [];
+    this.initView();
+    this.createToggle();
+    this.onToggleCoincidence();
+    this.addScale();
+    this.changeTab();
+    this.changeInput();
+  }
 
-	changeTab() {
-		this.container.addEventListener('changeTab', () => {
-			this.setTab();
-		});
-	}
+  initView() {
+    initViewMarkup(this.wrap, this.data.isVertical);
+    this.container = this.wrap.querySelector('.ts-slider__container');
+    if (this.data.isVertical) {
+      this.size = this.container.offsetHeight;
+    } else {
+      this.size = this.container.offsetWidth;
+    }
+    this.minToggleElem = markup(this.container).min;
+    this.maxToggleElem = markup(this.container).max;
+    this.minTabElem = markup(this.container).minTab;
+    this.maxTabElem = markup(this.container).maxTab;
+    this.rangeElem = markup(this.container).range;
 
-	changeInput() {
-		this.container.addEventListener('changeInput', () => {
-			this.minToggle.precent = this.precent.min;
-			this.maxToggle.precent = this.precent.max;
-			this.minToggle.changeToggle();
-			this.maxToggle.changeToggle();
-			this.setTab();
-			this.setRange();
-		});
-	}
+    if (!this.data.isRange) {
+      this.minToggleElem.hidden = true;
+    }
 
-	removeMarkup() {
-		this.container.remove();
-	}
+    if (!this.data.isTab) {
+      this.minTabElem.hidden = true;
+      this.maxTabElem.hidden = true;
+    }
+  }
+
+  setTab() {
+    this.minTabElem.textContent = this.tabText.min;
+    this.maxTabElem.textContent = this.tabText.max;
+  }
+
+  setRange() {
+    setRangeStyle(
+      this.rangeElem,
+      this.minToggle.precent * this.size,
+      this.maxToggle.precent * this.size,
+      this.data.isVertical,
+    );
+  }
+
+  createToggle() {
+    const minTogglePrecent = toPrecent(
+      this.data.minToggleValue,
+      this.data.minValue,
+      this.data.maxValue,
+    );
+    const maxTogglePrecent = toPrecent(
+      this.data.maxToggleValue,
+      this.data.minValue,
+      this.data.maxValue,
+    );
+    this.minToggle = new Toggle(
+      this.minToggleElem,
+      minTogglePrecent,
+      this.size,
+      this.data.isVertical,
+    );
+    this.maxToggle = new Toggle(
+      this.maxToggleElem,
+      maxTogglePrecent,
+      this.size,
+      this.data.isVertical,
+    );
+    this.minToggle.min = 0;
+    this.maxToggle.max = 1;
+    if (!this.data.isRange) {
+      this.minToggle.precent = 0;
+    }
+    this.setRange();
+
+    const onMouseMove = () => {
+      this.minToggle.max = this.maxToggle.precent;
+      this.maxToggle.min = this.minToggle.precent;
+      setRangeStyle(
+        this.rangeElem,
+        this.minToggle.precent * this.size,
+        this.maxToggle.precent * this.size,
+        this.data.isVertical,
+      );
+      this.precent.min = this.minToggle.precent;
+      this.precent.max = this.maxToggle.precent;
+      this.setTab();
+      this.container.dispatchEvent(new CustomEvent('moveToggle'));
+    };
+    setMouseHandler(document, onMouseMove);
+    this.container.addEventListener('mousemove', (evt) => {
+      evt.preventDefault();
+    });
+  }
+
+  onToggleCoincidence() {
+    const onMouseDownCoincidence = (evt) => {
+      let coincidenceToggle: boolean = false;
+      this.maxToggleElem.hidden = true;
+      coincidenceToggle = document.elementFromPoint(evt.clientX, evt.clientY).classList.contains('ts-slider__toggle--min');
+      this.maxToggleElem.hidden = false;
+      let startPixel: number;
+      startPixel = this.maxToggle.pixel;
+
+      const onMouseMove = () => {
+        if (coincidenceToggle) {
+          this.minToggle.mousePixel = this.maxToggle.mousePixel;
+          this.maxToggle.isFixed = true;
+          this.minToggle.isFixed = true;
+          if (this.maxToggle.mousePixel > startPixel) {
+            this.maxToggle.isFixed = false;
+            this.minToggle.isFixed = true;
+          } else {
+            this.maxToggle.isFixed = true;
+            this.minToggle.isFixed = false;
+            this.minToggle.mousePixel = this.maxToggle.mousePixel;
+            this.minToggle.pixel = this.maxToggle.mousePixel;
+            if (this.minToggle.pixel < 0) {
+              this.minToggle.pixel = 0;
+            }
+            this.minToggle.setStyle();
+            this.minToggle.precent = this.minToggle.pixel / this.size;
+          }
+        } else {
+          this.maxToggle.isFixed = false;
+          this.minToggle.isFixed = false;
+        }
+      };
+      const onMouseUp = () => {
+        this.minToggle.mousePixel = this.minToggle.pixel;
+        this.maxToggle.isFixed = false;
+        this.minToggle.isFixed = false;
+        document.removeEventListener('mouseup', onMouseUp);
+        document.removeEventListener('mousemove', onMouseMove);
+      };
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    };
+
+    this.maxToggleElem.addEventListener('mousedown', onMouseDownCoincidence);
+  }
+
+  addScale() {
+    const onInitScale = () => {
+      if (this.data.isScale) {
+        const scale = new Scale(this.container, this.scale, this.data.isVertical);
+      }
+    };
+    this.container.addEventListener('initScale', onInitScale);
+  }
+
+  changeTab() {
+    const onChangeTab = () => {
+      this.setTab();
+    };
+    this.container.addEventListener('changeTab', onChangeTab);
+  }
+
+  changeInput() {
+    const onChangeInput = () => {
+      this.minToggle.precent = this.precent.min;
+      this.maxToggle.precent = this.precent.max;
+      this.minToggle.changeToggle();
+      this.maxToggle.changeToggle();
+      this.setTab();
+      this.setRange();
+    };
+    this.container.addEventListener('changeInput', onChangeInput);
+  }
+
+  removeMarkup() {
+    this.container.remove();
+  }
 }
 
-export {View};
+export default View;
