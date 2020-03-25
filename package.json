@@ -1,15 +1,10 @@
 {
-  "name": "ts-template",
-  "version": "1.0.0",
-  "description": "Starter project w/ TypeScript, Webpack, Jasmine, Karma",
+  "private": true,
   "scripts": {
     "build:dev": "webpack --config webpack.dev.config.js",
-    "start:dev": "webpack-dev-server --config webpack.dev.config.js",
     "test": "karma start karma.conf.js",
     "copy": "node ncp.js"
   },
-  "author": "Nazmul Idris",
-  "license": "Apache-2.0",
   "devDependencies": {
     "@types/jasmine": "^3.3.13",
     "@types/jquery": "^3.3.33",
